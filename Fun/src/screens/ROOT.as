@@ -30,6 +30,12 @@ package screens
 		{
 			addEventListener(Menu.START_GAME, onStartGame);
 			addEventListener(Game.GAME_OVER,  onGameOver);
+			
+			// enter Sub Screens
+			addEventListener(Menu.ANTH,  onAnth);
+			addEventListener(Menu.OWEN,  onOwen);
+			addEventListener(Menu.PATR,  onPatr);
+			addEventListener(Menu.JAME,  onJame);
 		}
 		
 		public function start(background:Texture, assets:AssetManager):void
@@ -102,6 +108,29 @@ package screens
 		}
 
 		public static function get assets():AssetManager { return sAssets; }
+
+		// Screens
+		private function onAnth(event:Event, gameMode:String):void
+		{
+			trace("Game starts! Mode: " + gameMode);
+			showScene(Anth);
+		}
+
+		private function onOwen(event:Event, gameMode:String):void
+		{
+			trace("Game starts! Mode: " + gameMode);
+			showScene(Owen);
+		}
+		private function onPatr(event:Event, gameMode:String):void
+		{
+			trace("Game starts! Mode: " + gameMode);
+			showScene(Patr);
+		}
+		private function onJame(event:Event, gameMode:String):void
+		{
+			trace("Game starts! Mode: " + gameMode);
+			showScene(Jame);
+		}
 
 	}
 }
