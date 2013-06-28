@@ -39,7 +39,7 @@ package
 			var assets:AssetManager = new AssetManager();
 			var appDir:File = File.applicationDirectory;
 			
-			assets.enqueue(appDir.resolvePath("image"));
+			assets.enqueue(appDir.resolvePath("resources"));
 			
 			// This doesn't work for me
 			//assets.enqueue(EmbeddedAssets);
