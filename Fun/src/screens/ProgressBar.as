@@ -1,4 +1,4 @@
-package 
+package screens 
 {
     import flash.display.BitmapData;
     import flash.display.Shape;

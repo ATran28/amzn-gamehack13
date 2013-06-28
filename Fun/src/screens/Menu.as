@@ -1,4 +1,4 @@
-package 
+package screens 
 {
     import starling.display.Button;
     import starling.display.Sprite;

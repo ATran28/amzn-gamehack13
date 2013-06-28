@@ -11,6 +11,7 @@ package
 	import starling.events.Event;
 	import starling.textures.Texture;
 	import starling.utils.AssetManager;
+	import screens.ROOT;
 	
 	[SWF(frameRate="60", backgroundColor="#ab1b1b")]
 	public class Fun extends Sprite
@@ -18,7 +19,7 @@ package
 		public static const STAGE_WIDTH:int  = 800;
 		public static const STAGE_HEIGHT:int  = 1280;
 		
-		[Embed(source="background.jpg")]
+		[Embed(source="/resources/background.jpg")]
 		private static const Background:Class;
 		
 		

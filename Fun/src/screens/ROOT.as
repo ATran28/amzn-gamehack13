@@ -1,4 +1,4 @@
-package
+package screens
 {
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
@@ -19,10 +19,10 @@ package
 		// manual load particle
 		public static var fire:ParticleDesignerPS;
 
-		[Embed(source="/image/fire.pex", mimeType="application/octet-stream")]
+		[Embed(source="/resources/fire.pex", mimeType="application/octet-stream")]
 		private static const FireConfig:Class;
 
-		[Embed(source="/image/fire.png")]
+		[Embed(source="/resources/fire.png")]
 		private static const FireParticle:Class;
 		// end of manual load 
 		
