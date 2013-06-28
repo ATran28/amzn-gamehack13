@@ -1,10 +1,15 @@
 package screens 
 {
+    import flash.display.Bitmap;
+    import flash.geom.Rectangle;
+    
     import starling.display.Button;
+    import starling.display.Image;
     import starling.display.Sprite;
     import starling.events.Event;
     import starling.text.BitmapFont;
     import starling.text.TextField;
+    import starling.textures.Texture;
     
     /** The Menu shows the logo of the game and a start button that will, once triggered, 
      *  start the actual game. In a real game, it will probably contain several buttons and
@@ -25,6 +30,16 @@ package screens
         
         private function init():void
         {
+			var viewport:Rectangle = Fun.viewport;
+			var texture:Texture = ROOT.assets.getTexture("menubg");
+			var background:Image = new Image( texture );
+			background.x = viewport.x;
+			background.y = viewport.y;
+			background.width  = viewport.width;
+			background.height = viewport.height;
+			//background.smoothing = true;
+			addChild(background);
+			
             var textField:TextField = new TextField(450, 250, "Game Scaffold", 
                 "Desyrel", BitmapFont.NATIVE_SIZE, 0xffffff);
             textField.x = (Fun.STAGE_WIDTH - textField.width) / 2;

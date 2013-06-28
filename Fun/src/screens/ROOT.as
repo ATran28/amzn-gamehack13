@@ -1,5 +1,8 @@
 package screens
 {
+	import flash.display.Bitmap;
+	import flash.geom.Rectangle;
+	
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -19,6 +22,8 @@ package screens
 		// manual load particle
 		public static var fire:ParticleDesignerPS;
 
+		
+		
 		[Embed(source="/resources/fire.pex", mimeType="application/octet-stream")]
 		private static const FireConfig:Class;
 
@@ -38,7 +43,7 @@ package screens
 			addEventListener(Menu.JAME,  onJame);
 		}
 		
-		public function start(background:Texture, assets:AssetManager):void
+		public function start(assets:AssetManager):void
 		{
 			// the asset manager is saved as a static variable; this allows us to easily access
 			// all the assets from everywhere by simply calling "Root.assets"
@@ -49,16 +54,17 @@ package screens
 			// 1) we need it right away, otherwise we have an empty frame
 			// 2) the Startup class can decide on the right image, depending on the device.
 			
-			addChild(new Image(background));
 			
 			// The AssetManager contains all the raw asset data, but has not created the textures
 			// yet. This takes some time (the assets might be loaded from disk or even via the
 			// network), during which we display a progress indicator. 
 			
+			var viewport:Rectangle = Fun.viewport;
+			
 			var progressBar:ProgressBar = new ProgressBar(175, 20);
-			progressBar.x = (background.width  - progressBar.width)  / 2;
-			progressBar.y = (background.height - progressBar.height) / 2;
-			progressBar.y = background.height * 0.85;
+			progressBar.x = (viewport.width  - progressBar.width)  / 2;
+			progressBar.y = (viewport.height - progressBar.height) / 2;
+			progressBar.y = viewport.height * 0.85;
 			addChild(progressBar);
 			
 			// manual load particle
