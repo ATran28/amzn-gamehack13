@@ -19,7 +19,7 @@ package
 		public static const STAGE_WIDTH:int  = 800;
 		public static const STAGE_HEIGHT:int  = 1280;
 		
-		[Embed(source="/resources/background.jpg")]
+		[Embed(source="/resources/background.png")]
 		private static const Background:Class;
 		
 		
