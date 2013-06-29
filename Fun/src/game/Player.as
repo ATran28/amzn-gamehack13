@@ -27,7 +27,7 @@ package game
 		// Set only one as active
 		private function initPlayerMovies():void {
 			// Add movie	
-			var atlas:TextureAtlas = ROOT.assets.getTextureAtlas("intern");
+			var atlas:TextureAtlas = ROOT.atlas;
 			var kickLeftMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_"), 10);
 			
 			// TODO unify scale

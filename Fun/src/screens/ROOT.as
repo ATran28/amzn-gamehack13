@@ -11,6 +11,7 @@ package screens
 	import starling.extensions.ParticleDesignerPS;
 	import starling.text.TextField;
 	import starling.textures.Texture;
+	import starling.textures.TextureAtlas;
 	import starling.utils.AssetManager;
 	
 	public class ROOT extends Sprite
@@ -18,6 +19,7 @@ package screens
 		private var mActiveScene:Sprite;
 	
 		private static var sAssets:AssetManager;
+		private static var _atlas:TextureAtlas;
 		
 		// manual load particle
 		public static var fire:ParticleDesignerPS;
@@ -90,6 +92,7 @@ package screens
 				if (ratio == 1)
 					Starling.juggler.delayCall(function():void
 					{
+						_atlas = assets.getTextureAtlas("intern");
 						progressBar.removeFromParent(true);
 						showScene(Menu);
 						removeChild(background);
@@ -119,6 +122,7 @@ package screens
 		}
 
 		public static function get assets():AssetManager { return sAssets; }
+		public static function get atlas():TextureAtlas { return _atlas; }
 
 		// Screens
 		private function onAnth(event:Event, gameMode:String):void
