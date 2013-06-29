@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:db77a8c214cf10a3464fac69f8e4e90c$ -->
+<!-- $TexturePacker:SmartUpdate:aff6d07731d15321d9320427b6bb52cd$ -->
 <TextureAtlas imagePath="intern.png">
-    <SubTexture name="crouch_1" x="178" y="2" width="73" height="100" frameX="-11" frameY="0" frameWidth="95" frameHeight="100"/>
-    <SubTexture name="kick_left_cape_1 copy" x="2" y="111" width="85" height="120" frameX="-10" frameY="-2" frameWidth="95" frameHeight="122"/>
-    <SubTexture name="kick_left_cape_2" x="91" y="2" width="85" height="122" frameX="-10" frameY="0" frameWidth="95" frameHeight="122"/>
-    <SubTexture name="standing_1" x="2" y="233" width="85" height="101" frameX="0" frameY="0" frameWidth="95" frameHeight="101"/>
-    <SubTexture name="up_cape_1" x="89" y="126" width="85" height="107" frameX="0" frameY="0" frameWidth="95" frameHeight="107"/>
-    <SubTexture name="up_cape_2" x="2" y="2" width="87" height="107" frameX="0" frameY="0" frameWidth="95" frameHeight="107"/>
+    <SubTexture name="crouch_1" x="89" y="235" width="83" height="96" frameX="-6" frameY="-26" frameWidth="95" frameHeight="122"/>
+    <SubTexture name="crouch_2" x="180" y="111" width="73" height="100" frameX="-11" frameY="-22" frameWidth="95" frameHeight="122"/>
+    <SubTexture name="crouch_3" x="89" y="333" width="83" height="94" frameX="-6" frameY="-28" frameWidth="95" frameHeight="122"/>
+    <SubTexture name="kick_left_cape_1" x="2" y="112" width="85" height="120" frameX="-10" frameY="-2" frameWidth="95" frameHeight="122"/>
+    <SubTexture name="kick_left_cape_2" x="93" y="111" width="85" height="122" frameX="-10" frameY="0" frameWidth="95" frameHeight="122"/>
+    <SubTexture name="standing_1" x="2" y="343" width="85" height="100" frameX="0" frameY="-22" frameWidth="95" frameHeight="122"/>
+    <SubTexture name="up_cape_1" x="2" y="234" width="85" height="107" frameX="0" frameY="0" frameWidth="95" frameHeight="107"/>
+    <SubTexture name="up_cape_2" x="2" y="2" width="89" height="108" frameX="0" frameY="-18" frameWidth="95" frameHeight="126"/>
+    <SubTexture name="up_cape_3" x="93" y="2" width="87" height="107" frameX="0" frameY="0" frameWidth="95" frameHeight="107"/>
 </TextureAtlas>
