@@ -125,6 +125,48 @@ package levels
 			"XMMMMMMMMMMMMMMMMMMMMMMMMMX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 		
+		public static const GameWin:String = 
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"X                         X" +
+			"X                         X" +
+			"X        GGGGGG           X" +
+			"X        G                X" +
+			"X        G                X" +
+			"X        GGGGGG           X" +
+			"X        G                X" +
+			"X        G                X" +
+			"X        GGGGGG           X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X        RRRRRRR          X" +
+			"X        R     R          X" +
+			"X        R     R          X" +
+			"X        R     R          X" +
+			"X        R     R          X" +
+			"X        R     R          X" +
+			"X                         X" +
+			"X                         X" +
+			"X        DDDDD            X" +
+			"X        D    D           X" +
+			"X        D     D          X" +
+			"X        D     D          X" +
+			"X        D    D           X" +
+			"X        DDDDD            X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X           EE            X" +
+			"X           EE            X" +
+			"X           EE            X" +
+			"X           EE            X" +                        
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
+
+		
 		public static const EMPTY_TEMPLATE_TO_COPY:String = 
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +

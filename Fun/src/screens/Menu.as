@@ -32,6 +32,8 @@ package screens
 		
 		public var musicOn:Image;
 		public var musicOff:Image;
+		
+		public static var SDKInitiated = false;
         
         public function Menu()
         {
@@ -41,8 +43,11 @@ package screens
         private function init():void
         {
 			// Initialize 
-			GameCircleUtils.initializeGameCircle();
-			inAppPurchasing.init();
+			if (!SDKInitiated) {
+				GameCircleUtils.initializeGameCircle();
+				inAppPurchasing.init();
+				SDKInitiated = true;
+			}
 
 			var viewport:Rectangle = Fun.viewport;
 			var texture:Texture = ROOT.assets.getTexture("menubg");
@@ -61,10 +66,10 @@ package screens
 			textField.name = "menuText";
             addChild(textField);
             
-			var patrickButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "Patrick Start");
+			var patrickButton:Button = new Button(ROOT.assets.getTexture("start"), "");
 			patrickButton.fontSize = 24;
 			patrickButton.x = int((Fun.STAGE_WIDTH - patrickButton.width) / 3);
-			patrickButton.y = Fun.STAGE_HEIGHT * 0.25;
+			patrickButton.y = Fun.STAGE_HEIGHT * 0.2;
 			patrickButton.addEventListener(Event.TRIGGERED, onPatrickButtonTriggered);
 			addChild(patrickButton);  
 
@@ -78,22 +83,23 @@ package screens
 			
 			// Buttons that switch between (Sprites) Screens
 
-			// Show Achievements Button
-			var showAchievements:Button = new Button(ROOT.assets.getTexture("orange-button"), "Show Achievements");
-			showAchievements.fontSize = 24;
-			showAchievements.x = int((Fun.STAGE_WIDTH - showAchievements.width) / 3);
-			showAchievements.y = Fun.STAGE_HEIGHT * 0.35;
-			showAchievements.addEventListener(Event.TRIGGERED, Achievements.showOverlay);
-			addChild(showAchievements);  
-			
 			// Show Leaderboards Button
-			var showLeaderboards:Button = new Button(ROOT.assets.getTexture("orange-button"), "Show Leaderboard");
+			var showLeaderboards:Button = new Button(ROOT.assets.getTexture("leaderboard"), "");
 			showLeaderboards.fontSize = 24;
 			showLeaderboards.x = int((Fun.STAGE_WIDTH - showLeaderboards.width) / 3);
-			showLeaderboards.y = Fun.STAGE_HEIGHT * 0.45;
+			showLeaderboards.y = Fun.STAGE_HEIGHT * 0.35;
 			showLeaderboards.addEventListener(Event.TRIGGERED, showBoard);
 			addChild(showLeaderboards);  
 
+
+			// Show Achievements Button
+			var showAchievements:Button = new Button(ROOT.assets.getTexture("achievements"), "");
+			showAchievements.fontSize = 24;
+			showAchievements.x = int((Fun.STAGE_WIDTH - showAchievements.width) / 3);
+			showAchievements.y = Fun.STAGE_HEIGHT * 0.50;
+			showAchievements.addEventListener(Event.TRIGGERED, Achievements.showOverlay);
+			addChild(showAchievements);  
+			
 			
 //			var anthonyButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "Anthony");
 //			anthonyButton.fontSize = 24;
@@ -108,20 +114,20 @@ package screens
 //			jamesButton.addEventListener(Event.TRIGGERED, onJamesButtonTriggered);
 //			addChild(jamesButton);  
 
-			var musicButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "Music");
+			var musicButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "");
 			musicButton.fontSize = 24;
 			musicButton.x = int((Fun.STAGE_WIDTH - musicButton.width) / 3);
-			musicButton.y = Fun.STAGE_HEIGHT * 0.55;
+			musicButton.y = Fun.STAGE_HEIGHT * 0.65;
 			musicButton.addEventListener(Event.TRIGGERED, onMusicButtonTriggered);
 			addChild(musicButton);  
 
 			musicOn = new Image(ROOT.assets.getTexture("turn_on"));
-			musicOn.x = 300;
+			musicOn.x = 210;
 			musicOn.y = 900; 
 
 			
 			musicOff = new Image(ROOT.assets.getTexture("turn_off"));
-			musicOff.x = 300;
+			musicOff.x = 210;
 			musicOff.y = 900;
 			addChild(musicOff);
 

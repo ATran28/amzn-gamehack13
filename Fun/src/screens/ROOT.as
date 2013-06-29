@@ -72,7 +72,7 @@ package screens
 			var progressBar:ProgressBar = new ProgressBar(175, 20);
 			progressBar.x = (viewport.width  - progressBar.width)  / 2;
 			progressBar.y = (viewport.height - progressBar.height) / 2;
-			progressBar.y = viewport.height * 0.85;
+			progressBar.y = viewport.height * 0.70;
 			addChild(progressBar);
 			
 			// manual load particle

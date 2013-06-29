@@ -63,21 +63,8 @@ package levels
 //				addChild(musicOff);
 			}
 
-			
-			var backButton:Button = new Button(ROOT.assets.getTexture("menu-button"), "Back");
-			backButton.fontSize = 24;
-			backButton.x = 400;
-			backButton.y = 60; 
-			backButton.addEventListener(Event.TRIGGERED, backToMenu);
-			addChild(backButton);  
-			
 		}
 		
-		// back button to menu handler
-		public function backToMenu():void {
-			dispatchEventWith(GAME_OVER, true, 100);
-		}
-
 		
 		public function run():void {
 			
