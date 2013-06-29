@@ -22,6 +22,7 @@ package game
 		private var _caffeineLevel:Number = 0.0;
 		private var _caffeineDecay:Number = -0.0001;
 		
+		public var inTheAir:Boolean;
 		
 		public function Player()
 		{
@@ -29,6 +30,9 @@ package game
 			life = 100;
 			initPlayerMovies();
 			velocity = new Vector3D();
+			
+			// This help to detect first hit grount play sound
+			inTheAir = false;
 		}
 		
 		public static function set hp(value:int):void { life = value; }
@@ -116,6 +120,7 @@ package game
 				}
 			} else{	//Up
 				jumpUp();
+				this.inTheAir = true;
 			}
 		}
 			//			detectCollsions(intern1);

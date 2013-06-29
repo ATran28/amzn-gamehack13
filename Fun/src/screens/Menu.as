@@ -31,7 +31,7 @@ package screens
         private function init():void
         {
 			var viewport:Rectangle = Fun.viewport;
-			var texture:Texture = ROOT.assets.getTexture("menubg");
+			var texture:Texture = ROOT.assets.getTexture("Menu");
 			var background:Image = new Image( texture );
 			background.x = viewport.x;
 			background.y = viewport.y;
@@ -47,47 +47,41 @@ package screens
 			textField.name = "menuText";
             addChild(textField);
             
-            var startButton:Button = new Button(ROOT.assets.getTexture("green-button"), "Start");
-            startButton.fontSize = 24;
-            startButton.x = int((Fun.STAGE_WIDTH - startButton.width) / 3 );
-            startButton.y = Fun.STAGE_HEIGHT * 0.25;
-            startButton.addEventListener(Event.TRIGGERED, onStartButtonTriggered);
-			addChild(startButton);
-
-            var test:Button = new Button(ROOT.assets.getTexture("green-button"), "Ruoran");
-            test.fontSize = 24;
-            test.x = int((Fun.STAGE_WIDTH - test.width) / 3 * 2);
-            test.y = Fun.STAGE_HEIGHT * 0.75;
-            test.addEventListener(Event.TRIGGERED, onRuoranButtonTriggered);
-            addChild(test);     
-			
-			
-			// Buttons that switch between (Sprites) Screens
-			var anthonyButton:Button = new Button(ROOT.assets.getTexture("green-button"), "Anthony");
-			anthonyButton.fontSize = 24;
-			anthonyButton.x = int((Fun.STAGE_WIDTH - anthonyButton.width) / 5);
-			anthonyButton.y = Fun.STAGE_HEIGHT * 0.5;
-			anthonyButton.addEventListener(Event.TRIGGERED, onAnthonyButtonTriggered);
-			addChild(anthonyButton);  
-
-			var patrickButton:Button = new Button(ROOT.assets.getTexture("green-button"), "Patrick");
+			var patrickButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "Patrick Start");
 			patrickButton.fontSize = 24;
-			patrickButton.x = int((Fun.STAGE_WIDTH - patrickButton.width) / 5 * 2);
-			patrickButton.y = Fun.STAGE_HEIGHT * 0.5;
+			patrickButton.x = int((Fun.STAGE_WIDTH - patrickButton.width) / 3);
+			patrickButton.y = Fun.STAGE_HEIGHT * 0.25;
 			patrickButton.addEventListener(Event.TRIGGERED, onPatrickButtonTriggered);
 			addChild(patrickButton);  
 
-			var jamesButton:Button = new Button(ROOT.assets.getTexture("green-button"), "James");
-			jamesButton.fontSize = 24;
-			jamesButton.x = int((Fun.STAGE_WIDTH - jamesButton.width) / 5 * 3);
-			jamesButton.y = Fun.STAGE_HEIGHT * 0.5;
-			jamesButton.addEventListener(Event.TRIGGERED, onJamesButtonTriggered);
-			addChild(jamesButton);  
+            var startButton:Button = new Button(ROOT.assets.getTexture("button"), "Start");
+            startButton.fontSize = 34;
+            startButton.x = int((Fun.STAGE_WIDTH - startButton.width) / 3 );
+            startButton.y = Fun.STAGE_HEIGHT * 0.35;
+            startButton.addEventListener(Event.TRIGGERED, onStartButtonTriggered);
+			addChild(startButton);
 
-			var owenButton:Button = new Button(ROOT.assets.getTexture("green-button"), "Owen");
+			
+			// Buttons that switch between (Sprites) Screens
+			var anthonyButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "Anthony");
+			anthonyButton.fontSize = 24;
+			anthonyButton.x = int((Fun.STAGE_WIDTH - anthonyButton.width) / 3);
+			anthonyButton.y = Fun.STAGE_HEIGHT * 0.45;
+			anthonyButton.addEventListener(Event.TRIGGERED, onAnthonyButtonTriggered);
+			addChild(anthonyButton);  
+
+
+//			var jamesButton:Button = new Button(ROOT.assets.getTexture("green-button"), "James");
+//			jamesButton.fontSize = 24;
+//			jamesButton.x = int((Fun.STAGE_WIDTH - jamesButton.width) / 5 * 3);
+//			jamesButton.y = Fun.STAGE_HEIGHT * 0.5;
+//			jamesButton.addEventListener(Event.TRIGGERED, onJamesButtonTriggered);
+//			addChild(jamesButton);  
+
+			var owenButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "Owen");
 			owenButton.fontSize = 24;
-			owenButton.x = int((Fun.STAGE_WIDTH - owenButton.width) / 5 * 4);
-			owenButton.y = Fun.STAGE_HEIGHT * 0.5;
+			owenButton.x = int((Fun.STAGE_WIDTH - owenButton.width) / 3);
+			owenButton.y = Fun.STAGE_HEIGHT * 0.55;
 			owenButton.addEventListener(Event.TRIGGERED, onOwenButtonTriggered);
 			addChild(owenButton);  
 
