@@ -4,22 +4,26 @@ package levels
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
+	import game.Player;
 	import game.StaticGameObject;
 	
-	import misc.DisplayHelper;
+	import purchasing.inAppPurchasing;
 	
 	import screens.ROOT;
 	
+	import starling.display.Button;
 	import starling.display.Image;
+	import starling.events.Event;
 	import starling.textures.Texture;
 
 	public class GeneratedLevel extends Level
 	{
+		private var curPlayer:Player;
 		private var parser:AsciiLevelParser; 
-		public function GeneratedLevel(ascii:String)
+		public function GeneratedLevel(ascii:String, player:Player)
 		{
 			super();
-			
+			curPlayer = player;
 			_notableTiles = new Vector.<StaticGameObject>();
 			
 			parser = new AsciiLevelParser();
@@ -60,7 +64,20 @@ package levels
 			
 			addChild(exitElevator);
 //			
-			
+			addCaffieneButton();
+		}
+		
+		public function addCaffieneButton():void {
+			caffieneTexture:Texture;
+			var caffieneButton:Button = new Button(ROOT.assets.getTexture("caffeine"), "", ROOT.assets.getTexture("caffeine_down"));
+			caffieneButton.x = Fun.viewport.width - 100;
+			caffieneButton.y = 25;
+			caffieneButton.addEventListener(Event.TRIGGERED, buyCaffiene);
+			addChild(caffieneButton);
+		}
+		
+		public function buyCaffiene():void {
+			inAppPurchasing.purchaseCaffeine(curPlayer);	
 		}
 		
 		override public function run():void {

@@ -52,10 +52,9 @@ package screens
 		}
 		
 		private function initState():void {
-			currentLevel = levelQueue.getNextLevel();
-			addChild(currentLevel);
-			
 			player = new Player();
+			currentLevel = levelQueue.getNextLevel(player);
+			addChild(currentLevel);
 			
 			// set the properties
 			player.x = currentLevel.startPosition.x;
