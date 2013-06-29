@@ -2,6 +2,8 @@ package game
 {
 	import flash.utils.Dictionary;
 	
+	import screens.ROOT;
+	
 	import starling.core.Starling;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
@@ -39,9 +41,13 @@ package game
 //			activeMovie.pivotX = activeMovie.width / 2;
 //			activeMovie.pivotY = activeMovie.height / 2;
 			// add to juggler
-			Starling.juggler.add(activeMovie);
+			
 			// start 
 			addChild(activeMovie);
+		}
+		
+		public function animate():void {
+			Starling.juggler.add(activeMovie);
 		}
 		
 		public function getActiveMovie():MovieClip {
@@ -59,5 +65,22 @@ package game
 		public function removeMovie(name:String):void {
 			movieMap[name] = null;
 		}
+		
+		public static function makeElevator(x:int, y:int, closed:Boolean):AnimatedGameObject {
+			var result:AnimatedGameObject = new AnimatedGameObject();
+			result.x = x;
+			result.y = y;
+			result.addMovie("closed", new MovieClip(ROOT.atlas.getTextures("elevator_open"), 4));
+			result.addMovie("open", new MovieClip(ROOT.atlas.getTextures("elevator_close"), 4));
+			
+			if (closed) {
+				result.setActiveMovie("closed");
+			} else {
+				result.setActiveMovie("open");
+			}
+			
+			return result;
+		}
+		
 	}
 }

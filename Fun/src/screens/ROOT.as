@@ -92,7 +92,7 @@ package screens
 				if (ratio == 1)
 					Starling.juggler.delayCall(function():void
 					{
-						_atlas = assets.getTextureAtlas("intern");
+						_atlas = assets.getTextureAtlas("FunGameSprites");
 						progressBar.removeFromParent(true);
 						showScene(Menu);
 						removeChild(background);
