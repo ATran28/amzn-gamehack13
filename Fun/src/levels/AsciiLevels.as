@@ -2,6 +2,47 @@ package levels
 {
 	public class AsciiLevels
 	{
+		public static const asciiLevel0:String = 
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X   EE                    X" +
+			"X   EE                    X" +
+			"X   EE                    X" +
+			"X   EE                    X" +
+			"XRRRRRRRRRRR              X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                   LLLLL X" +
+			"X                     T   X" +
+			"X   P                 T   X" +
+			"X                     T   X" +
+			"XGGGGGGGGGGGGGGGGGGGGGGGGGX" +                        
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		
 		public static const asciiLevel1:String = 
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
@@ -13,7 +54,7 @@ package levels
 			"X     RRRRRRRRRRR         X" +
 			"X                         X" +
 			"X                         X" +
-			"X                         X" +
+			"X                     K   X" +
 			"X                   RRRRRRX" +
 			"X                         X" +
 			"X                         X" +
@@ -31,7 +72,7 @@ package levels
 			"X                         X" +
 			"X                         X" +
 			"X     RRRRR               X" +
-			"X                         X" +
+			"X                  P      X" +
 			"X                         X" +
 			"XGGGGGGGGGGGGGGGGGGGGGGGGGX" +
 			"X                         X" +
@@ -63,7 +104,7 @@ package levels
 			"X                         X" +
 			"X                         X" +
 			"X                         X" +
-			"X                         X" +
+			"X                   P     X" +
 			"X                         X" +
 			"XMMMMMMMMMMMMMMMMMMMMMMMMMX" +
 			"X                         X" +

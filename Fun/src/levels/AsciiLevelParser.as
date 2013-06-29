@@ -1,5 +1,7 @@
 package levels
 {
+	import flash.geom.Point;
+	
 	import game.AnimatedGameObject;
 	import game.StaticGameObject;
 	
@@ -7,12 +9,17 @@ package levels
 
 	public class AsciiLevelParser
 	{
+		private var _notable:Vector.<StaticGameObject>;
+		public function get notable():Vector.<StaticGameObject> { return _notable; }
 		private var _statics:Vector.<StaticGameObject>;
 		public function get statics():Vector.<StaticGameObject> { return _statics; }
 		private var _elevator:AnimatedGameObject;
 		public function get elevator():AnimatedGameObject { return _elevator; }
+		private var _playerPoint:Point;
+		public function get playerPoint():Point { return _playerPoint; } 
 		
 		public function AsciiLevelParser(){
+			_notable = new Vector.<StaticGameObject>();
 			_statics = new Vector.<StaticGameObject>();
 		}
 		public function parse(ascii:String):Boolean{
@@ -63,6 +70,17 @@ package levels
 						}
 					} else if(c == " "){
 						//ignore
+					} else if(c == "P") {
+						_playerPoint = DisplayHelper.makePoint(actualX, actualY);
+					} else if(c == "S") {
+						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "star");
+						notable.push(obj);
+					} else if(c == "B") {
+						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "book");
+						notable.push(obj);
+					} else if(c == "K") {
+						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "keypad");
+						notable.push(obj);
 					} else{
 						trace("INVALID CHARACTER: " + c + " @(" + actualX + "," + actualY + ")");
 						return false;

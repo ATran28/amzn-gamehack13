@@ -8,6 +8,7 @@ package levels
 		public function LevelQueue()
 		{
 			levelQueue = new Vector.<String>();
+			//levelQueue.push(AsciiLevels.asciiLevel0);
 			levelQueue.push(AsciiLevels.asciiLevel1);
 			levelQueue.push(AsciiLevels.asciiLevel2);
 		}

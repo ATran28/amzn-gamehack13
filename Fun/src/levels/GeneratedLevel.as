@@ -20,8 +20,7 @@ package levels
 		{
 			super();
 			
-			_notableTiles = new Vector.<StaticGameObject>();
-			
+			didCompleteLevel = false;
 			parser = new AsciiLevelParser();
 			var success:Boolean = parser.parse(ascii);
 			if(!success){
@@ -37,7 +36,7 @@ package levels
 			var miny:int = viewport.height - 113;
 			var minx:int = viewport.width;
 			
-			_startingPosition = new Point(50, 100);
+			_startingPosition = parser.playerPoint;
 			
 			// Set background
 			var texture:Texture = ROOT.assets.getTexture("bg1");
@@ -51,6 +50,10 @@ package levels
 			_tiles = parser.statics;
 			for each(var tile:StaticGameObject in _tiles){
 				addChild(tile);	
+			}
+			_notableTiles = parser.notable;
+			for each(var ntile:StaticGameObject in _notableTiles) {
+				addChild(ntile);
 			}
 			
 			_levelStatus["tilesToFind"] = notableTiles.length;
@@ -66,10 +69,13 @@ package levels
 		override public function run():void {
 			
 		}
-		
+		var didCompleteLevel:Boolean;
 		override public function isFinished():Boolean {
-			if ( levelStatus["tilesToFind"] == 0 ) {
-				exitElevator.animate();
+			if ( levelStatus["tilesToFind"] <= 0) {
+				if (!didCompleteLevel) {
+					didCompleteLevel = true;
+					exitElevator.animate();
+				}
 				return true;
 			}
 			return false;
