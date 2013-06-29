@@ -4,6 +4,8 @@ package screens
 	import flash.geom.Rectangle;
 	import flash.geom.Vector3D;
 	
+	import physics.CollisionDetection;
+	
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -30,6 +32,8 @@ package screens
 			dispatchEventWith(GAME_OVER, true, 100);
 		}
 		
+		private var stretchedGround:Image;
+		private var ground:Vector.<Image> = new Vector.<Image>(); 
 		private function initGame(event:Event):void {
 			var viewport:Rectangle = Fun.viewport;
 			var texture:Texture = ROOT.assets.getTexture("menubg");
@@ -42,19 +46,23 @@ package screens
 			addChild(background);
 			
 			var groundAtlas:TextureAtlas = ROOT.assets.getTextureAtlas("FunGameSprites");
-			if(groundAtlas == null){
-				trace("atlas null");
-				
-			}
+			
 			var tex:Texture = groundAtlas.getTexture("grass32");
-			if(tex == null) {
-				trace("tex null");
-				
+			stretchedGround = new Image(tex);
+			stretchedGround.x = 0;
+			stretchedGround.y = 400;
+			stretchedGround.width = viewport.width;
+			addChild(stretchedGround);
+			
+			
+			var groundImg:Image;
+			for(var w:Number = 0; w < viewport.width; w += tex.width){
+				groundImg = new Image(tex);
+				groundImg.x = w;
+				groundImg.y = 800;
+				addChild(groundImg);
+				ground.push(groundImg);
 			}
-			var ground1:Image = new Image(tex);
-			ground1.x = 300;
-			ground1.y = 300;
-			addChild(ground1);
 			
 			var internTexture:Texture = ROOT.assets.getTexture("intern");
 			var intern1:Image = new Image(internTexture);
@@ -127,11 +135,17 @@ package screens
 			internPos = internPos.add(new Point(v.x, v.y));
 			trace("InternPos: " + internPos);
 			intern1.x = internPos.x;
-			intern1.y = internPos.y;	
+			intern1.y = internPos.y;
+			
+			//detectCollsions(intern1);
 		}
 		
-		private function detectCollsions() {
-			
+		private function detectCollsions(player:DisplayObject):Boolean {
+			if(CollisionDetection.detectCollisionSphere(player, stretchedGround)){
+				trace("Ground collision");
+				return true;
+			}
+			return false;
 		}
 	}
 }
