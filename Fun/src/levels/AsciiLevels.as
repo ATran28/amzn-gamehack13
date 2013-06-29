@@ -74,7 +74,7 @@ package levels
 			"X                         X" +
 			"X     RRRRR               X" +
 			"X                  P      X" +
-			"XDDDDDDDDDDDDDD           X" +
+			"X                         X" +
 			"XGGGGGGGGGGGGGGGGGGGGGGGGGX" +
 			"X                         X" +
 			"X                         X" +
