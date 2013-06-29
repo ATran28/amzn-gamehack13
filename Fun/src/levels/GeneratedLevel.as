@@ -57,7 +57,7 @@ package levels
 			_exitElevator = parser.elevator;
 			
 			addChild(exitElevator);
-//			_exitElevator.animate();
+//			
 			
 		}
 		
@@ -66,6 +66,7 @@ package levels
 		}
 		
 		override public function isFinished():Boolean {
+			_exitElevator.animate();
 			return true;
 		}
 		
