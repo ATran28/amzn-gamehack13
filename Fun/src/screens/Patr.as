@@ -87,6 +87,7 @@ package screens
 			}
 			frameCount++;
 			if (frameCount % 60 == 0) {
+				currentLevel.refreshTimer();
 				if (currentLevel.hasTimedOut() && !elevatorTouched) {
 					removeChild(currentLevel);
 					removeChild(player);
