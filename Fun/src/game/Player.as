@@ -116,6 +116,14 @@ package game
 		public function stand():void {
 			this.setActiveMovie("standing");
 		}
+
+		public function crouch():void {
+			this.setActiveMovie("crouch");
+		}
+
+		public function jumpUp():void {
+			this.setActiveMovie("up");
+		}
 		
 		public function set caffeineLevel(value:Number):void { _caffeineLevel = value; }
 		public function get caffeineLevel():Number { return _caffeineLevel; }
