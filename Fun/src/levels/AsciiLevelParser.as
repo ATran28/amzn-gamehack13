@@ -26,15 +26,14 @@ package levels
 			const width:int = 27;
 			var firstE:Boolean = true;
 			
-			for(var h:int = 0; h <= height; h++){ 
-				for(var w:int = 0; w <= width; w++){
+			for(var h:int = 0; h < height; h++){ 
+				for(var w:int = 0; w < width; w++){
 					
 					var c:String = ascii.charAt(h*width + w);
 					
 					var actualX:int = w - 1;
 					var actualY:int = height - h - 1;
-					trace("x: " + actualX);
-					trace("y: " + actualY);
+					trace("c: " + c + ", x: " + actualX + ", y: " + actualY);
 					
 					var obj:StaticGameObject;
 					if(c == "X"){
@@ -56,7 +55,7 @@ package levels
 							firstE = false;
 							_elevator = DisplayHelper.makeAnimatedElevator(actualX, actualY, true);
 						}
-					} else if(c == ' '){
+					} else if(c == " "){
 						//ignore
 					} else{
 						trace("INVALID CHARACTER: " + c + " @(" + actualX + "," + actualY + ")");
@@ -69,7 +68,7 @@ package levels
 			
 		}
 		private function validate(ascii:String):Boolean{
-			if(ascii.length != (25 + 2) * (37 + 2)){
+			if(ascii.length != 39 * 27){
 				return false;
 			}
 			

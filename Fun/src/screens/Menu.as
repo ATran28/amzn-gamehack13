@@ -2,6 +2,12 @@ package screens
 {
     import flash.geom.Rectangle;
     
+    import gameCircle.Achievements;
+    import gameCircle.GameCircleUtils;
+    import gameCircle.Leaderboards;
+    
+    import purchasing.inAppPurchasing;
+    
     import starling.display.Button;
     import starling.display.Image;
     import starling.display.Sprite;
@@ -30,8 +36,12 @@ package screens
         
         private function init():void
         {
+			// Initialize 
+			GameCircleUtils.initializeGameCircle();
+			inAppPurchasing.init();
+
 			var viewport:Rectangle = Fun.viewport;
-			var texture:Texture = ROOT.assets.getTexture("menubg");
+			var texture:Texture = ROOT.assets.getTexture("Menu");
 			var background:Image = new Image( texture );
 			background.x = viewport.x;
 			background.y = viewport.y;
@@ -47,47 +57,57 @@ package screens
 			textField.name = "menuText";
             addChild(textField);
             
-            var startButton:Button = new Button(ROOT.assets.getTexture("green-button"), "Start");
-            startButton.fontSize = 24;
-            startButton.x = int((Fun.STAGE_WIDTH - startButton.width) / 3 );
-            startButton.y = Fun.STAGE_HEIGHT * 0.25;
-            startButton.addEventListener(Event.TRIGGERED, onStartButtonTriggered);
-			addChild(startButton);
-
-            var test:Button = new Button(ROOT.assets.getTexture("green-button"), "Ruoran");
-            test.fontSize = 24;
-            test.x = int((Fun.STAGE_WIDTH - test.width) / 3 * 2);
-            test.y = Fun.STAGE_HEIGHT * 0.75;
-            test.addEventListener(Event.TRIGGERED, onRuoranButtonTriggered);
-            addChild(test);     
-			
-			
-			// Buttons that switch between (Sprites) Screens
-			var anthonyButton:Button = new Button(ROOT.assets.getTexture("green-button"), "Anthony");
-			anthonyButton.fontSize = 24;
-			anthonyButton.x = int((Fun.STAGE_WIDTH - anthonyButton.width) / 5);
-			anthonyButton.y = Fun.STAGE_HEIGHT * 0.5;
-			anthonyButton.addEventListener(Event.TRIGGERED, onAnthonyButtonTriggered);
-			addChild(anthonyButton);  
-
-			var patrickButton:Button = new Button(ROOT.assets.getTexture("green-button"), "Patrick");
+			var patrickButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "Patrick Start");
 			patrickButton.fontSize = 24;
-			patrickButton.x = int((Fun.STAGE_WIDTH - patrickButton.width) / 5 * 2);
-			patrickButton.y = Fun.STAGE_HEIGHT * 0.5;
+			patrickButton.x = int((Fun.STAGE_WIDTH - patrickButton.width) / 3);
+			patrickButton.y = Fun.STAGE_HEIGHT * 0.25;
 			patrickButton.addEventListener(Event.TRIGGERED, onPatrickButtonTriggered);
 			addChild(patrickButton);  
 
-			var jamesButton:Button = new Button(ROOT.assets.getTexture("green-button"), "James");
-			jamesButton.fontSize = 24;
-			jamesButton.x = int((Fun.STAGE_WIDTH - jamesButton.width) / 5 * 3);
-			jamesButton.y = Fun.STAGE_HEIGHT * 0.5;
-			jamesButton.addEventListener(Event.TRIGGERED, onJamesButtonTriggered);
-			addChild(jamesButton);  
+//            var startButton:Button = new Button(ROOT.assets.getTexture("button"), "Start");
+//            startButton.fontSize = 34;
+//            startButton.x = int((Fun.STAGE_WIDTH - startButton.width) / 3 );
+//            startButton.y = Fun.STAGE_HEIGHT * 0.35;
+//            startButton.addEventListener(Event.TRIGGERED, onStartButtonTriggered);
+//			addChild(startButton);
 
-			var owenButton:Button = new Button(ROOT.assets.getTexture("green-button"), "Owen");
+			
+			// Buttons that switch between (Sprites) Screens
+
+			// Show Achievements Button
+			var showAchievements:Button = new Button(ROOT.assets.getTexture("orange-button"), "Show Achievements");
+			showAchievements.fontSize = 24;
+			showAchievements.x = int((Fun.STAGE_WIDTH - showAchievements.width) / 3);
+			showAchievements.y = Fun.STAGE_HEIGHT * 0.35;
+			showAchievements.addEventListener(Event.TRIGGERED, Achievements.showOverlay);
+			addChild(showAchievements);  
+			
+			// Show Leaderboards Button
+			var showLeaderboards:Button = new Button(ROOT.assets.getTexture("orange-button"), "Show Leaderboard");
+			showLeaderboards.fontSize = 24;
+			showLeaderboards.x = int((Fun.STAGE_WIDTH - showLeaderboards.width) / 3);
+			showLeaderboards.y = Fun.STAGE_HEIGHT * 0.45;
+			showLeaderboards.addEventListener(Event.TRIGGERED, showBoard);
+			addChild(showLeaderboards);  
+
+			
+//			var anthonyButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "Anthony");
+//			anthonyButton.fontSize = 24;
+//			anthonyButton.addEventListener(Event.TRIGGERED, onAnthonyButtonTriggered);
+//			addChild(anthonyButton);  
+
+
+//			var jamesButton:Button = new Button(ROOT.assets.getTexture("green-button"), "James");
+//			jamesButton.fontSize = 24;
+//			jamesButton.x = int((Fun.STAGE_WIDTH - jamesButton.width) / 5 * 3);
+//			jamesButton.y = Fun.STAGE_HEIGHT * 0.5;
+//			jamesButton.addEventListener(Event.TRIGGERED, onJamesButtonTriggered);
+//			addChild(jamesButton);  
+
+			var owenButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "Owen");
 			owenButton.fontSize = 24;
-			owenButton.x = int((Fun.STAGE_WIDTH - owenButton.width) / 5 * 4);
-			owenButton.y = Fun.STAGE_HEIGHT * 0.5;
+			owenButton.x = int((Fun.STAGE_WIDTH - owenButton.width) / 3);
+			owenButton.y = Fun.STAGE_HEIGHT * 0.55;
 			owenButton.addEventListener(Event.TRIGGERED, onOwenButtonTriggered);
 			addChild(owenButton);  
 
@@ -134,5 +154,9 @@ package screens
 			// The last parameter is just a name 
 			(this.getChildByName("menuText") as TextField).text = "Hello";
         }
+
+		public function showBoard():void {
+			Leaderboards.showOverlay(Leaderboards.BOARD_01);
+		}
     }
 }

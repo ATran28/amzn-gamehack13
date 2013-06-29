@@ -10,5 +10,12 @@ package util
 		
 			return "hit_" + number;
 		}
+
+		public static function getRandomBackgroundSound():String
+		{
+			var number:Number = Math.ceil(Math.random() * 3);
+		
+			return "eric_skiff_" + number;
+		}
 	}
 }
