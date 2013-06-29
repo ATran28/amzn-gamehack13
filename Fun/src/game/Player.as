@@ -50,6 +50,7 @@ package game
 			
 			// Add Kick Right movie
 			var kickRightMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_cape"), 10);
+			kickRightMovie.x += kickRightMovie.width / 2;
 			kickRightMovie.scaleX = -0.5;
 			kickRightMovie.scaleY = 0.5;
 			kickRightMovie.loop = true;
