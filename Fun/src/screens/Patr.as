@@ -47,6 +47,9 @@ package screens
 			//background.smoothing = true;
 			addChild(background);
 			
+			velocity = new Vector3D();
+			if(velocity == null){trace("NULL!!!!");}
+			
 			var groundAtlas:TextureAtlas = ROOT.assets.getTextureAtlas("FunGameSprites");
 			
 			var tex:Texture = groundAtlas.getTexture("grass32");
@@ -68,8 +71,8 @@ package screens
 			}
 			
 			var internTexture:Texture = ROOT.assets.getTexture("intern");
-			var intern1:Player = new Player();
-			//var intern1:Image = new Image(internTexture);
+//			intern1 = new Player();
+			intern1 = new Image(internTexture);
 			
 			// set the properties
 			intern1.x = 0;
@@ -102,36 +105,42 @@ package screens
 //			}
 		}
 
-		private var touchPosition:Point;
+		private var touchStart:Point;
+		private var touchEnd:Point;
+//		private var intern1:Player
+		private var intern1:Image;
+		private var velocity:Vector3D;
 		private function isPressed(event:TouchEvent):void {
 			var touch:Touch = event.getTouch(this);
 			
 			if(touch){
 				if (touch.phase == TouchPhase.BEGAN)
 				{
-					touchPosition = event.getTouch(this).getLocation(this);
-					addEventListener(Event.ENTER_FRAME, updatePosition);
-				} else if(touch.phase == TouchPhase.MOVED) { 
-					touchPosition = event.getTouch(this).getLocation(this);
+					touchStart = event.getTouch(this).getLocation(this);
+//					addEventListener(Event.ENTER_FRAME, updatePosition);
 				} else if (touch.phase == TouchPhase.ENDED) {
-					removeEventListener(Event.ENTER_FRAME, updatePosition);
+					touchEnd = event.getTouch(this).getLocation(this);
+					velocity.x = touchEnd.x - touchStart.x;
+					velocity.y = touchEnd.y - touchStart.y;
+					updatePosition(event);
 				}
 			}
 		}
 		private function updatePosition(event:Event):void {
 			
 			
-			const speed:Number = 5;
+			var speed:Number = 5;
 			
 			// Move intern 1 along vector from intern to touch event
-			var localPos:Point = touchPosition;//event.getTouch(this).getLocation(this);
+			var localPos:Point = touchStart;//event.getTouch(this).getLocation(this);
 			//trace("Touched object at position: " + localPos);
 			
 			var intern1:DisplayObject = this.getChildByName("intern1");
 			var internPos:Point = new Point(intern1.x, intern1.y);
 			//trace("Initial Intern Position: " + internPos);
 			
-			var v:Vector3D = new Vector3D(localPos.x - internPos.x, localPos.y - internPos.y);
+			var v:Vector3D = velocity;
+			speed = velocity.length/10;
 			v.normalize();
 			v.scaleBy(speed);
 			//trace("Vector: " + v.x + ", " + v.y);
@@ -141,7 +150,7 @@ package screens
 			intern1.x = internPos.x;
 			intern1.y = internPos.y;
 			
-			detectCollsions(intern1);
+//			detectCollsions(intern1);
 			
 		}
 		
