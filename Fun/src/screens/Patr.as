@@ -62,7 +62,7 @@ package screens
 			player.y = currentLevel.startPosition.y;
 			
 			player.name = "intern1";
-			player.caffeineLevel = 0;
+			player.caffeineLevel = 5;
 			addChild(player);
 			touchEnabled = true;
 		}
@@ -74,7 +74,7 @@ package screens
 			}
 			
 			// Check for 'notable' tiles
-			for (var tile:StaticGameObject in currentLevel.notableTiles) {
+			for each(var tile:StaticGameObject in currentLevel.notableTiles) {
 				if (CollisionDetection.detectCollisionRect(player, tile)) {
 					if (tile.removable) {
 						 tile.visible = false;
@@ -184,7 +184,6 @@ package screens
 				
 				var v:Vector3D = player.getVelocity();
 				v.x *= obj.friction;
-				v.y = -player.caffeineLevel;
 				
 				player.updateVelocity(v);
 				
