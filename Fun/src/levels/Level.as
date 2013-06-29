@@ -57,16 +57,6 @@ package levels
 //			musicOff.x = 300;
 //			musicOff.y = 0;
 
-			trace("music: " + ROOT.music);
-			if (ROOT.music) {
-				music = ROOT.assets.getSound(Util.getRandomBackgroundSound());
-				if (music != null) {
-					music.play();
-//					addChild(musicOff);
-				}
-			} else {
-//				addChild(musicOff);
-			}
 
 		}
 		

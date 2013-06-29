@@ -16,6 +16,8 @@ package screens
 	import starling.textures.TextureAtlas;
 	import starling.utils.AssetManager;
 	
+	import util.Util;
+	
 	public class ROOT extends Sprite
 	{
 		private var mActiveScene:Sprite;
@@ -99,6 +101,9 @@ package screens
 						progressBar.removeFromParent(true);
 						showScene(Menu);
 						removeChild(background);
+						
+						ROOT.assets.playSound(Util.getRandomBackgroundSound());
+
 					}, 0.15);
 			});
 		}
