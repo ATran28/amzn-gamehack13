@@ -27,12 +27,12 @@ package physics
 		 */
 		public function detectCollision(obj1:Sprite, obj2:Sprite, obj1TestPoints:Vector.<Point> = null):Boolean
 		{
-			if(detectCollisionSphere(obj1, obj2)){
-				return true;
+			if(!detectCollisionSphere(obj1, obj2)){
+				return false;
 			}
 			
-			if(detectCollisionRect(obj1, obj2)){
-				return true;
+			if(!detectCollisionRect(obj1, obj2)){
+				return false;
 			}
 			
 			if(obj1TestPoints != null) {
@@ -40,10 +40,8 @@ package physics
 					if(detectCollisionPoint(obj1, obj2, point)) {
 						return true;
 					}
-				}
-				
+				}	
 			}
-			
 			return false;
 		}
 		

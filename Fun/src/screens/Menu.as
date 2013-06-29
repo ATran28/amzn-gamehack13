@@ -21,6 +21,7 @@ package screens
         public static const JAME:String = "startJame";
         public static const OWEN:String = "startOwen";
         public static const PATR:String = "startPatr";
+        public static const RUOR:String = "startRuor";
         
         public function Menu()
         {
@@ -53,11 +54,11 @@ package screens
             startButton.addEventListener(Event.TRIGGERED, onStartButtonTriggered);
 			addChild(startButton);
 
-            var test:Button = new Button(ROOT.assets.getTexture("green-button"), "Another Button");
+            var test:Button = new Button(ROOT.assets.getTexture("green-button"), "Ruoran");
             test.fontSize = 24;
             test.x = int((Fun.STAGE_WIDTH - test.width) / 3 * 2);
             test.y = Fun.STAGE_HEIGHT * 0.75;
-            test.addEventListener(Event.TRIGGERED, onTestButtonTriggered);
+            test.addEventListener(Event.TRIGGERED, onRuoranButtonTriggered);
             addChild(test);     
 			
 			
@@ -89,6 +90,7 @@ package screens
 			owenButton.y = Fun.STAGE_HEIGHT * 0.5;
 			owenButton.addEventListener(Event.TRIGGERED, onOwenButtonTriggered);
 			addChild(owenButton);  
+
         }
         
         private function onAnthonyButtonTriggered():void
@@ -113,6 +115,12 @@ package screens
         {
 			// The last parameter is just a name 
             dispatchEventWith(OWEN, true, "fun");
+        }
+
+        private function onRuoranButtonTriggered():void
+        {
+			// The last parameter is just a name 
+            dispatchEventWith(RUOR, true, "fun");
         }
 
         private function onStartButtonTriggered():void
