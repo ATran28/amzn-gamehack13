@@ -48,7 +48,7 @@ package misc
 			result.setActiveImage(new Image(textures[type]));
 			result.type = type;
 			if (type == "trunk" || type == "star" || type == "book" || type == "keypad") {
-				if (type == "star" || type == "book" || type == "keypad") {
+				if (type == "star" || type == "book") {
 					result.removable = true;
 				} else {
 					result.removable = false;
