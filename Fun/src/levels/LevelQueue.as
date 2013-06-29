@@ -28,7 +28,9 @@ package levels
 			// last level
 			levelQueue.push(AsciiLevels.GameWin);
 		}
-		
+		public function renewCurrentLevel(player:Player):Level {
+			return new GeneratedLevel(levelQueue[currentLevel-1], player);
+		}
 		public function getNextLevel(player:Player):Level{
 			return new GeneratedLevel(levelQueue[currentLevel++], player);
 		}
