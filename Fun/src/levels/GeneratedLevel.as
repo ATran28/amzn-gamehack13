@@ -90,7 +90,7 @@ package levels
 		public function addBackButton():void {
 			var backButton:Button = new Button(ROOT.assets.getTexture("menu-button"), "Back");
 			backButton.fontSize = 24;
-			backButton.x = 400;
+			backButton.x = 10;
 			backButton.y = 10; 
 			backButton.addEventListener(Event.TRIGGERED, backToMenu);
 			addChild(backButton);  
