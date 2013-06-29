@@ -110,14 +110,11 @@ package game
 			
 			if(velocity.y > 0){	//Down
 				if(velocity.x > 0){	//Right
-					trace("right");
 					kickRight();
 				} else{	//Left
-					trace("left");
 					kickLeft();
 				}
 			} else{	//Up
-				trace("jump up");
 				jumpUp();
 			}
 		}

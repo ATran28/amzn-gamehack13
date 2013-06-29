@@ -58,7 +58,10 @@ package screens
 			}
 			
 			player.updatePosition();
-			detectCollsions2(player);
+			
+			// Detect collisions must come after player update since overrides any
+			// animation changes made in there.
+			detectCollsions2(player);	
 		}
 
 		private var touchDown:Boolean = false;
