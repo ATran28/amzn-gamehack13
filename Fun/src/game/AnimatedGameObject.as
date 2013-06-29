@@ -91,26 +91,16 @@ package game
 			movieMap[name] = movie;
 		}
 		
+		public function addMovie2(name:String, movie:MovieClip, loop:Boolean):void { 
+			movieMap[name] = movie;
+			movieMap[name].loop = loop;
+		}
+		
 		public function removeMovie(name:String):void {
 			movieMap[name] = null;
 		}
 		
-		public static function makeElevator(x:int, y:int, closed:Boolean):AnimatedGameObject {
-			var result:AnimatedGameObject = new AnimatedGameObject();
-			result.x = x;
-			result.y = y;
-			result.addMovie("closed", new MovieClip(ROOT.atlas.getTextures("elevator_open"), 7));
-			result.addMovie("open", new MovieClip(ROOT.atlas.getTextures("elevator_close"), 7));
-			result.movieMap["closed"].loop = false;
-			result.movieMap["open"].loop = false;
-			if (closed) {
-				result.setActiveMovie("closed");
-			} else {
-				result.setActiveMovie("open");
-			}
-			
-			return result;
-		}
+		
 		
 	}
 }

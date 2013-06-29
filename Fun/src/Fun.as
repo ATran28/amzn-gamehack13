@@ -7,6 +7,8 @@ package
 	import flash.filesystem.File;
 	import flash.geom.Rectangle;
 	
+	import misc.DisplayHelper;
+	
 	import net.hires.debug.Stats;
 	
 	import screens.ROOT;

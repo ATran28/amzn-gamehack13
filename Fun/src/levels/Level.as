@@ -14,13 +14,16 @@ package levels
 		protected var _exitElevator:AnimatedGameObject;
 		protected var _startingPosition:Point;
 		protected var _startTime:int;
+		protected var _score:int;
 		public function get tiles():Vector.<StaticGameObject> { return _tiles; }
 		public function get exitElevator():AnimatedGameObject { return _exitElevator; }
 		public function get startPosition():Point { return _startingPosition; }
+		public function get score():int { return _score; }
 		
 		public function Level()
 		{
 			_startTime = getTimer();
+			_score = 0;
 		}
 		
 		public function run():void {

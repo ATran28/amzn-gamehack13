@@ -3,6 +3,8 @@ package screens
 	import flash.display.Bitmap;
 	import flash.geom.Rectangle;
 	
+	import misc.DisplayHelper;
+	
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -93,6 +95,7 @@ package screens
 					Starling.juggler.delayCall(function():void
 					{
 						_atlas = assets.getTextureAtlas("FunGameSprites");
+						DisplayHelper.init();
 						progressBar.removeFromParent(true);
 						showScene(Menu);
 						removeChild(background);

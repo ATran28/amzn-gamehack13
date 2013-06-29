@@ -7,10 +7,12 @@ package screens
 	import game.Player;
 	import game.StaticGameObject;
 	
+	import levels.AsciiLevels;
+	import levels.GeneratedLevel;
 	import levels.Level;
 	import levels.Level1;
+	import levels.Level2;
 	import levels.TestLevel;
-	import util.Util;
 	
 	import physics.CollisionDetection;
 	
@@ -19,6 +21,8 @@ package screens
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	
+	import util.Util;
 	
 	public class Patr extends Sprite
 	{
@@ -37,7 +41,7 @@ package screens
 		}
 		
 		private function initGame(event:Event):void {
-			initState(new TestLevel());
+			initState(new GeneratedLevel(AsciiLevels.asciiLevel1));
 		}
 		
 		private function initState(level:Level):void {
@@ -75,7 +79,7 @@ package screens
 				if (level1.exitElevator.getActiveMovie().isComplete) {
 					flag = false;
 					removeChild(level1);
-					initState(new Level1());
+					initState(new Level2());
 				}
 			}
 			
