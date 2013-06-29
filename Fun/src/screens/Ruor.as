@@ -1,12 +1,15 @@
 package screens
 {
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
+	
 	import starling.core.Starling;
 	import starling.display.Button;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.Event;
-	import starling.display.MovieClip;
-	import starling.textures.TextureAtlas;
 	import starling.textures.Texture;
+	import starling.textures.TextureAtlas;
 	
 	public class Ruor extends Sprite
 	{
@@ -21,14 +24,14 @@ package screens
 			kickLeftMovie.loop = false; // default: true
 			addChild(kickLeftMovie);
 			
-			// control playback
-			kickLeftMovie.play();
-			kickLeftMovie.pause();
-			kickLeftMovie.stop();
+			var jump:Sound = ROOT.assets.getSound("jumpSound");
+
 			kickLeftMovie.x = 300;
 			kickLeftMovie.y = 300;
 			kickLeftMovie.loop = true;
+			kickLeftMovie.setFrameSound(0, jump);
 			kickLeftMovie.play();
+
 			
 			Starling.juggler.add(kickLeftMovie);
 			
@@ -41,6 +44,11 @@ package screens
 			backButton.y = 0; 
 			backButton.addEventListener(Event.TRIGGERED, backToMenu);
 			addChild(backButton);  
+			
+			ROOT.assets.playSound("rain-03");
+			
+			
+			
 		}
 		
 		// back button to menu handler
