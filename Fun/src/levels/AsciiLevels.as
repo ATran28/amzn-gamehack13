@@ -578,7 +578,7 @@ public static const asciiDeathPit:String =
 		  "XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 	  
 		public static const GameWin:String = 
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"bg3%0%XXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
 			"X        GGGGGG           X" +
@@ -616,6 +616,47 @@ public static const asciiDeathPit:String =
 			"X           EE            X" +
 			"X       P   EE            X" +
 			"X           EE            X" +                        
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		
+		public static const owenLevel1:String = 
+			"bg2%0%XXXXXXXXXXXXXXXXXXXXX" + 
+			"X                         X" +
+			"X   EE                    X" +
+			"X   EE                    X" +
+			"X   EE                    X" +
+			"X   EE                    X" +
+			"X   RR                    X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                    S    X" +
+			"X                  RRRR   X" +
+			"X                         X" +
+			"X                         X" +
+			"X                     B   X" +
+			"X                    LLL  X" +
+			"X                     T   X" +
+			"X                     T   X" +
+			"X                     T   X" +
+			"X                     R   X" +
+			"X   RRRRR                 X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                 RRRRRRRRX" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X    P                    X" +
+			"X                         X" +
+			"X                         X" +
+			"XGGGGGGGGGGGGGGGGGGGGGGGGGX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 		
