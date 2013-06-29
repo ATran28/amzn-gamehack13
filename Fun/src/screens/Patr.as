@@ -142,7 +142,7 @@ package screens
 			for each(var block:StaticGameObject in level1.tiles){
 				if(CollisionDetection.detectCollisionRect(player, block) && block.blocking){
 					trace("Ground collision");	
-					response(player, block);
+					response(player, block);	//Updates velocity/forces, then responds
 					
 					return true;
 				}	
@@ -167,6 +167,8 @@ package screens
 				} else {
 					player.stand();	
 				}
+			} else {
+				player.updateVelocity(new Vector3D(player.getVelocity().x, -player.getVelocity().y));
 			}
 		}
 	}
