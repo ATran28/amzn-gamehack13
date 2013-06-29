@@ -9,6 +9,8 @@ T - Trunk
 L - Leaf
 M - Metal Flat Surface
 B - Metal Block
+D - LAVA/DANGER
+W - WATER/DANGER
 
 Elevator
 EE

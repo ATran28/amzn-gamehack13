@@ -1,5 +1,6 @@
 package misc
 {
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	
@@ -35,6 +36,8 @@ package misc
 			textures["keypad"] = ROOT.atlas.getTexture("keypad32");
 			textures["star"] = ROOT.atlas.getTexture("shittyStar");
 			textures["book"] = ROOT.atlas.getTexture("Book");
+			textures["lava"] = ROOT.atlas.getTexture("lava32");
+			textures["water"] = ROOT.atlas.getTexture("water32");
 		}
 		
 		public static function makeStaticBlock(x:int, y:int, type:String):StaticGameObject {
@@ -75,6 +78,13 @@ package misc
 				result.setActiveMovie("open");
 			}
 			
+			return result;
+		}
+		
+		public static function makePoint(x:int, y:int):Point {
+			var result:Point = new Point();
+			result.x = x*32;
+			result.y = (viewport.height - vertOffset) - ((y+1) * 32);
 			return result;
 		}
 	}
