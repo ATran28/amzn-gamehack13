@@ -3,6 +3,7 @@ package screens
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.geom.Vector3D;
+	import flash.utils.Dictionary;
 	
 	import game.Player;
 	import game.StaticGameObject;
@@ -12,6 +13,7 @@ package screens
 	import levels.Level;
 	import levels.Level1;
 	import levels.Level2;
+	import levels.LevelQueue;
 	import levels.TestLevel;
 	
 	import physics.CollisionDetection;
@@ -28,12 +30,16 @@ package screens
 	{
 		private var GAMEOVER:Boolean = false;
 		public static const GAME_OVER:String = "gameOver";
-		private var level1:Level;
+		
+		private var levelQueue:LevelQueue;
+		private var currentLevel:Level;
+		
 		public function Patr()
 		{
 			addEventListener(Event.ADDED_TO_STAGE, initGame);
 			addEventListener(Event.ENTER_FRAME, perFrame);
 			addEventListener(TouchEvent.TOUCH, isPressed);
+			levelQueue = new LevelQueue();
 		}
 		
 		public function backToMenu():void {
@@ -41,18 +47,19 @@ package screens
 		}
 		
 		private function initGame(event:Event):void {
-			initState(new GeneratedLevel(AsciiLevels.asciiLevel1));
+			
+			initState();
 		}
 		
-		private function initState(level:Level):void {
-			level1 = level;
-			addChild(level1);
+		private function initState():void {
+			currentLevel = levelQueue.getNextLevel();
+			addChild(currentLevel);
 			
 			player = new Player();
 			
 			// set the properties
-			player.x = level1.startPosition.x;
-			player.y = level1.startPosition.y;
+			player.x = currentLevel.startPosition.x;
+			player.y = currentLevel.startPosition.y;
 			
 			player.name = "intern1";
 			player.caffeineLevel = 0;
@@ -66,20 +73,31 @@ package screens
 				dispatchEventWith(GAME_OVER, true, 100);
 			}
 			
-			if (level1.isFinished() && CollisionDetection.detectCollisionRect(player, level1.exitElevator) 
+			// Check for 'notable' tiles
+			for (var tile:StaticGameObject in currentLevel.notableTiles) {
+				if (CollisionDetection.detectCollisionRect(player, tile)) {
+					if (tile.removable) {
+						 tile.visible = false;
+					}
+					currentLevel.levelStatus["tilesToFind"] -= 1;
+				}
+			}
+			
+			if (currentLevel.isFinished() && CollisionDetection.detectCollisionRect(player, currentLevel.exitElevator) 
 					&& flag == false) {
-				player.x = level1.exitElevator.x + level1.exitElevator.width/4;
-				player.y = level1.exitElevator.y + (level1.exitElevator.height - player.height);
+				player.x = currentLevel.exitElevator.x + currentLevel.exitElevator.width/4;
+				player.y = currentLevel.exitElevator.y + (currentLevel.exitElevator.height - player.height);
 				player.updateVelocity(new Vector3D());
-				level1.exitElevator.setActiveMovie("open");
-				level1.exitElevator.animate();
+				currentLevel.exitElevator.setActiveMovie("open");
+				currentLevel.exitElevator.animate();
 				touchEnabled = false;
 				flag = true;				
-			} else if (level1.isFinished() && flag == true) {
-				if (level1.exitElevator.getActiveMovie().isComplete) {
+			} else if (currentLevel.isFinished() && flag == true) {
+				if (currentLevel.exitElevator.getActiveMovie().isComplete) {
 					flag = false;
-					removeChild(level1);
-					initState(new Level2());
+					removeChild(currentLevel);
+					removeChild(player);
+					initState();
 				}
 			}
 			
@@ -144,7 +162,7 @@ package screens
 			}
 			
 			//Check tile collisions
-			for each(var block:StaticGameObject in level1.tiles){
+			for each(var block:StaticGameObject in currentLevel.tiles){
 				if(CollisionDetection.detectCollisionRect(player, block) && block.blocking){
 					if(player.y < block.y + 30 && player.y > block.y)
 					{

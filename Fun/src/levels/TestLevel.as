@@ -21,9 +21,6 @@ package levels
 		public function TestLevel()
 		{
 			super();
-			var backgroundMusic:Sound = ROOT.assets.getSound("eric_skiff_1");
-			
-			ROOT.assets.playSound("eric_skiff_1");
 			_startingPosition = new Point(0, 50);
 			
 			var viewport:Rectangle = Fun.viewport;
