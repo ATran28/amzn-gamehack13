@@ -23,6 +23,8 @@ package levels
 		public function Level1()
 		{
 			super();
+			ROOT.assets.playSound("eric_skiff_2");
+
 			var viewport:Rectangle = Fun.viewport;
 			var miny:int = viewport.height - 113;
 			var minx:int = viewport.width;

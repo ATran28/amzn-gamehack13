@@ -2,6 +2,8 @@ package levels
 {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
 	import flash.utils.Dictionary;
 	
 	import game.StaticGameObject;
@@ -19,6 +21,9 @@ package levels
 		public function TestLevel()
 		{
 			super();
+			var backgroundMusic:Sound = ROOT.assets.getSound("eric_skiff_1");
+			
+			ROOT.assets.playSound("eric_skiff_1");
 			_startingPosition = new Point(0, 50);
 			
 			var viewport:Rectangle = Fun.viewport;
@@ -109,6 +114,7 @@ package levels
 		
 		override public function exit():int
 		{
+
 			for (var tile:StaticGameObject in tiles) {
 				removeChild(tile);
 			}

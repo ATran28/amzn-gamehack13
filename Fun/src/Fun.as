@@ -25,7 +25,7 @@ package
 		
 		
 		
-		[Embed(source="/resources/background.png")]
+		[Embed(source="/resources/Menu.png")]
 		private static const Background:Class;
 		
 		
