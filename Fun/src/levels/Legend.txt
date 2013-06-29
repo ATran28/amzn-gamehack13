@@ -1,0 +1,15 @@
+Use CAPITAL LETTERS.
+
+
+---LEGEND---
+
+G - Grass
+R - Rock
+T - Trunk
+L - Leaf
+
+Elevator
+EE
+EE
+EE
+EE
