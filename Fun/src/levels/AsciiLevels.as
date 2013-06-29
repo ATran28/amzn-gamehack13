@@ -168,7 +168,7 @@ package levels
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 		public static const asciiLevel4:String = 
-			"bg4%20%XXXXXXXXXXXXXXXXXXXX" + 
+			"bg3%20%XXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
 			"X                     P   X" +
