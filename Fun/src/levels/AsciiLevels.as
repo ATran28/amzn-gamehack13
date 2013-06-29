@@ -124,6 +124,88 @@ package levels
 			"X                         X" +
 			"XMMMMMMMMMMMMMMMMMMMMMMMMMX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
+
+		public static const asciiLevel3:String = 
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"X                         X" +
+			"X                         X" +
+			"X                     p   X" +
+			"X                         X" +
+			"X                   GGGGGGX" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"XGG              GGGGGGGGGX" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"XGGGG          GGGGGGGGGGGX" +
+			"X                         X" +
+			"X         BB              X" +
+			"X         EE              X" +
+			"X         EE              X" +
+			"X         EE              X" +
+			"X         EE              X" +
+			"X         BB              X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"XRR       R    RR       RRX" +
+			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +
+			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +
+			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +
+			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +
+			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +
+			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +
+			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +                        
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
+
+		public static const asciiLevel42:String = 
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"X                         X" +
+			"X            p            X" +
+			"X                         X" +
+			"X     BBBBBBBBBBBBBB      X" +
+			"X                         X" +
+			"X                         X" +
+			"X                  BBBBBBBX" +
+			"X     BBBBBBBBBBBBBB      X" +
+			"X     B        B          X" +
+			"X     B        B          X" +
+			"X     B        B          X" +
+			"X                         X" +
+			"X          B         B    X" +
+			"X          B         B    X" +
+			"XBBBBBBBBBBBBBBBBBBBBB    X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X       B     B           X" +
+			"X       B     B           X" +
+			"X       B     B           X" +
+			"X       B     B           X" +
+			"XBBBBBBBB     BBBBBBBBBBBBX" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X        B   B            X" +
+			"X        B   B            X" +
+			"XBBBB    B   B            X" +
+			"XEE BBBBBB   BBBBBBBBBBBBBX" +
+			"XEE                       X" +
+			"XEE                       X" +
+			"XEE                       X" +
+			"XBB                       X" +                        
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 		
 		public static const GameWin:String = 
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 

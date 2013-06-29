@@ -13,6 +13,10 @@ package levels
 			//levelQueue.push(AsciiLevels.asciiLevel0);
 			levelQueue.push(AsciiLevels.asciiLevel1);
 			levelQueue.push(AsciiLevels.asciiLevel2);
+			levelQueue.push(AsciiLevels.asciiLevel3);
+			
+			// last level
+			levelQueue.push(AsciiLevels.GameWin);
 		}
 		
 		public function getNextLevel(player:Player):Level{
