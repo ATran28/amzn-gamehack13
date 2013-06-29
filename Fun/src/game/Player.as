@@ -17,8 +17,11 @@ package game
 		private static var life:int;
 		private static var velocity:Vector3D;
 		private const gravity:Number = 9.8;
+		private const speedScale:Number = 30;
+		
 		private var _caffeineLevel:Number = 0.0;
-		private var _caffeineDecay:Number = -0.01;
+		private var _caffeineDecay:Number = -0.0001;
+		
 		
 		public function Player()
 		{
@@ -37,7 +40,7 @@ package game
 		private function initPlayerMovies():void {
 			// Add movie	
 			var atlas:TextureAtlas = ROOT.atlas;
-			
+
 			// Add Kick Left
 			var kickLeftMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_cape_"), 10);
 			kickLeftMovie.scaleX = 0.5;
@@ -46,7 +49,8 @@ package game
 			this.addMovie("kick_left", kickLeftMovie);
 			
 			// Add Kick Right movie
-			var kickRightMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_cape"), 10);
+			var kickRightMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_cape_"), 10);
+			kickRightMovie.x += kickRightMovie.width / 2;
 			kickRightMovie.scaleX = -0.5;
 			kickRightMovie.scaleY = 0.5;
 			kickRightMovie.loop = true;
@@ -56,21 +60,21 @@ package game
 			var standing:MovieClip = new MovieClip(atlas.getTextures("standing_"), 10);
 			standing.scaleX = 0.5;
 			standing.scaleY = 0.5;
-			standing.loop = false;
+			standing.loop = true;
 			this.addMovie("standing", standing);
 
 			// Add crouch movie
 			var crouch:MovieClip = new MovieClip(atlas.getTextures("crouch_"), 10);
 			crouch.scaleX = 0.5;
 			crouch.scaleY = 0.5;
-			crouch.loop = false;
+			crouch.loop = true;
 			this.addMovie("crouch", crouch);
 
 			// Add up_cape movie
 			var up:MovieClip = new MovieClip(atlas.getTextures("up_cape_"), 10);
 			up.scaleX = 0.5;
 			up.scaleY = 0.5;
-			up.loop = false;
+			up.loop = true;
 			this.addMovie("up", up);
 			
 			
@@ -92,7 +96,7 @@ package game
 			var playerPosition:Point = new Point(x, y);
 			
 			var v:Vector3D = new Vector3D(velocity.x, velocity.y);
-			var speed:Number = velocity.length/10;
+			var speed:Number = velocity.length/speedScale;
 			v.normalize();
 			v.scaleBy(speed);
 			
@@ -103,26 +107,36 @@ package game
 			caffeineLevel = Math.max(0.0, caffeineLevel + caffeineDecay);
 		
 			trace("caffeineLevel: " + caffeineLevel);
+			
+			if(velocity.y > 0){	//Down
+				if(velocity.x > 0){	//Right
+					kickRight();
+				} else{	//Left
+					kickLeft();
+				}
+			} else{	//Up
+				jumpUp();
+			}
 		}
 			//			detectCollsions(intern1);
 		public function kickLeft():void {
-			this.setActiveMovie("kick_left");
+			this.setActiveMovieNow("kick_left");
 		}
 
 		public function kickRight():void {
-			this.setActiveMovie("kick_right");
+			this.setActiveMovieNow("kick_right");
 		}
 
 		public function stand():void {
-			this.setActiveMovie("standing");
+			this.setActiveMovieNow("standing");
 		}
 
 		public function crouch():void {
-			this.setActiveMovie("crouch");
+			this.setActiveMovieNow("crouch");
 		}
 
 		public function jumpUp():void {
-			this.setActiveMovie("up");
+			this.setActiveMovieNow("up");
 		}
 		
 		public function set caffeineLevel(value:Number):void { _caffeineLevel = value; }
