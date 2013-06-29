@@ -16,7 +16,7 @@ package game
 		{
 			super();
 			life = 100;
-			initPlayer();
+			initPlayerMovies();
 		}
 		
 		public static function set hp(value:int):void { life = value; }
@@ -25,9 +25,9 @@ package game
 		// Initiate Our Intern 	
 		// Load multiple movies.
 		// Set only one as active
-		private function initPlayer() {
+		private function initPlayerMovies():void {
 			// Add movie	
-			var atlas:TextureAtlas = ROOT.assets.getTextureAtlas("kick_left");
+			var atlas:TextureAtlas = ROOT.assets.getTextureAtlas("intern");
 			var kickLeftMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_"), 10);
 			
 			// TODO unify scale
@@ -37,12 +37,24 @@ package game
 			
 			this.addMovie("kick_left", kickLeftMovie);
 			
+			// Add another movie
+			var kickRightMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_"), 10);
+			kickLeftMovie.scaleX = -0.5;
+			kickLeftMovie.scaleY = -0.5;
+			kickLeftMovie.loop = true;
+			
+			this.addMovie("kick_right", kickRightMovie);
 			
 			// Add another movie
-			
-			
+			var standing:MovieClip = new MovieClip(atlas.getTextures("standing"), 10);
+			standing.scaleX = 0.5;
+			standing.scaleY = 0.5;
+			standing.loop = false;
+
+			this.addMovie("standing", standing);
+
 			// Set one movie as active
-			this.setActiveMovie("kick_left");	
+			this.setActiveMovie("standing");	
 		}
 	}
 }
