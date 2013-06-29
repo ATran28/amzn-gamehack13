@@ -24,8 +24,9 @@ package levels
 		protected var _notableTiles:Vector.<StaticGameObject>;
 		protected var _exitElevator:AnimatedGameObject;
 		protected var _startingPosition:Point;
-		protected var _startTime:int;
-		protected var _timeLimit:int;
+		protected var _startTime:Number;
+		protected var _timeLimit:Number;
+		protected var _elapsedTime:Number;
 		protected var _score:int;
 		protected var _displayTimer:TextField;
 		public function get tiles():Vector.<StaticGameObject> { return _tiles; }
@@ -34,6 +35,7 @@ package levels
 		public function get startPosition():Point { return _startingPosition; }
 		public function get score():int { return _score; }
 		public function get levelStatus():Dictionary { return _levelStatus; }
+		public function get displayTimer():TextField { return _displayTimer; }
 		
 		// background music 
 		public var music:Sound;
@@ -43,8 +45,9 @@ package levels
 			_startTime = getTimer();
 			_score = 0;
 			_levelStatus = new Dictionary();
-			_displayTimer = new TextField(200, 100, "Hello");
-			addChild(_displayTimer);
+			_displayTimer = new TextField(100, 100, "--s", "Veranda", 24);
+			_displayTimer.x = Fun.viewport.width-displayTimer.width;
+			_displayTimer.y = 100;
 			
 //			var musicOn:Image = new Image(ROOT.assets.getTexture("turn_on"));
 //			musicOn.x = 300;
@@ -54,16 +57,6 @@ package levels
 //			musicOff.x = 300;
 //			musicOff.y = 0;
 
-			trace("music: " + ROOT.music);
-			if (ROOT.music) {
-				music = ROOT.assets.getSound(Util.getRandomBackgroundSound());
-				if (music != null) {
-					music.play();
-//					addChild(musicOff);
-				}
-			} else {
-//				addChild(musicOff);
-			}
 
 		}
 		
@@ -77,8 +70,13 @@ package levels
 		}
 		
 		public function hasTimedOut():Boolean {
-			var elapsed:int = getElapsedTime();
-			return _timeLimit == 0 ? false : elapsed > _timeLimit;
+			_elapsedTime = getElapsedTime();
+			return _timeLimit == 0 ? false : _elapsedTime > _timeLimit;
+		}
+		
+		public function refreshTimer():void {
+			var num:int = (_timeLimit - _elapsedTime)/1000;
+			_displayTimer.text = String(num < 0 ? "inf." : num + "s"); 
 		}
 		
 		public function exit():int

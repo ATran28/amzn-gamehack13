@@ -15,6 +15,9 @@ package screens
 	
 	import physics.CollisionDetection;
 	
+	import starling.core.Starling;
+	import starling.display.MovieClip;
+	import starling.animation.Tween;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.Touch;
@@ -87,6 +90,7 @@ package screens
 			}
 			frameCount++;
 			if (frameCount % 60 == 0) {
+				currentLevel.refreshTimer();
 				if (currentLevel.hasTimedOut() && !elevatorTouched) {
 					removeChild(currentLevel);
 					removeChild(player);
@@ -102,6 +106,9 @@ package screens
 				player.updateVelocity(new Vector3D());
 				currentLevel.exitElevator.setActiveMovie("open");
 				currentLevel.exitElevator.animate();
+				var tween:Tween = new Tween(player, 1, "linear");
+				tween.fadeTo(0);
+				Starling.juggler.add(tween);
 				touchEnabled = false;
 				elevatorTouched = true;				
 			} else if (currentLevel.isFinished() && elevatorTouched == true) {
