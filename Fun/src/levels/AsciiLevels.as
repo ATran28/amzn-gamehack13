@@ -208,7 +208,7 @@ package levels
 			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
-		public static const asciiLevel38:String = 
+		public static const asciiLevel39:String = 
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
@@ -249,7 +249,7 @@ package levels
 			"XBBBBBBBBBBBBBBBBBBBDDDDDDX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
-		public static const asciiLevel39:String = 
+		public static const asciiLevel38:String = 
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
