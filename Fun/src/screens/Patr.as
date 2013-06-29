@@ -70,16 +70,12 @@ package screens
 				ground.push(groundImg);
 			}
 			
-			var internTexture:Texture = ROOT.assets.getTexture("intern");
-//			intern1 = new Player();
-			intern1 = new Image(internTexture);
-			//var intern1:Player = new Player();
+			var intern1:Player = new Player();
+			//var intern1:Image = new Image(internTexture);
 			
 			// set the properties
 			intern1.x = 0;
 			intern1.y = 50;
-			intern1.width = 46;
-			intern1.height = 69;
 			intern1.name = "intern1";
 			addChild(intern1);	
 			

@@ -26,7 +26,7 @@ package screens
 			//var intern:Image = new Image(texture);
 			
 			var intern:Player = new Player();
-			
+	
 			// set the properties
 			intern.x = 0;
 			intern.y = 50;
