@@ -33,6 +33,10 @@ package physics
 			
 			if(!detectCollisionRect(obj1, obj2)){
 				return false;
+			} else {
+				if(obj1TestPoints == null) {	//No points, so rectangular collision most precise
+					return true;
+				}
 			}
 			
 			if(obj1TestPoints != null) {
@@ -105,7 +109,7 @@ package physics
 			var rect1:Rectangle = obj2.bounds;
 			
 			if(rect1.containsPoint(point)) {
-				trace("Point Collsion detected between: " + obj1.name + ", " + obj2.name + ". Specifically @ " + point);
+				//trace("Point Collsion detected between: " + obj1.name + ", " + obj2.name + ". Specifically @ " + point);
 				return true;
 			}
 			
