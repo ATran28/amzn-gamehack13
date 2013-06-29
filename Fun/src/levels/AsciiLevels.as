@@ -105,23 +105,23 @@ package levels
 			"X                         X" +
 			"X                         X" +
 			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"XMMMMMMMMM      MMMMMMMMMMX" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
 			"X                   P     X" +
-			"X                         X" +
-			"XMMMMMMMMMMMMMMMMMMMMMMMMMX" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
 			"X                         X" +
 			"XMMMMMMMMMMMMMMMMMMMMMMMMMX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
@@ -208,7 +208,7 @@ package levels
 			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
-		public static const asciiLevel38:String = 
+		public static const asciiLevel39:String = 
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
@@ -249,7 +249,7 @@ package levels
 			"XBBBBBBBBBBBBBBBBBBBDDDDDDX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
-		public static const asciiLevel39:String = 
+		public static const asciiLevel38:String = 
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
@@ -405,11 +405,11 @@ package levels
 			"X                         X" +
 			"X        B   B            X" +
 			"X        B   B            X" +
-			"XBBBB    B   B            X" +
-			"XEE BBBBBB   BBBBBBBBBBBBBX" +
+			"XBBBBBBBBB   B            X" +
+			"XEE          BBBBBBBBBBBBBX" +
 			"XEE                       X" +
 			"XEE                       X" +
-			"XEE  B   B B B   B   B   BX" +
+			"XEE  B  BB B B   B   B   BX" +
 			"XBBDDBDDDBDDDBDDDBDDDBDDDBX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
