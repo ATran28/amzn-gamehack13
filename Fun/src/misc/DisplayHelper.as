@@ -35,6 +35,7 @@ package misc
 			textures["keypad"] = ROOT.atlas.getTexture("keypad32");
 			textures["star"] = ROOT.atlas.getTexture("shittyStar");
 			textures["book"] = ROOT.atlas.getTexture("Book");
+			textures["lava"] = ROOT.atlas.getTexture("lava32");
 		}
 		
 		public static function makeStaticBlock(x:int, y:int, type:String):StaticGameObject {

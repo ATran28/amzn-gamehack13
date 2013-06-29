@@ -184,6 +184,7 @@ package screens
 				
 				var v:Vector3D = player.getVelocity();
 				v.x *= obj.friction;
+				//v.y = -player.caffeineLevel;
 				
 				player.updateVelocity(v);
 				
