@@ -7,6 +7,10 @@ package screens
 	import game.Player;
 	import game.StaticGameObject;
 	
+	import levels.Level;
+	import levels.Level1;
+	import levels.TestLevel;
+	
 	import physics.CollisionDetection;
 	
 	import starling.core.Starling;
@@ -19,12 +23,11 @@ package screens
 	import starling.events.TouchPhase;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
-	import levels.Level1;
 	
 	public class Patr extends Sprite
 	{
 		public static const GAME_OVER:String = "gameOver";
-		private var level1:Level1;
+		private var level1:Level;
 		public function Patr()
 		{
 			addEventListener(Event.ADDED_TO_STAGE, initGame);
@@ -39,7 +42,7 @@ package screens
 		private function initGame(event:Event):void {
 			
 			var viewport:Rectangle = Fun.viewport;
-			level1 = new Level1();
+			level1 = new TestLevel();
 			addChild(level1);
 			
 			player = new Player();
@@ -141,6 +144,7 @@ package screens
 //		}
 		
 		private var hasCollided:Boolean = false;
+		private static const bounceFactor = 0.1;
 		private function detectCollsions2(player:Player):Boolean {
 			/*if(CollisionDetection.detectCollisionRect(player, stretchedGround)){
 				trace("Stretched collision");
@@ -149,17 +153,20 @@ package screens
 			var viewport:Rectangle = Fun.viewport;
 			if(player.x > viewport.width - player.width){
 				player.x = viewport.width - player.width;
-				player.updateVelocity(new Vector3D(0, player.getVelocity().y));
-		
+				player.updateVelocity(new Vector3D(-player.getVelocity().x * bounceFactor, player.getVelocity().y));
+				
 			} else if(player.x < 0){
 				player.x = 0;
+				player.updateVelocity(new Vector3D(-player.getVelocity().x * bounceFactor, player.getVelocity().y));
 			}
+			
 			if(player.y > viewport.height - player.height){
 				player.y = viewport.height - player.height;
-				player.updateVelocity(new Vector3D(player.getVelocity().x, 0));
+				player.updateVelocity(new Vector3D(player.getVelocity().x, -player.getVelocity().y * bounceFactor));
 				
 			} else if(player.y < 0){
 				player.y = 0;
+				player.updateVelocity(new Vector3D(player.getVelocity().x, -player.getVelocity().y * bounceFactor));
 			}
 			
 			for each(var block:StaticGameObject in level1.tiles){
