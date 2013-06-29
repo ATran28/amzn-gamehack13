@@ -2,26 +2,35 @@ package game
 {	
 	import starling.display.Image;
 	import starling.display.Sprite;
+	import flash.utils.Dictionary;
 	
 	public class StaticGameObject extends Sprite
 	{
-		public var imgmap:Object;
-		private var img:Image;
+		private var imgMap:Dictionary;
+		private var activeImg:Image;
+
 		public function StaticGameObject()
 		{
 			super();
-			imgmap = new Object();
+			imgMap = new Dictionary();
 			pivotX = Math.ceil(width/2);
 			pivotY = Math.ceil(height/2);
 			
 			visible = true;
 		}
 		
-		public function set image(value:Image):void {
-			if (img) removeChild(img);
-			img = value; 
-			addChild(img);
+		public function
+		
+		public function addImage(name:String, value:Image):void {
+			imgMap[name] = value;	
 		}
-		public function get image():Image { return img; }
+
+		public function getImage(name:String):Image { 
+			return imgMap[name]; 
+		}
+		
+		public function removeImage(name:String):void {
+			imgMap[name] = null;
+		}
 	}
 }
