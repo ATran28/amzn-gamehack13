@@ -19,6 +19,7 @@ package game
 		private const gravity:Number = 9.8;
 		private var _caffeineLevel:Number = 0.0;
 		private var _caffeineDecay:Number = -0.01;
+		
 		public function Player()
 		{
 			super();

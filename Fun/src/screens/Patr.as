@@ -74,7 +74,7 @@ package screens
 			player.x = 0;
 			player.y = 50;
 			player.name = "intern1";
-			player.caffeineLevel = 50;
+			player.caffeineLevel = 10;
 			addChild(player);	
 			
 			addChild(ROOT.fire);
@@ -208,7 +208,7 @@ package screens
 					response(player, block);
 					
 					
-					player.y = block.y - player.height;
+					player.y = block.y - player.height - player.caffeineLevel;
 					return true;
 				}	
 			}
