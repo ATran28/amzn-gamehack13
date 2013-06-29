@@ -93,7 +93,7 @@ package levels
 			}
 			
 			// Exit elevator
-			_exitElevator = AnimatedGameObject.makeElevator(64, miny-384, true);
+			_exitElevator = DisplayHelper.makeAnimatedElevator(1, 11, true);
 			
 			addChild(exitElevator);
 			_exitElevator.animate();
