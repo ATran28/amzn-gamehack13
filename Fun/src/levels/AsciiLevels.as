@@ -126,7 +126,7 @@ package levels
 			"XMMMMMMMMMMMMMMMMMMMMMMMMMX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
-		public static const asciiLevel3:String = 
+		public static const asciiLevel37:String = 
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
@@ -178,7 +178,7 @@ package levels
 			"X                         X" +
 			"X                         X" +
 			"X                         X" +
-			"XDDDDDDD  DD  DDDDDDDDDDDDX" +
+			"XDDDDDD   DD    DDDDDDDDDDX" +
 			"X                         X" +
 			"X                         X" +
 			"X                         X" +
@@ -198,7 +198,7 @@ package levels
 			"X                         X" +
 			"X                         X" +
 			"X                         X" +
-			"XRR       R    RR       RRX" +
+			"XRR     RRR    RR   R   RRX" +
 			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +
 			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +
 			"XDDDDDDDDDDDDDDDDDDDDDDDDDX" +
@@ -214,7 +214,7 @@ package levels
 			"X                         X" +
 			"X            P            X" +
 			"X                         X" +
-			"X  DDDDDDDDDDDDDDDDDD     X" +
+			"X  GGGGGGGGGGGGGDDDDD     X" +
 			"X         DD              X" +
 			"X         DD              X" +
 			"X         DD              X" +
