@@ -61,7 +61,7 @@ package screens
 			player.y = currentLevel.startPosition.y;
 			
 			player.name = "intern1";
-			player.caffeineLevel = 5;
+			player.caffeineLevel = 0;
 			addChild(player);
 			touchEnabled = true;
 		}
@@ -84,7 +84,6 @@ package screens
 			
 			if (currentLevel.isFinished() && CollisionDetection.detectCollisionRect(player, currentLevel.exitElevator) 
 					&& flag == false) {
-				trace("%%%%%%%%%%%%%%%%%%%%%%%");
 				player.x = currentLevel.exitElevator.x + currentLevel.exitElevator.width/4;
 				player.y = currentLevel.exitElevator.y + (currentLevel.exitElevator.height - player.height);
 				player.updateVelocity(new Vector3D());
