@@ -52,10 +52,9 @@ package screens
 		}
 		
 		private function initState():void {
-			currentLevel = levelQueue.getNextLevel();
-			addChild(currentLevel);
-			
 			player = new Player();
+			currentLevel = levelQueue.getNextLevel(player);
+			addChild(currentLevel);
 			
 			// set the properties
 			player.x = currentLevel.startPosition.x;
@@ -165,7 +164,19 @@ package screens
 			//Check tile collisions
 			for each(var block:StaticGameObject in currentLevel.tiles){
 				if(CollisionDetection.detectCollisionRect(player, block) && block.blocking){
-					trace("Ground collision");	
+					if(player.y < block.y + 30 && player.y > block.y)
+					{
+						if(block.x - player.x > 0 && player.getVelocity().x > 0)
+						{
+							player.updateVelocity(new Vector3D(player.getVelocity().x * -1 * bounceFactor, player.getVelocity().y));
+							player.x = block.x - block.width/2 - player.width/2;
+						}
+						if(block.x - player.x < 0 && player.getVelocity().x < 0)
+						{
+							player.updateVelocity(new Vector3D(player.getVelocity().x * -1 * bounceFactor, player.getVelocity().y));
+							player.x = block.x + block.width/2 + player.width/2;
+						}
+					}
 					if (player.inTheAir) {
 						player.inTheAir = false;
 						ROOT.assets.playSound(Util.getRandomHitGroundSound());
@@ -185,7 +196,6 @@ package screens
 				
 				var v:Vector3D = player.getVelocity();
 				v.x *= obj.friction;
-				v.y = -player.caffeineLevel;
 				
 				player.updateVelocity(v);
 				

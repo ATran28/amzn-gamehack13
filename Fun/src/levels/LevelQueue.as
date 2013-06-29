@@ -1,5 +1,7 @@
 package levels
 {
+	import game.Player;
+
 	public class LevelQueue
 	{
 		private var levelQueue:Vector.<String>;
@@ -13,8 +15,8 @@ package levels
 			levelQueue.push(AsciiLevels.asciiLevel2);
 		}
 		
-		public function getNextLevel():Level{
-			return new GeneratedLevel(levelQueue[currentLevel++]);
+		public function getNextLevel(player:Player):Level{
+			return new GeneratedLevel(levelQueue[currentLevel++], player);
 		}
 	}
 }
