@@ -41,6 +41,7 @@ package screens
 			addEventListener(Menu.OWEN,  onOwen);
 			addEventListener(Menu.PATR,  onPatr);
 			addEventListener(Menu.JAME,  onJame);
+			addEventListener(Menu.RUOR,  onRuor);
 		}
 		
 		public function start(assets:AssetManager):void
@@ -136,6 +137,11 @@ package screens
 		{
 			trace("Game starts! Mode: " + gameMode);
 			showScene(Jame);
+		}
+		private function onRuor(event:Event, gameMode:String):void
+		{
+			trace("Game starts! Mode: " + gameMode);
+			showScene(Ruor);
 		}
 
 	}
