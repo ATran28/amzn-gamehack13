@@ -4,6 +4,8 @@ package screens
 	import flash.geom.Rectangle;
 	import flash.geom.Vector3D;
 	
+	import game.Player;
+	
 	import physics.CollisionDetection;
 	
 	import starling.core.Starling;
@@ -66,7 +68,8 @@ package screens
 			}
 			
 			var internTexture:Texture = ROOT.assets.getTexture("intern");
-			var intern1:Image = new Image(internTexture);
+			var intern1:Player = new Player();
+			//var intern1:Image = new Image(internTexture);
 			
 			// set the properties
 			intern1.x = 0;
@@ -98,7 +101,7 @@ package screens
 //				dispatchEventWith(GAME_OVER, true, 100);
 //			}
 		}
-		
+
 		private var touchPosition:Point;
 		private function isPressed(event:TouchEvent):void {
 			var touch:Touch = event.getTouch(this);
@@ -155,5 +158,78 @@ package screens
 			}
 			return false;
 		}
-	}
+	}	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+/****************************************************************************
+ * Patricks Section 
+ * 
+ */
+//		private var touchPosition:Point;
+//		private function isPressed(event:TouchEvent):void {
+//			var touch:Touch = event.getTouch(this);
+//			
+//			if(touch){
+//				if (touch.phase == TouchPhase.BEGAN)
+//				{
+//					touchPosition = event.getTouch(this).getLocation(this);
+//					addEventListener(Event.ENTER_FRAME, updatePosition);
+//				} else if(touch.phase == TouchPhase.MOVED) { 
+//					touchPosition = event.getTouch(this).getLocation(this);
+//				} else if (touch.phase == TouchPhase.ENDED) {
+//					removeEventListener(Event.ENTER_FRAME, updatePosition);
+//				}
+//			}
+//		}
+//		private function updatePosition(event:Event):void {
+//			
+//			
+//			const speed:Number = 5;
+//			
+//			// Move intern 1 along vector from intern to touch event
+//			var localPos:Point = touchPosition;//event.getTouch(this).getLocation(this);
+//			//trace("Touched object at position: " + localPos);
+//			
+//			var intern1:DisplayObject = this.getChildByName("intern1");
+//			var internPos:Point = new Point(intern1.x, intern1.y);
+//			//trace("Initial Intern Position: " + internPos);
+//			
+//			var v:Vector3D = new Vector3D(localPos.x - internPos.x, localPos.y - internPos.y);
+//			v.normalize();
+//			v.scaleBy(speed);
+//			//trace("Vector: " + v.x + ", " + v.y);
+//			//trace("New Point: " + new Point(v.x, v.y));
+//			internPos = internPos.add(new Point(v.x, v.y));
+//			//trace("InternPos: " + internPos);
+//			intern1.x = internPos.x;
+//			intern1.y = internPos.y;
+//			
+//			detectCollsions(intern1);
+//			
+//		}
+//		
+//		private function detectCollsions(player:DisplayObject):Boolean {
+//			if(CollisionDetection.detectCollisionRect(player, stretchedGround)){
+//				trace("Stretched collision");
+//				return true;
+//			}
+//			for each(var block:Image in ground){
+//				if(CollisionDetection.detectCollision(player, block)){
+//					trace("Ground collision");
+//					return true;
+//				}	
+//			}
+//			return false;
+//		}
+//		private function response():void{
+//			
+//		}
+//	}
 }
