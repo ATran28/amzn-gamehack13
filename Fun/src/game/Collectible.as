@@ -1,14 +1,13 @@
 package game
 {
 	import starling.events.Event;
-	import starling.textures.Texture;
 
 	public class Collectible extends StaticGameObject
 	{
-		private var texture:Texture;
-		public function Collectible(x:int, y:int, w:int, h:int)
+		
+		public function Collectible()
 		{
-			super(x, y, w, h);
+			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
@@ -16,6 +15,8 @@ package game
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}		
+		
+		
 		
 	}
 }

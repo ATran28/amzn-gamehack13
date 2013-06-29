@@ -8,7 +8,9 @@ package game
 		
 		public function Player()
 		{
-			super(new Image(ROOT.assets.getTexture("intern")));
+			super();
+			imgmap["default"] = new Image(ROOT.assets.getTexture("intern"));
+			image = imgmap["default"];
 			life = 100;
 		}
 		

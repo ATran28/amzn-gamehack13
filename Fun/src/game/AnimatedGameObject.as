@@ -5,11 +5,13 @@ package game
 	
 	public class AnimatedGameObject extends Sprite
 	{
+		public var mcmap:Object;
 		private var mc:MovieClip;
-		public function AnimatedGameObject(mc:MovieClip)
+		public function AnimatedGameObject()
 		{
 			super();
-			this.mc = mc;
+			
+			mcmap = new Object();
 			pivotX = Math.ceil(width/2);
 			pivotY = Math.ceil(height/2);
 			
