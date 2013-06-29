@@ -28,7 +28,6 @@ package screens
         public static const OWEN:String = "startOwen";
         public static const PATR:String = "startPatr";
         public static const RUOR:String = "startRuor";
-        public static const ToggleMusic:String = "ToggleMusic";
 		
 		public var musicOn:Image;
 		public var musicOff:Image;
@@ -119,7 +118,7 @@ package screens
 			musicButton.x = int((Fun.STAGE_WIDTH - musicButton.width) / 3);
 			musicButton.y = Fun.STAGE_HEIGHT * 0.65;
 			musicButton.addEventListener(Event.TRIGGERED, onMusicButtonTriggered);
-			addChild(musicButton);  
+//			addChild(musicButton);  
 
 			musicOn = new Image(ROOT.assets.getTexture("turn_on"));
 			musicOn.x = 210;
@@ -129,7 +128,7 @@ package screens
 			musicOff = new Image(ROOT.assets.getTexture("turn_off"));
 			musicOff.x = 210;
 			musicOff.y = 900;
-			addChild(musicOff);
+//			addChild(musicOff);
 
         }
         
