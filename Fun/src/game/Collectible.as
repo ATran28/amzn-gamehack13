@@ -3,10 +3,10 @@ package game
 	import starling.events.Event;
 	import starling.textures.Texture;
 
-	public class StillObject extends GameObject
+	public class Collectible extends GameObject
 	{
 		private var texture:Texture;
-		public function StillObject(x:int, y:int, w:int, h:int)
+		public function Collectible(x:int, y:int, w:int, h:int)
 		{
 			super(x, y, w, h);
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);

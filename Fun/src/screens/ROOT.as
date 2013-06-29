@@ -44,12 +44,15 @@ package screens
 			addEventListener(Menu.RUOR,  onRuor);
 		}
 		
-		public function start(assets:AssetManager):void
+		public function start(background:Image, assets:AssetManager):void
 		{
 			// the asset manager is saved as a static variable; this allows us to easily access
 			// all the assets from everywhere by simply calling "Root.assets"
 			sAssets = assets;
 			
+			
+			//var bgtex:Image = new Image(background);
+			addChild(background);
 			// The background is passed into this method for two reasons:
 			// 
 			// 1) we need it right away, otherwise we have an empty frame
@@ -89,6 +92,7 @@ package screens
 					{
 						progressBar.removeFromParent(true);
 						showScene(Menu);
+						removeChild(background);
 					}, 0.15);
 			});
 		}

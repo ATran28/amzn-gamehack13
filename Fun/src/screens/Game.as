@@ -1,11 +1,14 @@
 package screens
 {
+	import game.Player;
+	
+	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.textures.Texture;
-	import starling.core.Starling;
+	import game.GameObject;
 
 
 	public class Game extends Sprite
@@ -19,8 +22,10 @@ package screens
 		}
 
 		private function initIntern(event:Event):void {
-			var texture:Texture = ROOT.assets.getTexture("intern");
-			var intern:Image = new Image(texture);
+			//var texture:Texture = ROOT.assets.getTexture("intern");
+			//var intern:Image = new Image(texture);
+			
+			var intern:Player = new Player();
 			
 			// set the properties
 			intern.x = 0;
@@ -47,7 +52,7 @@ package screens
 		private function perFrame(event:Event):void {
 			var intern:DisplayObject = this.getChildByName("intern");
 			if (intern.x + intern.width <= stage.stageWidth ) {
-				intern.x += 0.5;
+				intern.x += 1.5;
 			} else {
 				dispatchEventWith(GAME_OVER, true, 100);
 			}
