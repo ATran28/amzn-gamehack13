@@ -48,10 +48,10 @@ package screens
 		
 		private function initGame(event:Event):void {
 			
-			initState(new GeneratedLevel(AsciiLevels.asciiLevel1));
+			initState();
 		}
 		
-		private function initState(level:Level):void {
+		private function initState():void {
 			currentLevel = levelQueue.getNextLevel();
 			addChild(currentLevel);
 			
@@ -96,7 +96,8 @@ package screens
 				if (currentLevel.exitElevator.getActiveMovie().isComplete) {
 					flag = false;
 					removeChild(currentLevel);
-					initState(levelQueue.getNextLevel());
+					removeChild(player);
+					initState();
 				}
 			}
 			
