@@ -41,6 +41,7 @@ package levels
 			addChild(background);
 			
 			// Load textures used for this level
+			_notableTiles = new Vector.<StaticGameObject>();
 			
 			
 			_tiles = new Vector.<StaticGameObject>();
@@ -96,9 +97,9 @@ package levels
 			_exitElevator = DisplayHelper.makeAnimatedElevator(1, 11, true);
 			
 			addChild(exitElevator);
-			_exitElevator.animate();
 			// Entrance elevator
 			//
+			levelStatus["tilesToFind"] = notableTiles.length;
 		}
 		
 		override public function run():void {
@@ -106,7 +107,11 @@ package levels
 		}
 		
 		override public function isFinished():Boolean {
-			return true;
+			if ( levelStatus["tilesToFind"] == 0 ) {
+				exitElevator.animate();
+				return true;
+			}
+			return false;
 		}
 		
 		
