@@ -14,6 +14,7 @@ package levels
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.text.TextField;
 	
 	import util.Util;
 
@@ -26,7 +27,9 @@ package levels
 		protected var _exitElevator:AnimatedGameObject;
 		protected var _startingPosition:Point;
 		protected var _startTime:int;
+		protected var _timeLimit:int;
 		protected var _score:int;
+		protected var _displayTimer:TextField;
 		public function get tiles():Vector.<StaticGameObject> { return _tiles; }
 		public function get notableTiles():Vector.<StaticGameObject> { return _notableTiles; }
 		public function get exitElevator():AnimatedGameObject { return _exitElevator; }
@@ -42,7 +45,8 @@ package levels
 			_startTime = getTimer();
 			_score = 0;
 			_levelStatus = new Dictionary();
-
+			_displayTimer = new TextField(200, 100, "Hello");
+			addChild(_displayTimer);
 			
 //			var musicOn:Image = new Image(ROOT.assets.getTexture("turn_on"));
 //			musicOn.x = 300;
@@ -74,12 +78,17 @@ package levels
 			return false;
 		}
 		
+		public function hasTimedOut():Boolean {
+			var elapsed:int = getElapsedTime();
+			return _timeLimit == 0 ? false : elapsed > _timeLimit;
+		}
+		
 		public function exit():int
 		{
 			return -1;
 		}
 		
-		public function getLevelClock():int {
+		public function getElapsedTime():int {
 			var currentTime:int = getTimer();
 			return currentTime - _startTime;
 		}

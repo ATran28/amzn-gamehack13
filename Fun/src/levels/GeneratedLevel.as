@@ -20,8 +20,6 @@ package levels
 	{
 		private var curPlayer:Player;
 		private var parser:AsciiLevelParser; 
-		public static const GAME_OVER:String = "gameOver";
-
 		public function GeneratedLevel(ascii:String, player:Player)
 		{
 			super();
@@ -65,13 +63,14 @@ package levels
 			
 			_levelStatus["tilesToFind"] = notableTiles.length;
 			
+			_timeLimit = (parser.timeout * 1000);
+			
 			//Handle Elevator
 			_exitElevator = parser.elevator;
 			
 			addChild(exitElevator);
 //			
 			addCaffieneButton();
-			addBackButton();
 		}
 		
 		public function addCaffieneButton():void {
@@ -87,24 +86,10 @@ package levels
 			inAppPurchasing.purchaseCaffeine(curPlayer);	
 		}
 		
-		public function addBackButton():void {
-			var backButton:Button = new Button(ROOT.assets.getTexture("menu-button"), "Back");
-			backButton.fontSize = 24;
-			backButton.x = 10;
-			backButton.y = 10; 
-			backButton.addEventListener(Event.TRIGGERED, backToMenu);
-			addChild(backButton);  
-		}
-		
-		public function backToMenu():void {
-			trace("back handler");
-			dispatchEventWith(GAME_OVER, true, 100);
-		}
-		
 		override public function run():void {
 			
 		}
-		var didCompleteLevel:Boolean;
+		private var didCompleteLevel:Boolean;
 		override public function isFinished():Boolean {
 			if ( levelStatus["tilesToFind"] <= 0) {
 				if (!didCompleteLevel) {
@@ -115,7 +100,6 @@ package levels
 			}
 			return false;
 		}
-		
 		
 		override public function exit():int
 		{

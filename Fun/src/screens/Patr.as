@@ -36,6 +36,7 @@ package screens
 		
 		public function Patr()
 		{
+			frameCount = 0;
 			addEventListener(Event.ADDED_TO_STAGE, initGame);
 			addEventListener(Event.ENTER_FRAME, perFrame);
 			addEventListener(TouchEvent.TOUCH, isPressed);
@@ -48,12 +49,12 @@ package screens
 		
 		private function initGame(event:Event):void {
 			
-			initState();
+			initState(levelQueue.getNextLevel(player));
 		}
 		
-		private function initState():void {
+		private function initState(level:Level):void {
 			player = new Player();
-			currentLevel = levelQueue.getNextLevel(player);
+			currentLevel = level;
 			addChild(currentLevel);
 			
 			// set the properties
@@ -61,11 +62,12 @@ package screens
 			player.y = currentLevel.startPosition.y;
 			
 			player.name = "intern1";
+			frameCount = 0;
 			player.caffeineLevel = 0;
 			addChild(player);
 			touchEnabled = true;
 		}
-		
+		private var frameCount:int;
 		private var flag:Boolean = false;
 		private function perFrame(event:Event):void {
 			if(GAMEOVER){
@@ -81,7 +83,13 @@ package screens
 					currentLevel.levelStatus["tilesToFind"] -= 1;
 				}
 			}
-			
+			frameCount++;
+			if (frameCount % 60 == 0) {
+				if (currentLevel.hasTimedOut()) {
+					initState(levelQueue.renewCurrentLevel(player));
+				}
+				frameCount = 0;
+			}
 			if (currentLevel.isFinished() && CollisionDetection.detectCollisionRect(player, currentLevel.exitElevator) 
 					&& flag == false) {
 				player.x = currentLevel.exitElevator.x + currentLevel.exitElevator.width/4;
@@ -96,7 +104,7 @@ package screens
 					flag = false;
 					removeChild(currentLevel);
 					removeChild(player);
-					initState();
+					initState(levelQueue.getNextLevel(player));
 				}
 			}
 			
