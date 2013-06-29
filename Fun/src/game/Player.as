@@ -1,8 +1,12 @@
 package game
 {
+	import flash.geom.Point;
+	import flash.geom.Vector3D;
+	
 	import screens.ROOT;
 	
 	import starling.core.Starling;
+	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.MovieClip;
 	import starling.textures.TextureAtlas;
@@ -11,12 +15,17 @@ package game
 	{
 		// inherit mclip
 		private static var life:int;
-
+		private static var velocity:Vector3D;
+		private const gravity:Number = 9.8;
+		private var _caffeineLevel:Number = 0.0;
+		private var _caffeineDecay:Number = -0.01;
+		
 		public function Player()
 		{
 			super();
 			life = 100;
 			initPlayerMovies();
+			velocity = new Vector3D();
 		}
 		
 		public static function set hp(value:int):void { life = value; }
@@ -57,6 +66,33 @@ package game
 			this.setActiveMovie("standing");	
 		}
 		
+		public function updateVelocity(newVelocity:Vector3D):void{
+			velocity = newVelocity;
+		}
+		
+		public function getVelocity():Vector3D{
+			return velocity;
+		}
+		
+		public function updatePosition():void{
+			velocity.y += gravity;
+			
+			var playerPosition:Point = new Point(x, y);
+			
+			var v:Vector3D = new Vector3D(velocity.x, velocity.y);
+			var speed:Number = velocity.length/10;
+			v.normalize();
+			v.scaleBy(speed);
+			
+			playerPosition = playerPosition.add(new Point(v.x, v.y));
+			x = playerPosition.x;
+			y = playerPosition.y;
+			
+			caffeineLevel = Math.max(0.0, caffeineLevel + caffeineDecay);
+		
+			trace("caffeineLevel: " + caffeineLevel);
+		}
+			//			detectCollsions(intern1);
 		public function kickLeft():void {
 			this.setActiveMovie("kick_left");
 		}
@@ -68,5 +104,10 @@ package game
 		public function stand():void {
 			this.setActiveMovie("standing");
 		}
+		
+		public function set caffeineLevel(value:Number):void { _caffeineLevel = value; }
+		public function get caffeineLevel():Number { return _caffeineLevel; }
+		public function set caffeineDecay(value:Number):void { _caffeineDecay = value; }
+		public function get caffeineDecay():Number { return _caffeineDecay; }
 	}
 }

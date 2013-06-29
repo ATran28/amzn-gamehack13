@@ -36,8 +36,8 @@ package game
 			// move to center for sphere collision detection
 //			activeMovie.x = - activeMovie.width / 2;
 //			activeMovie.x = - activeMovie.width / 2;
-			activeMovie.pivotX = activeMovie.width / 2;
-			activeMovie.pivotY = activeMovie.height / 2;
+//			activeMovie.pivotX = activeMovie.width / 2;
+//			activeMovie.pivotY = activeMovie.height / 2;
 			// add to juggler
 			Starling.juggler.add(activeMovie);
 			// start 

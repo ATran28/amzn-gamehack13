@@ -7,6 +7,8 @@ package
 	import flash.filesystem.File;
 	import flash.geom.Rectangle;
 	
+	import net.hires.debug.Stats;
+	
 	import screens.ROOT;
 	
 	import starling.core.Starling;
@@ -60,6 +62,7 @@ package
 			background.smoothing = true;
 			addChild(background);
 			
+			addChild(new Stats());
 			
 			// starling init
 			_starling = new Starling(ROOT, stage, viewport);
