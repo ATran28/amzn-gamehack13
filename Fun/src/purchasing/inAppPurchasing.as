@@ -77,8 +77,10 @@ package purchasing {
 				case CAFFEINE:
 					// Do something to the player
 					trace("PLAYER GETS CAFFEINE");
-					curPlayer.caffeineLevel = CAFFEINE_LEVEL;
-					Achievements.submit(Achievements.ACHIEVEMENT_01);
+					if (curPlayer != null) {
+					    curPlayer.caffeineLevel = CAFFEINE_LEVEL;
+					    Achievements.submit(Achievements.ACHIEVEMENT_01);
+					}
 					break;
 				case "IAP ITEM 2":
 					// nothing
