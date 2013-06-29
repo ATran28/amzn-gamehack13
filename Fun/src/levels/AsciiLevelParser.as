@@ -18,6 +18,11 @@ package levels
 		private var _playerPoint:Point;
 		public function get playerPoint():Point { return _playerPoint; } 
 		
+		private var _background:String;
+		public function get background():String { return _background; }
+		private var _timeout:Number;
+		public function get timeout():Number { return _timeout; }
+		
 		public function AsciiLevelParser(){
 			_notable = new Vector.<StaticGameObject>();
 			_statics = new Vector.<StaticGameObject>();
@@ -33,7 +38,20 @@ package levels
 			const width:int = 27;
 			var firstE:Boolean = true;
 			
-			for(var h:int = 0; h < height; h++){ 
+			_background = "bg1";
+			_timeout = 0;
+			
+			var sub:String = ascii.substr(0, width);
+			var split:Array = sub.split("%");
+			if(split.length < 2){
+				trace("META DATA NOT CORRECT!!");
+			} else {
+				trace("META: " + split[0] + ", " + split[1]);
+				_background = split[0];
+				_timeout = Number(split[1]);
+			}
+			
+			for(var h:int = 1; h < height; h++){ 
 				for(var w:int = 0; w < width; w++){
 					
 					var c:String = ascii.charAt(h*width + w);
@@ -81,7 +99,7 @@ package levels
 					} else if(c == "S") {
 						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "star");
 						notable.push(obj);
-					} else if(c == "B") {
+					} else if(c == "O") {
 						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "book");
 						notable.push(obj);
 					} else if(c == "K") {

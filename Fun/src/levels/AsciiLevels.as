@@ -2,8 +2,9 @@ package levels
 {
 	public class AsciiLevels
 	{
+		//background, time limit
 		public static const asciiLevel0:String = 
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"bg1%0%XXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
 			"X                         X" +
@@ -44,7 +45,7 @@ package levels
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 		
 		public static const asciiLevel1:String = 
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"bg1-2%0%XXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
 			"X         EE              X" +
@@ -85,7 +86,7 @@ package levels
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 		
 		public static const asciiLevel2:String = 
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"bg2%0%XXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
 			"X                         X" +
