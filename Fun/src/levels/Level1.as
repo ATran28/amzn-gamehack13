@@ -20,8 +20,6 @@ package levels
 	public class Level1 extends Level
 	{
 		
-		private var score:int;
-		
 		public function Level1()
 		{
 			super();
@@ -99,8 +97,6 @@ package levels
 			_exitElevator.animate();
 			// Entrance elevator
 			//
-			
-			score = 0;
 		}
 		
 		override public function run():void {
