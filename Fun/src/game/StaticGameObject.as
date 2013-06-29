@@ -1,8 +1,9 @@
 package game
 {	
+	import flash.utils.Dictionary;
+	
 	import starling.display.Image;
 	import starling.display.Sprite;
-	import flash.utils.Dictionary;
 	
 	public class StaticGameObject extends Sprite
 	{
@@ -19,7 +20,9 @@ package game
 			visible = true;
 		}
 		
-		public function
+		public function getActiveImage():Image {
+			return activeImg;
+		}
 		
 		public function addImage(name:String, value:Image):void {
 			imgMap[name] = value;	

@@ -2,6 +2,7 @@ package game
 {
 	import flash.utils.Dictionary;
 	
+	import starling.core.Starling;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	
@@ -20,6 +21,24 @@ package game
 			visible = true;
 		}
 
+		public function setActiveMovie(name:String):void {
+			if (activeMovie != null) {
+				// remove the old active from juggler
+				Starling.juggler.remove(activeMovie);
+			}
+			if (!movieMap.hasOwnProperty(name)) {
+				trace("no such movie: " + name);	
+			}
+			// set the handle
+			activeMovie = movieMap[name]; 
+			// move to center for sphere collision detection
+			activeMovie.x = this.width / 2;
+			activeMovie.x = this.width / 2;
+			// add to juggler
+			Starling.juggler.add(activeMovie);
+			// start 
+			addChild(activeMovie);
+		}
 		
 		public function getActiveMovie():MovieClip {
 			return activeMovie;
