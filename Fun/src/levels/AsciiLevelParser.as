@@ -50,6 +50,12 @@ package levels
 					} else if(c == "L"){
 						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "leaves");
 						statics.push(obj);
+					} else if(c == "M"){
+						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "metal1");
+						statics.push(obj);
+					} else if(c == "B"){
+						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "metal2");
+						statics.push(obj);		
 					} else if(c == "E"){
 						if(firstE){
 							firstE = false;
