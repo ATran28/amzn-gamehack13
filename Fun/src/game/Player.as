@@ -39,7 +39,7 @@ package game
 		// Set only one as active
 		private function initPlayerMovies():void {
 			// Add movie	
-			var atlas:TextureAtlas = ROOT.atlas;
+			var atlas:TextureAtlas = ROOT.assets.getTextureAtlas("intern");
 
 			// Add Kick Left
 			var kickLeftMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_cape_"), 10);
