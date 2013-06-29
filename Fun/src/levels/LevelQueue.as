@@ -1,6 +1,8 @@
 package levels
 {
 	import game.Player;
+	
+	import starling.utils.AssetManager;
 
 	public class LevelQueue
 	{
@@ -22,7 +24,8 @@ package levels
 			levelQueue.push(AsciiLevels.asciiLevel42);
 			levelQueue.push(AsciiLevels.backAndForth); 
 			levelQueue.push(AsciiLevels.upUpUp); 
-			levelQueue.push(AsciiLevels.asciiDeathPit); 
+			levelQueue.push(AsciiLevels.asciiDeathPit);
+			levelQueue.push(AsciiLevels.crazy);
 			
 			// last level
 			levelQueue.push(AsciiLevels.GameWin);
