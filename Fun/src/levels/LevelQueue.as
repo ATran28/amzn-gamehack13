@@ -15,7 +15,7 @@ package levels
 			levelQueue.push(AsciiLevels.asciiLevel0);
 			levelQueue.push(AsciiLevels.asciiLevel1);
 			levelQueue.push(AsciiLevels.owenLevel1);
-			levelQueue.push(AsciiLevels.asciiLevel2);
+//			levelQueue.push(AsciiLevels.asciiLevel2);
 			levelQueue.push(AsciiLevels.asciiLevel4);
 			levelQueue.push(AsciiLevels.asciiLevel37);
 			levelQueue.push(AsciiLevels.asciiLevel38); 
