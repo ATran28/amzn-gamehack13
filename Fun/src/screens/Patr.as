@@ -70,7 +70,7 @@ package screens
 			touchDown = false;
 		}
 		private var frameCount:int;
-		private var flag:Boolean = false;
+		private var elevatorTouched:Boolean = false;
 		private function perFrame(event:Event):void {
 			if(GAMEOVER){
 				dispatchEventWith(GAME_OVER, true, 100);
@@ -87,23 +87,23 @@ package screens
 			}
 			frameCount++;
 			if (frameCount % 60 == 0) {
-				if (currentLevel.hasTimedOut()) {
+				if (currentLevel.hasTimedOut() && !elevatorTouched) {
 					initState(levelQueue.renewCurrentLevel(player));
 				}
 				frameCount = 0;
 			}
 			if (currentLevel.isFinished() && CollisionDetection.detectCollisionRect(player, currentLevel.exitElevator) 
-					&& flag == false) {
+					&& elevatorTouched == false) {
 				player.x = currentLevel.exitElevator.x + currentLevel.exitElevator.width/4;
 				player.y = currentLevel.exitElevator.y + (currentLevel.exitElevator.height - player.height);
 				player.updateVelocity(new Vector3D());
 				currentLevel.exitElevator.setActiveMovie("open");
 				currentLevel.exitElevator.animate();
 				touchEnabled = false;
-				flag = true;				
-			} else if (currentLevel.isFinished() && flag == true) {
+				elevatorTouched = true;				
+			} else if (currentLevel.isFinished() && elevatorTouched == true) {
 				if (currentLevel.exitElevator.getActiveMovie().isComplete) {
-					flag = false;
+					elevatorTouched = false;
 					removeChild(currentLevel);
 					removeChild(player);
 					
