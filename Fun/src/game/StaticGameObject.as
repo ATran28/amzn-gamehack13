@@ -9,6 +9,7 @@ package game
 	{
 		private var imgMap:Dictionary;
 		private var activeImg:Image;
+		private var frictionCoeficient:Number;
 
 		public function StaticGameObject()
 		{
@@ -16,6 +17,7 @@ package game
 			imgMap = new Dictionary();
 			pivotX = Math.ceil(width/2);
 			pivotY = Math.ceil(height/2);
+			frictionCoeficient = 3;
 			
 			visible = true;
 		}

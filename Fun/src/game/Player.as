@@ -1,8 +1,12 @@
 package game
 {
+	import flash.geom.Point;
+	import flash.geom.Vector3D;
+	
 	import screens.ROOT;
 	
 	import starling.core.Starling;
+	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.MovieClip;
 	import starling.textures.TextureAtlas;
@@ -11,12 +15,14 @@ package game
 	{
 		// inherit mclip
 		private static var life:int;
-
+		private static var velocity:Vector3D;
+		
 		public function Player()
 		{
 			super();
 			life = 100;
 			initPlayerMovies();
+			velocity = new Vector3D();
 		}
 		
 		public static function set hp(value:int):void { life = value; }
@@ -55,6 +61,34 @@ package game
 
 			// Set one movie as active
 			this.setActiveMovie("standing");	
+		}
+		
+		private var gravity:Number = 9.8;
+		public function updateVelocity(newVelocity:Vector3D):void{
+			velocity = newVelocity;
+		}
+		
+		public function getVelocity():Vector3D{
+			return velocity;
+		}
+		
+		public function updatePosition():void{
+			velocity.y += gravity;
+			
+			var playerPosition:Point = new Point(x, y);
+			
+			var v:Vector3D = new Vector3D(velocity.x, velocity.y);
+			trace("velocity: " + velocity);
+			var speed:Number = velocity.length/10;
+			v.normalize();
+			v.scaleBy(speed);
+			
+			playerPosition = playerPosition.add(new Point(v.x, v.y));
+			x = playerPosition.x;
+			y = playerPosition.y;
+			
+			
+			//			detectCollsions(intern1);
 		}
 	}
 }
