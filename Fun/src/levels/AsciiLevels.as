@@ -105,23 +105,23 @@ package levels
 			"X                         X" +
 			"X                         X" +
 			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"XMMMMMMMMM      MMMMMMMMMMX" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
 			"X                   P     X" +
-			"X                         X" +
-			"XMMMMMMMMMMMMMMMMMMMMMMMMMX" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
-			"X                         X" +
 			"X                         X" +
 			"XMMMMMMMMMMMMMMMMMMMMMMMMMX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
