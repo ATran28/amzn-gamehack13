@@ -3,18 +3,15 @@ package screens
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.geom.Vector3D;
-	import flash.utils.Dictionary;
 	
 	import game.Player;
 	import game.StaticGameObject;
 	
-	import levels.AsciiLevels;
-	import levels.GeneratedLevel;
+	import gameCircle.Achievements;
+	import gameCircle.Leaderboards;
+	
 	import levels.Level;
-	import levels.Level1;
-	import levels.Level2;
 	import levels.LevelQueue;
-	import levels.TestLevel;
 	
 	import physics.CollisionDetection;
 	
@@ -33,6 +30,7 @@ package screens
 		
 		private var levelQueue:LevelQueue;
 		private var currentLevel:Level;
+		private var levelsCompleted:int = 0;
 		
 		public function Patr()
 		{
@@ -104,6 +102,11 @@ package screens
 					flag = false;
 					removeChild(currentLevel);
 					removeChild(player);
+					
+					levelsCompleted = levelsCompleted + 1;
+					trace(levelsCompleted + " levels compeleted!");
+					Leaderboards.submitScore(Leaderboards.BOARD_01, levelsCompleted);
+					Achievements.checkForAchievements(levelsCompleted);
 					initState(levelQueue.getNextLevel(player));
 				}
 			}

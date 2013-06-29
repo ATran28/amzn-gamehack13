@@ -6,6 +6,8 @@ package purchasing {
 	
 	import game.Player;
 	
+	import gameCircle.Achievements;
+	
 	public class inAppPurchasing {
 
 		private static const CAFFEINE:String = "AGIHIAPC01";
@@ -76,6 +78,7 @@ package purchasing {
 					// Do something to the player
 					trace("PLAYER GETS CAFFEINE");
 					curPlayer.caffeineLevel = CAFFEINE_LEVEL;
+					Achievements.submit(Achievements.ACHIEVEMENT_01);
 					break;
 				case "IAP ITEM 2":
 					// nothing

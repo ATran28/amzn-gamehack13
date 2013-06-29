@@ -10,8 +10,6 @@ package levels
 	
 	import screens.ROOT;
 	
-	import starling.display.Button;
-	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.text.TextField;
