@@ -90,9 +90,10 @@ package game
 			var result:AnimatedGameObject = new AnimatedGameObject();
 			result.x = x;
 			result.y = y;
-			result.addMovie("closed", new MovieClip(ROOT.atlas.getTextures("elevator_open"), 4));
-			result.addMovie("open", new MovieClip(ROOT.atlas.getTextures("elevator_close"), 4));
-			
+			result.addMovie("closed", new MovieClip(ROOT.atlas.getTextures("elevator_open"), 7));
+			result.addMovie("open", new MovieClip(ROOT.atlas.getTextures("elevator_close"), 7));
+			result.movieMap["closed"].loop = false;
+			result.movieMap["open"].loop = false;
 			if (closed) {
 				result.setActiveMovie("closed");
 			} else {

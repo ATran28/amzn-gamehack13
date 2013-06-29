@@ -13,6 +13,7 @@ package levels
 	import starling.display.Sprite;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
+	import flash.geom.Point;
 
 	public class Level1 extends Level
 	{
@@ -24,6 +25,9 @@ package levels
 			var viewport:Rectangle = Fun.viewport;
 			var miny:int = viewport.height - 113;
 			var minx:int = viewport.width;
+			
+			_startingPosition = new Point(0, miny-32-110);
+			
 			// Set background
 			var texture:Texture = ROOT.assets.getTexture("bg1");
 			var background:Image = new Image( texture );
@@ -72,7 +76,7 @@ package levels
 			
 			// Make a tree
 			var twidth:int = 3;
-			var theight:int = 5;
+			var theight:int = 3;
 			// For each trunk piece
 			for (i = 0; i != theight; ++i) {
 				tile = StaticGameObject.makeTile(
@@ -100,8 +104,10 @@ package levels
 			}
 			
 			// Exit elevator
-			var exitElevator:AnimatedGameObject = AnimatedGameObject.makeElevator(64, miny-384, false);
+			_exitElevator = AnimatedGameObject.makeElevator(64, miny-384, true);
+			
 			addChild(exitElevator);
+			_exitElevator.animate();
 			// Entrance elevator
 			//
 			
@@ -110,6 +116,10 @@ package levels
 		
 		override public function run():void {
 			
+		}
+		
+		override public function isFinished():Boolean {
+			return true;
 		}
 		
 		
