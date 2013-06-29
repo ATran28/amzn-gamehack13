@@ -30,8 +30,8 @@ package screens
 			// set the properties
 			intern.x = 0;
 			intern.y = 50;
-			intern.width = 46;
-			intern.height = 69;
+			// intern scale is set in Player
+
 			intern.name = "intern";
 			addChild(intern);	
 			
