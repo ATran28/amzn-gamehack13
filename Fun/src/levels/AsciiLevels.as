@@ -127,7 +127,7 @@ package levels
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 		public static const asciiLevel37:String = 
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"bg2%15XXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
 			"X                     P   X" +
@@ -168,7 +168,7 @@ package levels
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 		public static const asciiLevel4:String = 
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"bg4%20%XXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
 			"X                     P   X" +
@@ -209,7 +209,7 @@ package levels
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 		public static const asciiLevel39:String = 
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"bg3%0%XXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
 			"X            P            X" +
@@ -250,7 +250,7 @@ package levels
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 		public static const asciiLevel38:String = 
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"bg3%0%XXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
 			"X            P            X" +
@@ -291,7 +291,7 @@ package levels
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 		public static const asciiLevel40:String = 
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"bg2%0%XXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
 			"X            P            X" +
@@ -332,7 +332,7 @@ package levels
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 		public static const asciiLevel41:String = 
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"bg2%0%XXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X            P            X" +
 			"X                         X" +
@@ -373,7 +373,7 @@ package levels
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 		public static const asciiLevel42:String = 
-			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"bg2%0%XXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X            P            X" +
 			"X                         X" +
