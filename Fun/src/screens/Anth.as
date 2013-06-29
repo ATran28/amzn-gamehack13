@@ -1,8 +1,12 @@
 package screens
 {
+	import game.Player;
+	
 	import gameCircle.Achievements;
 	import gameCircle.GameCircleUtils;
 	import gameCircle.Leaderboards;
+	
+	import purchasing.inAppPurchasing;
 	
 	import starling.display.Button;
 	import starling.display.Sprite;
@@ -14,8 +18,9 @@ package screens
 
 		public function Anth()
 		{
-			// Do something
+			// Initialize
 			GameCircleUtils.initializeGameCircle();
+			inAppPurchasing.init();
 			
 			// Show Achievements Button
 			var showAchievements:Button = new Button(ROOT.assets.getTexture("green-button"), "Show Achievements");
@@ -64,6 +69,14 @@ package screens
 			backButton.y = 0; 
 			backButton.addEventListener(Event.TRIGGERED, backToMenu);
 			addChild(backButton);  
+			
+			// Buy IAP
+			var iapButton:Button = new Button(ROOT.assets.getTexture("green-button"), "Buy Caffeine");
+			iapButton.fontSize = 24;
+			iapButton.x = 250;
+			iapButton.y = 450; 
+			iapButton.addEventListener(Event.TRIGGERED, buyCaffeine);
+			addChild(iapButton);  
 		}
 		
 		// back button to menu handler
@@ -83,6 +96,10 @@ package screens
 		public function submitScoreToBoard():void {
 			lastScore = lastScore + 1;
 			Leaderboards.submitScore(Leaderboards.BOARD_01, lastScore);
+		}
+		
+		public function buyCaffeine():void {
+			inAppPurchasing.purchaseCaffeine(new Player());
 		}
 		
 	}
