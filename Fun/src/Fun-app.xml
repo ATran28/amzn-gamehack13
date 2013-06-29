@@ -280,4 +280,7 @@
 		]]></InfoAdditions>
         <requestedDisplayResolution>high</requestedDisplayResolution>
     </iPhone>
+<extensions>
+        <extensionID>com.amazon.extensions.GameCircle</extensionID>
+    </extensions>
 </application>
