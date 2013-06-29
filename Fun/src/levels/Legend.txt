@@ -12,8 +12,26 @@ B - Metal Block
 D - LAVA/DANGER
 W - WATER/DANGER
 
+-- Pick up items --
+S - Star
+O - Book
+K - Keypad
+
+PLAYER:
+P - Player, MUST LEAVE 1 SPACE BELOW HIM
+
+
+
+
 Elevator
 EE
 EE
 EE
 EE
+
+---META DATA---
+backgroundName%timelimit%XXXXFILL REST WITH X'S
+bg1%1000%XXXXXXXXXXXXXXXXXXXXXX
+
+Backgrounds: bg1-2, bg1, bg2-2, bg2, bg3
+Time Limit: 0 means infinite
