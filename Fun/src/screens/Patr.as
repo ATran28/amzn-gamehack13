@@ -4,6 +4,10 @@ package screens
 	import flash.geom.Rectangle;
 	import flash.geom.Vector3D;
 	
+	import game.Player;
+	
+	import physics.CollisionDetection;
+	
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
@@ -30,6 +34,8 @@ package screens
 			dispatchEventWith(GAME_OVER, true, 100);
 		}
 		
+		private var stretchedGround:Image;
+		private var ground:Vector.<Image> = new Vector.<Image>(); 
 		private function initGame(event:Event):void {
 			var viewport:Rectangle = Fun.viewport;
 			var texture:Texture = ROOT.assets.getTexture("menubg");
@@ -42,22 +48,28 @@ package screens
 			addChild(background);
 			
 			var groundAtlas:TextureAtlas = ROOT.assets.getTextureAtlas("FunGameSprites");
-			if(groundAtlas == null){
-				trace("atlas null");
-				
-			}
+			
 			var tex:Texture = groundAtlas.getTexture("grass32");
-			if(tex == null) {
-				trace("tex null");
-				
+			stretchedGround = new Image(tex);
+			stretchedGround.x = 0;
+			stretchedGround.y = 400;
+			stretchedGround.width = viewport.width;
+			addChild(stretchedGround);
+			stretchedGround.name = "stretchedGround";
+			
+			var groundImg:Image;
+			for(var w:Number = 0; w < viewport.width; w += tex.width){
+				groundImg = new Image(tex);
+				groundImg.x = w;
+				groundImg.y = 800;
+				groundImg.name = "ground" + w;
+				addChild(groundImg);
+				ground.push(groundImg);
 			}
-			var ground1:Image = new Image(tex);
-			ground1.x = 300;
-			ground1.y = 300;
-			addChild(ground1);
 			
 			var internTexture:Texture = ROOT.assets.getTexture("intern");
-			var intern1:Image = new Image(internTexture);
+			var intern1:Player = new Player();
+			//var intern1:Image = new Image(internTexture);
 			
 			// set the properties
 			intern1.x = 0;
@@ -89,7 +101,7 @@ package screens
 //				dispatchEventWith(GAME_OVER, true, 100);
 //			}
 		}
-		
+
 		private var touchPosition:Point;
 		private function isPressed(event:TouchEvent):void {
 			var touch:Touch = event.getTouch(this);
@@ -113,25 +125,111 @@ package screens
 			
 			// Move intern 1 along vector from intern to touch event
 			var localPos:Point = touchPosition;//event.getTouch(this).getLocation(this);
-			trace("Touched object at position: " + localPos);
+			//trace("Touched object at position: " + localPos);
 			
 			var intern1:DisplayObject = this.getChildByName("intern1");
 			var internPos:Point = new Point(intern1.x, intern1.y);
-			trace("Initial Intern Position: " + internPos);
+			//trace("Initial Intern Position: " + internPos);
 			
 			var v:Vector3D = new Vector3D(localPos.x - internPos.x, localPos.y - internPos.y);
 			v.normalize();
 			v.scaleBy(speed);
-			trace("Vector: " + v.x + ", " + v.y);
-			trace("New Point: " + new Point(v.x, v.y));
+			//trace("Vector: " + v.x + ", " + v.y);
+			//trace("New Point: " + new Point(v.x, v.y));
 			internPos = internPos.add(new Point(v.x, v.y));
-			trace("InternPos: " + internPos);
+			//trace("InternPos: " + internPos);
 			intern1.x = internPos.x;
-			intern1.y = internPos.y;	
-		}
-		
-		private function detectCollsions() {
+			intern1.y = internPos.y;
+			
+			detectCollsions(intern1);
 			
 		}
-	}
+		
+		private function detectCollsions(player:DisplayObject):Boolean {
+			if(CollisionDetection.detectCollisionRect(player, stretchedGround)){
+				trace("Stretched collision");
+				return true;
+			}
+			for each(var block:Image in ground){
+				if(CollisionDetection.detectCollision(player, block)){
+					trace("Ground collision");
+					return true;
+				}	
+			}
+			return false;
+		}
+	}	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+/****************************************************************************
+ * Patricks Section 
+ * 
+ */
+//		private var touchPosition:Point;
+//		private function isPressed(event:TouchEvent):void {
+//			var touch:Touch = event.getTouch(this);
+//			
+//			if(touch){
+//				if (touch.phase == TouchPhase.BEGAN)
+//				{
+//					touchPosition = event.getTouch(this).getLocation(this);
+//					addEventListener(Event.ENTER_FRAME, updatePosition);
+//				} else if(touch.phase == TouchPhase.MOVED) { 
+//					touchPosition = event.getTouch(this).getLocation(this);
+//				} else if (touch.phase == TouchPhase.ENDED) {
+//					removeEventListener(Event.ENTER_FRAME, updatePosition);
+//				}
+//			}
+//		}
+//		private function updatePosition(event:Event):void {
+//			
+//			
+//			const speed:Number = 5;
+//			
+//			// Move intern 1 along vector from intern to touch event
+//			var localPos:Point = touchPosition;//event.getTouch(this).getLocation(this);
+//			//trace("Touched object at position: " + localPos);
+//			
+//			var intern1:DisplayObject = this.getChildByName("intern1");
+//			var internPos:Point = new Point(intern1.x, intern1.y);
+//			//trace("Initial Intern Position: " + internPos);
+//			
+//			var v:Vector3D = new Vector3D(localPos.x - internPos.x, localPos.y - internPos.y);
+//			v.normalize();
+//			v.scaleBy(speed);
+//			//trace("Vector: " + v.x + ", " + v.y);
+//			//trace("New Point: " + new Point(v.x, v.y));
+//			internPos = internPos.add(new Point(v.x, v.y));
+//			//trace("InternPos: " + internPos);
+//			intern1.x = internPos.x;
+//			intern1.y = internPos.y;
+//			
+//			detectCollsions(intern1);
+//			
+//		}
+//		
+//		private function detectCollsions(player:DisplayObject):Boolean {
+//			if(CollisionDetection.detectCollisionRect(player, stretchedGround)){
+//				trace("Stretched collision");
+//				return true;
+//			}
+//			for each(var block:Image in ground){
+//				if(CollisionDetection.detectCollision(player, block)){
+//					trace("Ground collision");
+//					return true;
+//				}	
+//			}
+//			return false;
+//		}
+//		private function response():void{
+//			
+//		}
+//	}
 }

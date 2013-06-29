@@ -12,7 +12,6 @@ package game
 		public function Player()
 		{
 			super();
-//			addMovie("default", movie);
 			life = 100;
 		}
 		
