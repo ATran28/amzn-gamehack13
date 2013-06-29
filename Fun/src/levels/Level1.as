@@ -4,6 +4,7 @@ package levels
 	import flash.geom.Vector3D;
 	import flash.utils.Dictionary;
 	
+	import game.AnimatedGameObject;
 	import game.StaticGameObject;
 	
 	import screens.ROOT;
@@ -100,6 +101,12 @@ package levels
 				addChild(tile);
 				_tiles.push(tile);
 			}
+			
+			// Exit elevator
+			var exitElevator:AnimatedGameObject = AnimatedGameObject.makeElevator(64, miny-384, false);
+			addChild(exitElevator);
+			// Entrance elevator
+			//
 			
 			score = 0;
 		}

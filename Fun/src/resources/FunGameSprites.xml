@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:bf37333f5e80a9db4bf9db4e86038f9f$ -->
+<!-- $TexturePacker:SmartUpdate:1d3f761209535e1fe981b12b8b3bd2a5$ -->
 <TextureAtlas imagePath="FunGameSprites.png">
-    <SubTexture name="grass32" x="2" y="70" width="32" height="32"/>
-    <SubTexture name="leaves32" x="2" y="36" width="32" height="32"/>
-    <SubTexture name="rock32" x="2" y="2" width="32" height="32"/>
-    <SubTexture name="trunk32" x="36" y="2" width="22" height="32" frameX="-5" frameY="0" frameWidth="32" frameHeight="32"/>
+    <SubTexture name="crouch_1" x="265" y="2" width="73" height="100" frameX="-11" frameY="0" frameWidth="95" frameHeight="100"/>
+    <SubTexture name="elevator_close00" x="200" y="126" width="64" height="128"/>
+    <SubTexture name="elevator_close01" x="134" y="138" width="64" height="128"/>
+    <SubTexture name="elevator_close02" x="68" y="262" width="64" height="128"/>
+    <SubTexture name="elevator_close03" x="68" y="132" width="64" height="128"/>
+    <SubTexture name="elevator_close04" x="68" y="2" width="64" height="128"/>
+    <SubTexture name="elevator_close05" x="2" y="262" width="64" height="128"/>
+    <SubTexture name="elevator_close06" x="2" y="132" width="64" height="128"/>
+    <SubTexture name="elevator_close07" x="2" y="2" width="64" height="128"/>
+    <SubTexture name="elevator_open00" x="2" y="2" width="64" height="128"/>
+    <SubTexture name="elevator_open01" x="2" y="132" width="64" height="128"/>
+    <SubTexture name="elevator_open02" x="2" y="262" width="64" height="128"/>
+    <SubTexture name="elevator_open03" x="68" y="2" width="64" height="128"/>
+    <SubTexture name="elevator_open04" x="68" y="132" width="64" height="128"/>
+    <SubTexture name="elevator_open05" x="68" y="262" width="64" height="128"/>
+    <SubTexture name="elevator_open06" x="134" y="138" width="64" height="128"/>
+    <SubTexture name="elevator_open07" x="200" y="126" width="64" height="128"/>
+    <SubTexture name="grass32" x="134" y="70" width="32" height="32"/>
+    <SubTexture name="kick_left_cape_1" x="134" y="268" width="85" height="120" frameX="-10" frameY="-2" frameWidth="95" frameHeight="122"/>
+    <SubTexture name="kick_left_cape_2" x="178" y="2" width="85" height="122" frameX="-10" frameY="0" frameWidth="95" frameHeight="122"/>
+    <SubTexture name="leaves32" x="134" y="36" width="32" height="32"/>
+    <SubTexture name="rock32" x="134" y="2" width="32" height="32"/>
+    <SubTexture name="standing_1" x="178" y="390" width="85" height="101" frameX="0" frameY="0" frameWidth="95" frameHeight="101"/>
+    <SubTexture name="trunk32" x="134" y="104" width="22" height="32" frameX="-5" frameY="0" frameWidth="32" frameHeight="32"/>
+    <SubTexture name="up_cape_1" x="91" y="392" width="85" height="107" frameX="0" frameY="0" frameWidth="95" frameHeight="107"/>
+    <SubTexture name="up_cape_2" x="2" y="392" width="87" height="107" frameX="0" frameY="0" frameWidth="95" frameHeight="107"/>
 </TextureAtlas>
