@@ -64,7 +64,7 @@ package
 			background.smoothing = true;
 			addChild(background);
 			
-			addChild(new Stats());
+			//addChild(new Stats());
 			
 			// starling init
 			_starling = new Starling(ROOT, stage, viewport);
