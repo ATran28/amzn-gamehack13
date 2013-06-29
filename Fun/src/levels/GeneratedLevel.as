@@ -24,7 +24,7 @@ package levels
 		public function GeneratedLevel(ascii:String, player:Player)
 		{
 			super();
-	
+			curPlayer = player;
 			didCompleteLevel = false;
 
 			parser = new AsciiLevelParser();

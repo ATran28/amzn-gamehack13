@@ -76,9 +76,10 @@ package purchasing {
 			{
 				case CAFFEINE:
 					// Do something to the player
-					trace("PLAYER GETS CAFFEINE");
 					if (curPlayer != null) {
+						trace("PLAYER GETS CAFFEINE");
 					    curPlayer.caffeineLevel = CAFFEINE_LEVEL;
+						trace(curPlayer.caffeineLevel);
 					    Achievements.submit(Achievements.ACHIEVEMENT_01);
 					}
 					break;
@@ -120,6 +121,9 @@ package purchasing {
 		
 		public static function purchaseCaffeine(player:Player):void {
 			trace("Purchasing - purchasing Caffeine for player");
+			if (player == null) {
+				trace("Player is null!!");
+			}
 			curPlayer = player;
 			AmazonPurchase.amazonPurchase.purchaseItem(CAFFEINE);
 		}
