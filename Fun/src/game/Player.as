@@ -39,9 +39,9 @@ package game
 			
 			// Add another movie
 			var kickRightMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_"), 10);
-			kickLeftMovie.scaleX = -0.5;
-			kickLeftMovie.scaleY = -0.5;
-			kickLeftMovie.loop = true;
+			kickRightMovie.scaleX = -0.5;
+			kickRightMovie.scaleY = 0.5;
+			kickRightMovie.loop = true;
 			
 			this.addMovie("kick_right", kickRightMovie);
 			
@@ -55,6 +55,18 @@ package game
 
 			// Set one movie as active
 			this.setActiveMovie("standing");	
+		}
+		
+		public function kickLeft():void {
+			this.setActiveMovie("kick_left");
+		}
+
+		public function kickRight():void {
+			this.setActiveMovie("kick_right");
+		}
+
+		public function stand():void {
+			this.setActiveMovie("standing");
 		}
 	}
 }
