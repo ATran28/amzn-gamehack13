@@ -23,6 +23,8 @@ package screens
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import starling.utils.deg2rad;
+	import starling.utils.rad2deg;
 	
 	import util.Util;
 	
@@ -64,6 +66,7 @@ package screens
 			player.caffeineLevel = 0;
 			addChild(player);
 			touchEnabled = true;
+			touchDown = false;
 		}
 		
 		private var flag:Boolean = false;
@@ -100,14 +103,19 @@ package screens
 				}
 			}
 			
-			player.updatePosition();
+			if(!dangerFlag){
+				player.updatePosition();
+			} else {
+				player.setPivot();
+				player.rotation += deg2rad(3);
+			}
 			
 			// Detect collisions must come after player update since overrides any
 			// animation changes made in there.
 			detectCollsions2(player);	
 		}
 
-		private var touchDown:Boolean = false;
+		private var touchDown:Boolean;
 		private var touchStart:Point;
 		private var touchEnd:Point;
 		private var player:Player;
@@ -137,6 +145,7 @@ package screens
 		}		
 		
 				
+		private var dangerFlag:Boolean = false;
 		private static const bounceFactor:Number = 0.1;
 		private function detectCollsions2(player:Player):Boolean {
 
@@ -163,24 +172,30 @@ package screens
 			//Check tile collisions
 			for each(var block:StaticGameObject in currentLevel.tiles){
 				if(CollisionDetection.detectCollisionRect(player, block) && block.blocking){
-					if(player.y < block.y + 30 && player.y > block.y)
-					{
-						if(block.x - player.x > 0 && player.getVelocity().x > 0)
+					if(block.name.indexOf("lava") == 0 || block.name.indexOf("water") == 0){	//Danger blocks
+						dangerFlag = true;
+						player.updateVelocity(new Vector3D());
+						
+					} else {	//Collision blocks
+						if(player.y < block.y + 30 && player.y > block.y)
 						{
-							player.updateVelocity(new Vector3D(player.getVelocity().x * -1 * bounceFactor, player.getVelocity().y));
-							player.x = block.x - block.width/2 - player.width/2;
+							if(block.x - player.x > 0 && player.getVelocity().x > 0)
+							{
+								player.updateVelocity(new Vector3D(player.getVelocity().x * -1 * bounceFactor, player.getVelocity().y));
+								player.x = block.x - block.width/2 - player.width/2;
+							}
+							if(block.x - player.x < 0 && player.getVelocity().x < 0)
+							{
+								player.updateVelocity(new Vector3D(player.getVelocity().x * -1 * bounceFactor, player.getVelocity().y));
+								player.x = block.x + block.width/2 + player.width/2;
+							}
 						}
-						if(block.x - player.x < 0 && player.getVelocity().x < 0)
-						{
-							player.updateVelocity(new Vector3D(player.getVelocity().x * -1 * bounceFactor, player.getVelocity().y));
-							player.x = block.x + block.width/2 + player.width/2;
+						if (player.inTheAir) {
+							player.inTheAir = false;
+							ROOT.assets.playSound(Util.getRandomHitGroundSound());
 						}
+						response(player, block);	//Updates velocity/forces, then responds
 					}
-					if (player.inTheAir) {
-						player.inTheAir = false;
-						ROOT.assets.playSound(Util.getRandomHitGroundSound());
-					}
-					response(player, block);	//Updates velocity/forces, then responds
 					
 					return true;
 				}	

@@ -81,7 +81,7 @@ package levels
 					} else if(c == "B"){
 						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "metal2");
 						statics.push(obj);
-					} else if(c == "L"){
+					} else if(c == "D"){
 						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "lava");
 						statics.push(obj);
 					} else if(c == "W"){
