@@ -1,6 +1,5 @@
 package screens 
 {
-    import flash.display.Bitmap;
     import flash.geom.Rectangle;
     
     import starling.display.Button;
@@ -50,7 +49,7 @@ package screens
             var startButton:Button = new Button(ROOT.assets.getTexture("green-button"), "Start");
             startButton.fontSize = 24;
             startButton.x = int((Fun.STAGE_WIDTH - startButton.width) / 3 );
-            startButton.y = Fun.STAGE_HEIGHT * 0.75;
+            startButton.y = Fun.STAGE_HEIGHT * 0.25;
             startButton.addEventListener(Event.TRIGGERED, onStartButtonTriggered);
 			addChild(startButton);
 

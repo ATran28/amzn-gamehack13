@@ -10,6 +10,7 @@ package
 	import screens.ROOT;
 	
 	import starling.core.Starling;
+	import starling.display.Image;
 	import starling.events.Event;
 	import starling.textures.Texture;
 	import starling.utils.AssetManager;
@@ -71,11 +72,12 @@ package
 				function onRootCreated(event:Object, app:ROOT):void
 				{
 					_starling.removeEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);
-					removeChild(background);
+					var bgtex:Texture = Texture.fromBitmap(background, false, false);
+					var bgimg:Image = new Image(bgtex);
 					
-					app.start(assets);
+					app.start(bgimg, assets);
 					_starling.start();
-					
+					removeChild(background);
 				});
 		}
 		private static var vp:Rectangle;

@@ -1,32 +1,21 @@
 package game
 {
-	import starling.display.Sprite;
+	import screens.ROOT;
+	
+	import starling.display.Image;
 	import starling.textures.Texture;
 	
-	public class GameObject extends Sprite
+	public class GameObject extends Image
 	{
-		var texture:Texture;
-		var xpos:int;
-		var ypos:int;
-		var height:int;
-		var width:int;
-		var zindex:int;
-		var visble:Boolean;
 		
-		public function GameObject(x:int, y:int, w:int, h:int)
+		public function GameObject(tex:Texture)
 		{
-			super();
-			xpos = x;
-			ypos = y;
-			width = w;
-			height = h;
-			zindex = 0;
-			texture = null;
 			
-		}
-		
-		public function setTexture(t:Texture) {
-			texture = t;
+			super(tex);
+			//pivotX = Math.ceil(width/2);
+			//pivotY = Math.ceil(height/2);
+			
+			visible = true;
 		}
 	}
 }
