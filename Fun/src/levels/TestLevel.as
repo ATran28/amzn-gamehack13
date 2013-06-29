@@ -1,25 +1,21 @@
 package levels
 {
 	import flash.geom.Rectangle;
-	import flash.geom.Vector3D;
 	import flash.utils.Dictionary;
 	
-	import game.AnimatedGameObject;
 	import game.StaticGameObject;
 	
 	import screens.ROOT;
 	
 	import starling.display.Image;
-	import starling.display.Sprite;
 	import starling.textures.Texture;
-	import starling.textures.TextureAtlas;
 
-	public class Level1 extends Level
+	public class TestLevel extends Level
 	{
 		private var textures:Dictionary;
 		private var score:int;
 		
-		public function Level1()
+		public function TestLevel()
 		{
 			var viewport:Rectangle = Fun.viewport;
 			var miny:int = viewport.height - 113;
@@ -44,12 +40,12 @@ package levels
 			var tile:StaticGameObject;
 			
 			// Line bottom of screen with grass tile 
-			for (var i:int = 0; i != 25; ++i) {
+			for (var w:int = 0; w < viewport.width; w += textures["grass"].width) {
 				tile = StaticGameObject.makeTile(
-					i*32, 
-					miny-32,
+					w, 
+					miny-256,
 					new Image(textures["grass"]));
-				tile.name = "grass"+i;
+				tile.name = "grass" + w;
 				tile.blocking = true;
 				//tile.friction = 5;
 				
@@ -57,13 +53,13 @@ package levels
 				_tiles.push(tile);
 			}
 			
-			// Make line of rock tile
-			for (i = 0; i != 10; ++i) {
+			// Make a line of rock
+			for (w = 0; w <= 10; ++w) {
 				tile = StaticGameObject.makeTile(
-					i*32, 
-					miny-256, 
+					w*textures["rock"].width, 
+					miny-500, 
 					new Image(textures["rock"]));
-				tile.name = "rock"+i;
+				tile.name = "rock"+w;
 				tile.blocking = true;
 				
 				addChild(tile);
@@ -74,7 +70,7 @@ package levels
 			var twidth:int = 3;
 			var theight:int = 5;
 			// For each trunk piece
-			for (i = 0; i != theight; ++i) {
+			for (var i:int = 0; i != theight; ++i) {
 				tile = StaticGameObject.makeTile(
 					(minx-96), 
 					(miny-64)-(i*32), 
@@ -99,19 +95,12 @@ package levels
 				_tiles.push(tile);
 			}
 			
-			// Exit elevator
-			var exitElevator:AnimatedGameObject = AnimatedGameObject.makeElevator(64, miny-384, false);
-			addChild(exitElevator);
-			// Entrance elevator
-			//
-			
 			score = 0;
 		}
 		
 		override public function run():void {
 			
 		}
-		
 		
 		override public function exit():int
 		{
