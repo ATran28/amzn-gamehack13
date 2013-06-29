@@ -242,3 +242,8 @@ package screens
 		}
 	}
 }
+
+
+//updatePlayer
+//   update velocity
+//   update position
