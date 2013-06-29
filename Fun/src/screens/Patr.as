@@ -19,11 +19,12 @@ package screens
 	import starling.events.TouchPhase;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
+	import levels.Level1;
 	
 	public class Patr extends Sprite
 	{
 		public static const GAME_OVER:String = "gameOver";
-		
+		private var level1:Level1;
 		public function Patr()
 		{
 			addEventListener(Event.ADDED_TO_STAGE, initGame);
@@ -35,60 +36,21 @@ package screens
 			dispatchEventWith(GAME_OVER, true, 100);
 		}
 		
-		private var stretchedGround:Image;
-		private var ground:Vector.<StaticGameObject> = new Vector.<StaticGameObject>(); 
 		private function initGame(event:Event):void {
+			
 			var viewport:Rectangle = Fun.viewport;
-			var texture:Texture = ROOT.assets.getTexture("menubg");
-			var background:Image = new Image( texture );
-			background.x = viewport.x;
-			background.y = viewport.y;
-			background.width  = viewport.width;
-			background.height = viewport.height;
-			//background.smoothing = true;
-			addChild(background);
-					
-			var groundAtlas:TextureAtlas = ROOT.assets.getTextureAtlas("FunGameSprites");
-			
-			var tex:Texture = groundAtlas.getTexture("grass32");
-			stretchedGround = new Image(tex);
-			stretchedGround.x = 0;
-			stretchedGround.y = 400;
-			stretchedGround.width = viewport.width;
-			addChild(stretchedGround);
-			stretchedGround.name = "stretchedGround";
-			
-			var groundTile:StaticGameObject;
-			for(var w:Number = 0; w < viewport.width; w += tex.width){
-				groundTile = StaticGameObject.makeTile(w, 800, new Image(tex));
-				groundTile.name = "ground" + w;
-				
-				addChild(groundTile);
-				ground.push(groundTile);
-			}
+			level1 = new Level1();
+			addChild(level1);
 			
 			player = new Player();
-			//var intern1:Image = new Image(internTexture);
 			
 			// set the properties
 			player.x = 0;
 			player.y = 50;
 			player.name = "intern1";
 			player.caffeineLevel = 10;
-			addChild(player);	
+			addChild(player);
 			
-			addChild(ROOT.fire);
-			
-			Starling.juggler.add(ROOT.fire);
-			
-			// change position where particles are emitted
-			ROOT.fire.x = 50;
-			ROOT.fire.y = 50;
-			ROOT.fire.emitterX = 20;
-			ROOT.fire.emitterY = 40;
-			
-			// emit particles for two seconds, then stop
-			ROOT.fire.start(2.0);
 		}
 		
 		private function perFrame(event:Event):void {
@@ -200,8 +162,8 @@ package screens
 				player.y = 0;
 			}
 			
-			for each(var block:StaticGameObject in ground){
-				if(CollisionDetection.detectCollisionRect(player, block)){
+			for each(var block:StaticGameObject in level1.tiles){
+				if(CollisionDetection.detectCollisionRect(player, block) && block.blocking){
 					trace("Ground collision");
 					hasCollided = true;
 					player.updateVelocity(new Vector3D(player.getVelocity().x, 0));
