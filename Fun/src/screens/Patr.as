@@ -10,6 +10,7 @@ package screens
 	import levels.Level;
 	import levels.Level1;
 	import levels.TestLevel;
+	import util.Util;
 	
 	import physics.CollisionDetection;
 	
@@ -142,6 +143,9 @@ package screens
 			for each(var block:StaticGameObject in level1.tiles){
 				if(CollisionDetection.detectCollisionRect(player, block) && block.blocking){
 					trace("Ground collision");	
+					
+					// TODO Play sound when first hit ground
+					ROOT.assets.playSound(Util.getRandomHitGroundSound());
 					response(player, block);	//Updates velocity/forces, then responds
 					
 					return true;
