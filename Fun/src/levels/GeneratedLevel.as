@@ -70,6 +70,9 @@ package levels
 			_exitElevator = parser.elevator;
 			
 			addChild(exitElevator);
+			addChild(displayTimer);
+			refreshTimer();
+			
 //			
 			addCaffieneButton();
 			addBackButton();
