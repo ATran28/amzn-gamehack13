@@ -405,11 +405,11 @@ package levels
 			"X                         X" +
 			"X        B   B            X" +
 			"X        B   B            X" +
-			"XBBBB    B   B            X" +
-			"XEE BBBBBB   BBBBBBBBBBBBBX" +
+			"XBBBBBBBBB   B            X" +
+			"XEE          BBBBBBBBBBBBBX" +
 			"XEE                       X" +
 			"XEE                       X" +
-			"XEE  B   B B B   B   B   BX" +
+			"XEE  B  BB B B   B   B   BX" +
 			"XBBDDBDDDBDDDBDDDBDDDBDDDBX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
