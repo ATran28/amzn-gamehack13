@@ -8,8 +8,8 @@ package levels
 		public function LevelQueue()
 		{
 			levelQueue = new Vector.<String>();
-			levelQueue.push("asciiLevel1");
-			levelQueue.push("asciiLevel2");
+			levelQueue.push(AsciiLevels.asciiLevel1);
+			levelQueue.push(AsciiLevels.asciiLevel2);
 		}
 		
 		public function getNextLevel():Level{

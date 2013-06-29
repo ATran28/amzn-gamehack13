@@ -12,6 +12,7 @@ package screens
 	import levels.Level;
 	import levels.Level1;
 	import levels.Level2;
+	import levels.LevelQueue;
 	import levels.TestLevel;
 	
 	import physics.CollisionDetection;
@@ -28,12 +29,14 @@ package screens
 	{
 		private var GAMEOVER:Boolean = false;
 		public static const GAME_OVER:String = "gameOver";
+		private var levelQueue:LevelQueue;
 		private var level1:Level;
 		public function Patr()
 		{
 			addEventListener(Event.ADDED_TO_STAGE, initGame);
 			addEventListener(Event.ENTER_FRAME, perFrame);
 			addEventListener(TouchEvent.TOUCH, isPressed);
+			levelQueue = new LevelQueue();
 		}
 		
 		public function backToMenu():void {
@@ -41,11 +44,12 @@ package screens
 		}
 		
 		private function initGame(event:Event):void {
+			
 			initState(new GeneratedLevel(AsciiLevels.asciiLevel1));
 		}
 		
 		private function initState(level:Level):void {
-			level1 = level;
+			level1 = levelQueue.getNextLevel();
 			addChild(level1);
 			
 			player = new Player();
