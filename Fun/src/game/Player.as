@@ -37,31 +37,43 @@ package game
 		private function initPlayerMovies():void {
 			// Add movie	
 			var atlas:TextureAtlas = ROOT.atlas;
-			var kickLeftMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_"), 10);
 			
-			// TODO unify scale
+			// Add Kick Left
+			var kickLeftMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_cape_"), 10);
 			kickLeftMovie.scaleX = 0.5;
 			kickLeftMovie.scaleY = 0.5;
 			kickLeftMovie.loop = true;
-			
 			this.addMovie("kick_left", kickLeftMovie);
 			
-			// Add another movie
-			var kickRightMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_"), 10);
+			// Add Kick Right movie
+			var kickRightMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_cape"), 10);
 			kickRightMovie.scaleX = -0.5;
 			kickRightMovie.scaleY = 0.5;
 			kickRightMovie.loop = true;
-			
 			this.addMovie("kick_right", kickRightMovie);
 			
-			// Add another movie
-			var standing:MovieClip = new MovieClip(atlas.getTextures("standing"), 10);
+			// Add standing movie
+			var standing:MovieClip = new MovieClip(atlas.getTextures("standing_"), 10);
 			standing.scaleX = 0.5;
 			standing.scaleY = 0.5;
 			standing.loop = false;
-
 			this.addMovie("standing", standing);
 
+			// Add crouch movie
+			var crouch:MovieClip = new MovieClip(atlas.getTextures("crouch_"), 10);
+			crouch.scaleX = 0.5;
+			crouch.scaleY = 0.5;
+			crouch.loop = false;
+			this.addMovie("crouch", crouch);
+
+			// Add up_cape movie
+			var up:MovieClip = new MovieClip(atlas.getTextures("up_cape_"), 10);
+			up.scaleX = 0.5;
+			up.scaleY = 0.5;
+			up.loop = false;
+			this.addMovie("up", up);
+			
+			
 			// Set one movie as active
 			this.setActiveMovie("standing");	
 		}
