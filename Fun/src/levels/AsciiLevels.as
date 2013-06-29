@@ -45,7 +45,7 @@ package levels
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 		
 		public static const asciiLevel1:String = 
-			"bg1-2%10%XXXXXXXXXXXXXXXXXX" + 
+			"bg1-2%0%XXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
 			"X                         X" +
 			"X         EE              X" +
@@ -74,7 +74,7 @@ package levels
 			"X                         X" +
 			"X     RRRRR               X" +
 			"X                  P      X" +
-			"X                         X" +
+			"XDDDDDDDDDDDDDD           X" +
 			"XGGGGGGGGGGGGGGGGGGGGGGGGGX" +
 			"X                         X" +
 			"X                         X" +

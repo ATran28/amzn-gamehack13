@@ -64,6 +64,7 @@ package screens
 			player.name = "intern1";
 			frameCount = 0;
 			player.caffeineLevel = 0;
+			totalDegreesRotated = 0;
 			addChild(player);
 			touchEnabled = true;
 			touchDown = false;
@@ -119,13 +120,17 @@ package screens
 			} else {
 				player.setPivot();
 				player.rotation += deg2rad(3);
+				totalDegreesRotated += 3;
+				if(totalDegreesRotated > 540){
+						
+				}
 			}
 			
 			// Detect collisions must come after player update since overrides any
 			// animation changes made in there.
 			detectCollsions2(player);	
 		}
-
+		private var totalDegreesRotated:Number;
 		private var touchDown:Boolean;
 		private var touchStart:Point;
 		private var touchEnd:Point;
@@ -186,6 +191,7 @@ package screens
 					if(block.name.indexOf("lava") == 0 || block.name.indexOf("water") == 0){	//Danger blocks
 						dangerFlag = true;
 						player.updateVelocity(new Vector3D());
+						player.y = block.y + player.width/2 - 25;
 						
 					} else {	//Collision blocks
 						if(player.y < block.y + 30 && player.y > block.y)
