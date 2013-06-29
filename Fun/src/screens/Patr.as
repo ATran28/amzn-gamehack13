@@ -40,22 +40,26 @@ package screens
 		}
 		
 		private function initGame(event:Event):void {
-			
-			var viewport:Rectangle = Fun.viewport;
-			level1 = new TestLevel();
+			initState(new Level1());
+		}
+		
+		private function initState(level:Level):void {
+			level1 = level;
 			addChild(level1);
 			
 			player = new Player();
 			
 			// set the properties
-			player.x = 0;
-			player.y = 50;
+			player.x = level1.startPosition.x;
+			player.y = level1.startPosition.y;
+			
 			player.name = "intern1";
 			player.caffeineLevel = 10;
 			addChild(player);
-			
+			touchEnabled = true;
 		}
 		
+		private var flag:Boolean = false;
 		private function perFrame(event:Event):void {
 //			var intern:DisplayObject = this.getChildByName("intern1");
 //			if (intern.x + intern.width <= stage.stageWidth ) {
@@ -63,6 +67,23 @@ package screens
 //			} else {
 //				dispatchEventWith(GAME_OVER, true, 100);
 //			}
+			
+			if (level1.isFinished() && CollisionDetection.detectCollisionRect(player, level1.exitElevator) 
+					&& flag == false) {
+				player.x = level1.exitElevator.x + level1.exitElevator.width/4;
+				player.y = level1.exitElevator.y + (level1.exitElevator.height - player.height);
+				player.updateVelocity(new Vector3D());
+				level1.exitElevator.setActiveMovie("open");
+				level1.exitElevator.animate();
+				touchEnabled = false;
+				flag = true;				
+			} else if (level1.isFinished() && flag == true) {
+				if (level1.exitElevator.getActiveMovie().isComplete) {
+					flag = false;
+					removeChild(level1);
+					initState(new Level1());
+				}
+			}
 			
 			player.updatePosition();
 			detectCollsions2(player);
@@ -74,10 +95,11 @@ package screens
 //		private var intern1:Player
 //		private var intern1:Image;
 //		private var velocity:Vector3D;
+		private var touchEnabled:Boolean = true;
 		private function isPressed(event:TouchEvent):void {
 			var touch:Touch = event.getTouch(this);
 			
-			if(touch){
+			if(touch && touchEnabled){
 				if (touch.phase == TouchPhase.BEGAN)
 				{
 					trace("began");			
