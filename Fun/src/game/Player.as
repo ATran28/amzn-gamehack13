@@ -107,16 +107,17 @@ package game
 		
 			trace("caffeineLevel: " + caffeineLevel);
 			
-			if(velocity.x != 0 || velocity.y != 0){
-				if(velocity.y > 0){	//Down
-					if(velocity.x > 0){	//Right
-						kickRight();
-					} else{	//Left
-						kickLeft();
-					}
-				} else{	//Up
-					jumpUp();
+			if(velocity.y > 0){	//Down
+				if(velocity.x > 0){	//Right
+					trace("right");
+					kickRight();
+				} else{	//Left
+					trace("left");
+					kickLeft();
 				}
+			} else{	//Up
+				trace("jump up");
+				jumpUp();
 			}
 		}
 			//			detectCollsions(intern1);

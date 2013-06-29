@@ -60,7 +60,7 @@ package physics
 			var r2:Number = obj2.width / 2;
 			
 			if(dist < r1 + r2) {
-				trace("Sphere Collision detected between: " + obj1.name + ", " + obj2.name);
+				//trace("Sphere Collision detected between: " + obj1.name + ", " + obj2.name);
 				return true;
 			}
 			
@@ -87,7 +87,7 @@ package physics
 			}
 			
 			if(rect1.intersects(rect2)) {
-				trace("Rectangular Collsion detected between: " + obj1.name + ", " + obj2.name);
+				//trace("Rectangular Collsion detected between: " + obj1.name + ", " + obj2.name);
 				return true;
 			}
 			

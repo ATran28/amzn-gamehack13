@@ -61,6 +61,7 @@ package screens
 			detectCollsions2(player);
 		}
 
+		private var touchDown:Boolean = false;
 		private var touchStart:Point;
 		private var touchEnd:Point;
 		private var player:Player;
@@ -70,9 +71,11 @@ package screens
 			if(touch){
 				if (touch.phase == TouchPhase.BEGAN)
 				{		
+					touchDown = true;
 					touchStart = event.getTouch(this).getLocation(this);
 					player.crouch();
 				} else if (touch.phase == TouchPhase.ENDED) {
+					touchDown = false;
 					touchEnd = event.getTouch(this).getLocation(this);
 					player.stand();
 					var newVelocity:Vector3D = new Vector3D(touchEnd.x - touchStart.x, touchEnd.y - touchStart.y);
@@ -112,7 +115,13 @@ package screens
 					
 					
 					player.y = block.y - player.height - player.caffeineLevel;
-					player.stand();
+					
+					if(touchDown){
+						player.crouch();
+					} else {
+						player.stand();	
+					}
+					
 					return true;
 				}	
 			}
