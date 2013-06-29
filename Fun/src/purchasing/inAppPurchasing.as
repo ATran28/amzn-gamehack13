@@ -9,7 +9,7 @@ package purchasing {
 	public class inAppPurchasing {
 
 		private static const CAFFEINE:String = "AGIHIAPC01";
-		private static const CAFFEINE_LEVEL:Number = 10.0;
+		private static const CAFFEINE_LEVEL:Number = 5.0;
 		
 		private static var curPlayer:Player;
 		

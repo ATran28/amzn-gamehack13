@@ -70,8 +70,8 @@ package levels
 		public function addCaffieneButton():void {
 			caffieneTexture:Texture;
 			var caffieneButton:Button = new Button(ROOT.assets.getTexture("caffeine"), "", ROOT.assets.getTexture("caffeine_down"));
-			caffieneButton.x = Fun.viewport.width - 100;
-			caffieneButton.y = 25;
+			caffieneButton.x = Fun.viewport.width - 75 - 10;
+			caffieneButton.y = 10;
 			caffieneButton.addEventListener(Event.TRIGGERED, buyCaffiene);
 			addChild(caffieneButton);
 		}
