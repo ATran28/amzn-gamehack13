@@ -20,7 +20,7 @@ package game
 			movieMap = new Dictionary();
 			pivotX = Math.ceil(width/2);
 			pivotY = Math.ceil(height/2);
-			
+			pivotSet = false;
 			visible = true;
 		}
 
@@ -100,6 +100,14 @@ package game
 			movieMap[name] = null;
 		}
 		
+		private var pivotSet:Boolean;
+		public function setPivot():void{
+			if(!pivotSet){
+				pivotX = Math.ceil(width/2);
+				pivotY = Math.ceil(height/2);
+				pivotSet = true;
+			}
+		}
 		
 		
 	}

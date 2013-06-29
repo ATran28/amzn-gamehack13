@@ -20,6 +20,8 @@ package screens
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import starling.utils.deg2rad;
+	import starling.utils.rad2deg;
 	
 	import util.Util;
 	
@@ -34,6 +36,7 @@ package screens
 		
 		public function Patr()
 		{
+			frameCount = 0;
 			addEventListener(Event.ADDED_TO_STAGE, initGame);
 			addEventListener(Event.ENTER_FRAME, perFrame);
 			addEventListener(TouchEvent.TOUCH, isPressed);
@@ -46,12 +49,12 @@ package screens
 		
 		private function initGame(event:Event):void {
 			
-			initState();
+			initState(levelQueue.getNextLevel(player));
 		}
 		
-		private function initState():void {
+		private function initState(level:Level):void {
 			player = new Player();
-			currentLevel = levelQueue.getNextLevel(player);
+			currentLevel = level;
 			addChild(currentLevel);
 			
 			// set the properties
@@ -59,12 +62,14 @@ package screens
 			player.y = currentLevel.startPosition.y;
 			
 			player.name = "intern1";
+			frameCount = 0;
 			player.caffeineLevel = 0;
 			addChild(player);
 			touchEnabled = true;
+			touchDown = false;
 		}
-		
-		private var flag:Boolean = false;
+		private var frameCount:int;
+		private var elevatorTouched:Boolean = false;
 		private function perFrame(event:Event):void {
 			if(GAMEOVER){
 				dispatchEventWith(GAME_OVER, true, 100);
@@ -79,37 +84,49 @@ package screens
 					currentLevel.levelStatus["tilesToFind"] -= 1;
 				}
 			}
-			
+			frameCount++;
+			if (frameCount % 60 == 0) {
+				if (currentLevel.hasTimedOut() && !elevatorTouched) {
+					initState(levelQueue.renewCurrentLevel(player));
+				}
+				frameCount = 0;
+			}
 			if (currentLevel.isFinished() && CollisionDetection.detectCollisionRect(player, currentLevel.exitElevator) 
-					&& flag == false) {
+					&& elevatorTouched == false) {
 				player.x = currentLevel.exitElevator.x + currentLevel.exitElevator.width/4;
 				player.y = currentLevel.exitElevator.y + (currentLevel.exitElevator.height - player.height);
 				player.updateVelocity(new Vector3D());
 				currentLevel.exitElevator.setActiveMovie("open");
 				currentLevel.exitElevator.animate();
 				touchEnabled = false;
-				flag = true;				
-			} else if (currentLevel.isFinished() && flag == true) {
+				elevatorTouched = true;				
+			} else if (currentLevel.isFinished() && elevatorTouched == true) {
 				if (currentLevel.exitElevator.getActiveMovie().isComplete) {
-					flag = false;
+					elevatorTouched = false;
 					removeChild(currentLevel);
 					removeChild(player);
+					
 					levelsCompleted = levelsCompleted + 1;
 					trace(levelsCompleted + " levels compeleted!");
 					Leaderboards.submitScore(Leaderboards.BOARD_01, levelsCompleted);
 					Achievements.checkForAchievements(levelsCompleted);
-					initState();
+					initState(levelQueue.getNextLevel(player));
 				}
 			}
 			
-			player.updatePosition();
+			if(!dangerFlag){
+				player.updatePosition();
+			} else {
+				player.setPivot();
+				player.rotation += deg2rad(3);
+			}
 			
 			// Detect collisions must come after player update since overrides any
 			// animation changes made in there.
 			detectCollsions2(player);	
 		}
 
-		private var touchDown:Boolean = false;
+		private var touchDown:Boolean;
 		private var touchStart:Point;
 		private var touchEnd:Point;
 		private var player:Player;
@@ -139,6 +156,7 @@ package screens
 		}		
 		
 				
+		private var dangerFlag:Boolean = false;
 		private static const bounceFactor:Number = 0.1;
 		private function detectCollsions2(player:Player):Boolean {
 
@@ -165,24 +183,30 @@ package screens
 			//Check tile collisions
 			for each(var block:StaticGameObject in currentLevel.tiles){
 				if(CollisionDetection.detectCollisionRect(player, block) && block.blocking){
-					if(player.y < block.y + 30 && player.y > block.y)
-					{
-						if(block.x - player.x > 0 && player.getVelocity().x > 0)
+					if(block.name.indexOf("lava") == 0 || block.name.indexOf("water") == 0){	//Danger blocks
+						dangerFlag = true;
+						player.updateVelocity(new Vector3D());
+						
+					} else {	//Collision blocks
+						if(player.y < block.y + 30 && player.y > block.y)
 						{
-							player.updateVelocity(new Vector3D(player.getVelocity().x * -1 * bounceFactor, player.getVelocity().y));
-							player.x = block.x - block.width/2 - player.width/2;
+							if(block.x - player.x > 0 && player.getVelocity().x > 0)
+							{
+								player.updateVelocity(new Vector3D(player.getVelocity().x * -1 * bounceFactor, player.getVelocity().y));
+								player.x = block.x - block.width/2 - player.width/2;
+							}
+							if(block.x - player.x < 0 && player.getVelocity().x < 0)
+							{
+								player.updateVelocity(new Vector3D(player.getVelocity().x * -1 * bounceFactor, player.getVelocity().y));
+								player.x = block.x + block.width/2 + player.width/2;
+							}
 						}
-						if(block.x - player.x < 0 && player.getVelocity().x < 0)
-						{
-							player.updateVelocity(new Vector3D(player.getVelocity().x * -1 * bounceFactor, player.getVelocity().y));
-							player.x = block.x + block.width/2 + player.width/2;
+						if (player.inTheAir) {
+							player.inTheAir = false;
+							ROOT.assets.playSound(Util.getRandomHitGroundSound());
 						}
+						response(player, block);	//Updates velocity/forces, then responds
 					}
-					if (player.inTheAir) {
-						player.inTheAir = false;
-						ROOT.assets.playSound(Util.getRandomHitGroundSound());
-					}
-					response(player, block);	//Updates velocity/forces, then responds
 					
 					return true;
 				}	
