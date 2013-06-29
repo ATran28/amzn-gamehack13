@@ -110,8 +110,6 @@ package game
 			
 			caffeineLevel = Math.max(0.0, caffeineLevel + caffeineDecay);
 		
-			trace("caffeineLevel: " + caffeineLevel);
-			
 			if(velocity.y > 0){	//Down
 				if(velocity.x > 0){	//Right
 					kickRight();
