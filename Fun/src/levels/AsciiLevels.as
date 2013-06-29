@@ -99,7 +99,7 @@ package levels
 			"X                         X" +
 			"X            BBBBBB       X" +
 			"X                         X" +
-			"X                         X" +
+			"X                     S   X" +
 			"X                         X" +
 			"X                         X" +
 			"X                         X" +
@@ -194,8 +194,8 @@ package levels
 			"X                         X" +
 			"X                         X" +
 			"X                         X" +
-			"X                         X" +
-			"X                         X" +
+			"X                   K     X" +
+			"X                  BBB    X" +
 			"X                         X" +
 			"X                         X" +
 			"XRR     RRR    RR   R   RRX" +
@@ -216,7 +216,7 @@ package levels
 			"X                         X" +
 			"X  GGGGGGGGGGGGGDDDDD     X" +
 			"X         DD              X" +
-			"X         DD              X" +
+			"X         DD   O          X" +
 			"X         DD              X" +
 			"XGGGG     GGGGGGGGGGGGGGGGX" +
 			"X         DD              X" +
@@ -239,7 +239,7 @@ package levels
 			"X   G     G         G     X" +
 			"XGGG      G         G     X" +
 			"X         G         G     X" +
-			"X         G         G     X" +
+			"X         G    K    G     X" +
 			"X         GGGGGGGGGGG     X" +
 			"X                         X" +
 			"XEE                       X" +
@@ -276,7 +276,7 @@ package levels
 			"X      D                  X" +
 			"X      D                  X" +
 			"X     G   GGGGGGGGGGGGGGGGX" +
-			"X    G    G         G     X" +
+			"X    G    G         G  S  X" +
 			"X   G     G         G     X" +
 			"XGGG      G         G     X" +
 			"X         G         G     X" +
@@ -308,10 +308,10 @@ package levels
 			"X            D     D      X" +
 			"X            D     D      X" +
 			"X            D     D      X" +
+			"X S          D     D      X" +
 			"X            D     D      X" +
 			"X            D     D      X" +
-			"X            D     D      X" +
-			"X            D     D      X" +
+			"X         S  D     D      X" +
 			"X            D     D      X" +
 			"X            D     D      X" +
 			"X            D     D      X" +
@@ -326,9 +326,9 @@ package levels
 			"X            D     D      X" +
 			"XEE          D     D      X" +
 			"XEE          D     D      X" +
+			"XEE     O                 X" +
 			"XEE                       X" +
-			"XEE                       X" +
-			"XBBBBBBBBBBBBBBBBBBBBBBBBBX" +                        
+			"XBBBBBBDDDBBBBBBBBBBBBBBBBX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 		public static const asciiLevel41:String = 
@@ -410,7 +410,7 @@ package levels
 			"XEE                       X" +
 			"XEE                       X" +
 			"XEE  B  BB B B   B   B   BX" +
-			"XBBDDBDDDBDDDBDDDBDDDBDDDBX" +                        
+			"XBBWWBWWWBWWWBWWWBWWWBWWWBX" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 public static const asciiDeathPit:String = 
@@ -448,7 +448,7 @@ public static const asciiDeathPit:String =
       "XBBBBB               EEBBBX" +
       "XBBBBB               EEBBBX" +
       "XBBBBB               EEBBBX" +
-      "XBBBBBDDDBBBBBBBBBBBBBBBBBX" +
+      "XBBBBBDDDDBBBBBBBBBBBBBBBBX" +
       "XBBBBBBBBBBBBBBBBBBBBBBBBBX" +
       "XBBBBBBBBBBBBBBBBBBBBBBBBBX" +
       "XBBBBBBBBBBBBBBBBBBBBBBBBBX" +                        
@@ -457,7 +457,7 @@ public static const asciiDeathPit:String =
       public static const upUpUp:String = 
       "bg3%0%XXXXXXXXXXXXXXXXXXXXX" + 
       "XBBBBB   BBBBBBBBBBBBBBBBBX" +
-      "XBBBBB          BBBBBBBBBBX" +
+      "XBBBBB  S       BBBBBBBBBBX" +
       "XBBBB            BBBBBBBBBX" +
       "XBBBBB   BBBB    BBBBBBBBBX" +
       "XBBBB    BBBB    BBBBBBBBBX" +
@@ -535,7 +535,48 @@ public static const asciiDeathPit:String =
       "X         MMM             X" +
       "XDDDDDDDDDDDDDDDDDDDDDDDDDX" +                        
       "XXXXXXXXXXXXXXXXXXXXXXXXXXX";
-		
+
+	  public static const crazy:String = 
+		  "XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+		  "X                         X" +
+		  "X                         X" +
+		  "X  P                      X" +
+		  "X                         X" +
+		  "XBBBBB                    X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X    S                    X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                    S    X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X         S               X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X                         X" +
+		  "X     DDD        DDD      X" +
+		  "X      DD    O   DD       X" +
+		  "X       DDD    DDD        X" +
+		  "X        DDD  DDD EE      X" +
+		  "X          DDDD   EE      X" +
+		  "X          DDDD   EE      X" +
+		  "X      K   DDDD   EE      X" +
+		  "X      BBB DDDD   BBBB    X" +
+		  "XWWWWWWWWWWDDDDWWWWWWWWWWWX" +                        
+		  "XXXXXXXXXXXXXXXXXXXXXXXXXXX";
+	  
 		public static const GameWin:String = 
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
 			"X                         X" +
