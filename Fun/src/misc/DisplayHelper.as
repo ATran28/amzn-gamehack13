@@ -43,12 +43,19 @@ package misc
 			result.y = (viewport.height - vertOffset) - ((y+1) * 32);
 			result.name = type + "." + x + "." + y;
 			result.setActiveImage(new Image(textures[type]));
-			
-			if (type == "trunk") {
+			result.type = type;
+			if (type == "trunk" || type == "star" || type == "book" || type == "keypad") {
+				if (type == "star" || type == "book" || type == "keypad") {
+					result.removable = true;
+				} else {
+					result.removable = false;
+				}
 				result.blocking = false;
+				
 			}
 			else {
 				result.blocking = true;
+				result.removable = false;
 			}
 			
 			return result;

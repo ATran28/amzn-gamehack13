@@ -3,6 +3,7 @@ package screens
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.geom.Vector3D;
+	import flash.utils.Dictionary;
 	
 	import game.Player;
 	import game.StaticGameObject;
@@ -31,6 +32,8 @@ package screens
 		public static const GAME_OVER:String = "gameOver";
 		private var levelQueue:LevelQueue;
 		private var level1:Level;
+		private var levelStatus:Dictionary;
+		
 		public function Patr()
 		{
 			addEventListener(Event.ADDED_TO_STAGE, initGame);
@@ -68,6 +71,16 @@ package screens
 		private function perFrame(event:Event):void {
 			if(GAMEOVER){
 				dispatchEventWith(GAME_OVER, true, 100);
+			}
+			
+			// Check for 'notable' tiles
+			for (var tile:StaticGameObject in level1.notableTiles) {
+				if (CollisionDetection.detectCollisionRect(player, tile)) {
+					if (tile.removable) {
+						 tile.visible = false;
+					}
+					level1.levelStatus["tilesToFind"] -= 1;
+				}
 			}
 			
 			if (level1.isFinished() && CollisionDetection.detectCollisionRect(player, level1.exitElevator) 
