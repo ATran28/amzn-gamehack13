@@ -1,6 +1,6 @@
 package game
 {
-	public class EnvironmentBlock extends GameObject
+	public class EnvironmentBlock extends StaticGameObject
 	{
 		public function EnvironmentBlock(x:int, y:int, w:int, h:int)
 		{

@@ -3,7 +3,7 @@ package game
 	import starling.events.Event;
 	import starling.textures.Texture;
 
-	public class Collectible extends GameObject
+	public class Collectible extends StaticGameObject
 	{
 		private var texture:Texture;
 		public function Collectible(x:int, y:int, w:int, h:int)

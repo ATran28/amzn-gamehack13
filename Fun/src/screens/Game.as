@@ -8,7 +8,7 @@ package screens
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.textures.Texture;
-	import game.GameObject;
+	import game.StaticGameObject;
 
 
 	public class Game extends Sprite
