@@ -18,6 +18,7 @@ package screens
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import levels.Level2;
 	
 	public class Patr extends Sprite
 	{
@@ -74,7 +75,7 @@ package screens
 				if (level1.exitElevator.getActiveMovie().isComplete) {
 					flag = false;
 					removeChild(level1);
-					initState(new Level1());
+					initState(new Level2());
 				}
 			}
 			
