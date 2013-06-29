@@ -51,7 +51,7 @@ package screens
 			player.x = 0;
 			player.y = 50;
 			player.name = "intern1";
-			player.caffeineLevel = 10;
+			player.caffeineLevel = 0;
 			addChild(player);
 			
 		}
@@ -79,13 +79,13 @@ package screens
 			
 			if(touch){
 				if (touch.phase == TouchPhase.BEGAN)
-				{
-					trace("began");			
+				{		
 					touchStart = event.getTouch(this).getLocation(this);
+					player.crouch();
 //					addEventListener(Event.ENTER_FRAME, updatePosition);
 				} else if (touch.phase == TouchPhase.ENDED) {
-					trace("ended");
 					touchEnd = event.getTouch(this).getLocation(this);
+					player.stand();
 					var newVelocity:Vector3D = new Vector3D(touchEnd.x - touchStart.x, touchEnd.y - touchStart.y);
 					player.updateVelocity(newVelocity);
 					//updatePosition(event);
@@ -178,6 +178,7 @@ package screens
 					
 					
 					player.y = block.y - player.height - player.caffeineLevel;
+					player.stand();
 					return true;
 				}	
 			}

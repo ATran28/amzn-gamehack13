@@ -17,8 +17,11 @@ package game
 		private static var life:int;
 		private static var velocity:Vector3D;
 		private const gravity:Number = 9.8;
+		private const speedScale:Number = 30;
+		
 		private var _caffeineLevel:Number = 0.0;
-		private var _caffeineDecay:Number = -0.01;
+		private var _caffeineDecay:Number = -0.0001;
+		
 		
 		public function Player()
 		{
@@ -92,7 +95,7 @@ package game
 			var playerPosition:Point = new Point(x, y);
 			
 			var v:Vector3D = new Vector3D(velocity.x, velocity.y);
-			var speed:Number = velocity.length/10;
+			var speed:Number = velocity.length/speedScale;
 			v.normalize();
 			v.scaleBy(speed);
 			
@@ -103,6 +106,18 @@ package game
 			caffeineLevel = Math.max(0.0, caffeineLevel + caffeineDecay);
 		
 			trace("caffeineLevel: " + caffeineLevel);
+			
+			if(velocity.x != 0 || velocity.y != 0){
+				if(velocity.y > 0){	//Down
+					if(velocity.x > 0){	//Right
+						kickRight();
+					} else{	//Left
+						kickLeft();
+					}
+				} else{	//Up
+					jumpUp();
+				}
+			}
 		}
 			//			detectCollsions(intern1);
 		public function kickLeft():void {
