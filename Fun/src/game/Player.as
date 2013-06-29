@@ -1,12 +1,14 @@
 package game
 {
 	import screens.ROOT;
-	public class Player extends GameObject
+	import starling.display.Image;
+
+	public class Player extends StaticGameObject
 	{
 		
 		public function Player()
 		{
-			super(ROOT.assets.getTexture("intern"));
+			super(new Image(ROOT.assets.getTexture("intern")));
 			life = 100;
 		}
 		
