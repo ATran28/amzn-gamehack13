@@ -3,6 +3,7 @@ package screens
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.geom.Vector3D;
+	import flash.utils.Dictionary;
 	
 	import game.Player;
 	import game.StaticGameObject;
@@ -12,6 +13,7 @@ package screens
 	import levels.Level;
 	import levels.Level1;
 	import levels.Level2;
+	import levels.LevelQueue;
 	import levels.TestLevel;
 	
 	import physics.CollisionDetection;
@@ -28,12 +30,16 @@ package screens
 	{
 		private var GAMEOVER:Boolean = false;
 		public static const GAME_OVER:String = "gameOver";
+		private var levelQueue:LevelQueue;
 		private var level1:Level;
+		private var levelStatus:Dictionary;
+		
 		public function Patr()
 		{
 			addEventListener(Event.ADDED_TO_STAGE, initGame);
 			addEventListener(Event.ENTER_FRAME, perFrame);
 			addEventListener(TouchEvent.TOUCH, isPressed);
+			levelQueue = new LevelQueue();
 		}
 		
 		public function backToMenu():void {
@@ -41,11 +47,12 @@ package screens
 		}
 		
 		private function initGame(event:Event):void {
+			
 			initState(new GeneratedLevel(AsciiLevels.asciiLevel1));
 		}
 		
 		private function initState(level:Level):void {
-			level1 = level;
+			level1 = levelQueue.getNextLevel();
 			addChild(level1);
 			
 			player = new Player();
@@ -64,6 +71,16 @@ package screens
 		private function perFrame(event:Event):void {
 			if(GAMEOVER){
 				dispatchEventWith(GAME_OVER, true, 100);
+			}
+			
+			// Check for 'notable' tiles
+			for (var tile:StaticGameObject in level1.notableTiles) {
+				if (CollisionDetection.detectCollisionRect(player, tile)) {
+					if (tile.removable) {
+						 tile.visible = false;
+					}
+					level1.levelStatus["tilesToFind"] -= 1;
+				}
 			}
 			
 			if (level1.isFinished() && CollisionDetection.detectCollisionRect(player, level1.exitElevator) 

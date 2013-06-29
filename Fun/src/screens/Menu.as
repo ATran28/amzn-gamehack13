@@ -45,7 +45,7 @@ package screens
 			inAppPurchasing.init();
 
 			var viewport:Rectangle = Fun.viewport;
-			var texture:Texture = ROOT.assets.getTexture("Menu");
+			var texture:Texture = ROOT.assets.getTexture("menubg");
 			var background:Image = new Image( texture );
 			background.x = viewport.x;
 			background.y = viewport.y;

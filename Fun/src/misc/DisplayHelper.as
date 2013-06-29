@@ -26,13 +26,15 @@ package misc
 		public static function init():void {
 			viewport = Fun.viewport;
 			textures = new Dictionary();
-			textures["grass"] = ROOT.assets.getTexture("grass32");
-			textures["rock"] = ROOT.assets.getTexture("rock32");
-			textures["trunk"] = ROOT.assets.getTexture("trunk32");
-			textures["leaves"] = ROOT.assets.getTexture("leaves32");
-			textures["metal1"] = ROOT.assets.getTexture("metal1-32");
-			textures["metal2"] = ROOT.assets.getTexture("metal2-32");
-			
+			textures["grass"] = ROOT.atlas.getTexture("grass32");
+			textures["rock"] = ROOT.atlas.getTexture("rock32");
+			textures["trunk"] = ROOT.atlas.getTexture("trunk32");
+			textures["leaves"] = ROOT.atlas.getTexture("leaves32");
+			textures["metal1"] = ROOT.atlas.getTexture("metal1-32");
+			textures["metal2"] = ROOT.atlas.getTexture("metal2-32");
+			textures["keypad"] = ROOT.atlas.getTexture("keypad32");
+			textures["star"] = ROOT.atlas.getTexture("shittyStar");
+			textures["book"] = ROOT.atlas.getTexture("Book");
 		}
 		
 		public static function makeStaticBlock(x:int, y:int, type:String):StaticGameObject {
@@ -41,12 +43,19 @@ package misc
 			result.y = (viewport.height - vertOffset) - ((y+1) * 32);
 			result.name = type + "." + x + "." + y;
 			result.setActiveImage(new Image(textures[type]));
-			
-			if (type == "trunk") {
+			result.type = type;
+			if (type == "trunk" || type == "star" || type == "book" || type == "keypad") {
+				if (type == "star" || type == "book" || type == "keypad") {
+					result.removable = true;
+				} else {
+					result.removable = false;
+				}
 				result.blocking = false;
+				
 			}
 			else {
 				result.blocking = true;
+				result.removable = false;
 			}
 			
 			return result;

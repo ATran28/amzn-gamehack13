@@ -2,6 +2,7 @@ package levels
 {
 	import flash.geom.Point;
 	import flash.media.Sound;
+	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
 	
 	import game.AnimatedGameObject;
@@ -19,16 +20,19 @@ package levels
 	public class Level extends Sprite
 	{
 		public static const GAME_OVER:String = "gameOver";
-
+		protected var _levelStatus:Dictionary;
 		protected var _tiles:Vector.<StaticGameObject>;
+		protected var _notableTiles:Vector.<StaticGameObject>;
 		protected var _exitElevator:AnimatedGameObject;
 		protected var _startingPosition:Point;
 		protected var _startTime:int;
 		protected var _score:int;
 		public function get tiles():Vector.<StaticGameObject> { return _tiles; }
+		public function get notableTiles():Vector.<StaticGameObject> { return _notableTiles; }
 		public function get exitElevator():AnimatedGameObject { return _exitElevator; }
 		public function get startPosition():Point { return _startingPosition; }
 		public function get score():int { return _score; }
+		public function get levelStatus():Dictionary { return _levelStatus; }
 		
 		// background music 
 		public var music:Sound;
@@ -37,6 +41,7 @@ package levels
 		{
 			_startTime = getTimer();
 			_score = 0;
+			_levelStatus = new Dictionary();
 
 			
 //			var musicOn:Image = new Image(ROOT.assets.getTexture("turn_on"));
@@ -65,6 +70,7 @@ package levels
 			backButton.y = 60; 
 			backButton.addEventListener(Event.TRIGGERED, backToMenu);
 			addChild(backButton);  
+			
 		}
 		
 		// back button to menu handler
