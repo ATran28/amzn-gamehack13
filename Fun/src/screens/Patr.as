@@ -10,6 +10,7 @@ package screens
 	import levels.Level;
 	import levels.Level1;
 	import levels.TestLevel;
+	import util.Util;
 	
 	import physics.CollisionDetection;
 	
@@ -37,7 +38,7 @@ package screens
 		}
 		
 		private function initGame(event:Event):void {
-			initState(new Level1());
+			initState(new TestLevel());
 		}
 		
 		private function initState(level:Level):void {
@@ -143,7 +144,10 @@ package screens
 			for each(var block:StaticGameObject in level1.tiles){
 				if(CollisionDetection.detectCollisionRect(player, block) && block.blocking){
 					trace("Ground collision");	
-					response(player, block);
+					
+					// TODO Play sound when first hit ground
+					ROOT.assets.playSound(Util.getRandomHitGroundSound());
+					response(player, block);	//Updates velocity/forces, then responds
 					
 					return true;
 				}	
@@ -168,6 +172,8 @@ package screens
 				} else {
 					player.stand();	
 				}
+			} else {
+				player.updateVelocity(new Vector3D(player.getVelocity().x, -player.getVelocity().y));
 			}
 		}
 	}

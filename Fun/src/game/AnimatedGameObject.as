@@ -1,5 +1,6 @@
 package game
 {
+	import flash.media.Sound;
 	import flash.utils.Dictionary;
 	
 	import screens.ROOT;
@@ -24,6 +25,9 @@ package game
 		}
 
 		public function setActiveMovieNow(name:String):void {
+			if (activeMovie.name == name) {
+				return;
+			}
 			if (activeMovie != null) {
 				// remove the old active from juggler
 				Starling.juggler.remove(activeMovie);
@@ -35,12 +39,17 @@ package game
 			}
 			// set the handle
 			activeMovie = movieMap[name]; 
+			activeMovie.name = name; 
 
 			// add to juggler NOW!
 			Starling.juggler.add(activeMovie);
 			
 			// start 
 			addChild(activeMovie);
+			var sound:Sound = ROOT.assets.getSound(name);
+			if (sound != null) {
+				sound.play();
+			}
 		}
 
 		public function setActiveMovie(name:String):void {

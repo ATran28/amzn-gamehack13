@@ -1,5 +1,6 @@
 package levels
 {
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	
@@ -17,6 +18,9 @@ package levels
 		
 		public function TestLevel()
 		{
+			super();
+			_startingPosition = new Point(0, 50);
+			
 			var viewport:Rectangle = Fun.viewport;
 			var miny:int = viewport.height - 113;
 			var minx:int = viewport.width;
@@ -28,6 +32,7 @@ package levels
 			background.width  = viewport.width;
 			background.height = viewport.height;
 			addChild(background);
+			
 			
 			// Load textures used for this level
 			textures = new Dictionary();
