@@ -7,6 +7,12 @@ package gameCircle {
 	
 		// Constants
 	    public static const ACHIEVEMENT_00:String = "AGIHAID00";
+		public static const ACHIEVEMENT_01:String = "AGIHAID01";
+		public static const ACHIEVEMENT_02:String = "AGIHAID02";
+		public static const ACHIEVEMENT_03:String = "AGIHAID03";
+		public static const ACHIEVEMENT_04:String = "AGIHAID04";
+		public static const ACHIEVEMENT_05:String = "AGIHAID05";
+		public static const ACHIEVEMENT_06:String = "AGIHAID06";
 		  
 		public static const BOTTOM_CENTER:String = GameCirclePopupLocation.BOTTOM_CENTER;
 		public static const BOTTOM_LEFT:String = GameCirclePopupLocation.BOTTOM_LEFT;
@@ -51,5 +57,29 @@ package gameCircle {
 		{ 
 			trace("GameCircle - Achievements - achievement reset failed:"+e.errorMessage); 
 		} 
+		
+		public static function checkForAchievements(levelsCompleted:int):void
+		{
+			switch (levelsCompleted) {
+				case 20:
+				    submit(ACHIEVEMENT_06);
+					break;
+				case 12:
+					submit(ACHIEVEMENT_05);
+					break;
+				case 7:
+					submit(ACHIEVEMENT_04);
+					break;
+				case 3:
+					submit(ACHIEVEMENT_03);
+					break;
+				case 1:
+					submit(ACHIEVEMENT_02);
+					break;
+				default:
+					
+			}
+			
+		}
 	}
 }

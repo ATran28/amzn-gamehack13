@@ -3,18 +3,15 @@ package screens
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.geom.Vector3D;
-	import flash.utils.Dictionary;
 	
 	import game.Player;
 	import game.StaticGameObject;
 	
-	import levels.AsciiLevels;
-	import levels.GeneratedLevel;
+	import gameCircle.Achievements;
+	import gameCircle.Leaderboards;
+	
 	import levels.Level;
-	import levels.Level1;
-	import levels.Level2;
 	import levels.LevelQueue;
-	import levels.TestLevel;
 	
 	import physics.CollisionDetection;
 	
@@ -35,9 +32,11 @@ package screens
 		
 		private var levelQueue:LevelQueue;
 		private var currentLevel:Level;
+		private var levelsCompleted:int = 0;
 		
 		public function Patr()
 		{
+			frameCount = 0;
 			addEventListener(Event.ADDED_TO_STAGE, initGame);
 			addEventListener(Event.ENTER_FRAME, perFrame);
 			addEventListener(TouchEvent.TOUCH, isPressed);
@@ -50,12 +49,12 @@ package screens
 		
 		private function initGame(event:Event):void {
 			
-			initState();
+			initState(levelQueue.getNextLevel(player));
 		}
 		
-		private function initState():void {
+		private function initState(level:Level):void {
 			player = new Player();
-			currentLevel = levelQueue.getNextLevel(player);
+			currentLevel = level;
 			addChild(currentLevel);
 			
 			// set the properties
@@ -63,12 +62,13 @@ package screens
 			player.y = currentLevel.startPosition.y;
 			
 			player.name = "intern1";
+			frameCount = 0;
 			player.caffeineLevel = 0;
 			addChild(player);
 			touchEnabled = true;
 			touchDown = false;
 		}
-		
+		private var frameCount:int;
 		private var flag:Boolean = false;
 		private function perFrame(event:Event):void {
 			if(GAMEOVER){
@@ -84,7 +84,13 @@ package screens
 					currentLevel.levelStatus["tilesToFind"] -= 1;
 				}
 			}
-			
+			frameCount++;
+			if (frameCount % 60 == 0) {
+				if (currentLevel.hasTimedOut()) {
+					initState(levelQueue.renewCurrentLevel(player));
+				}
+				frameCount = 0;
+			}
 			if (currentLevel.isFinished() && CollisionDetection.detectCollisionRect(player, currentLevel.exitElevator) 
 					&& flag == false) {
 				player.x = currentLevel.exitElevator.x + currentLevel.exitElevator.width/4;
@@ -99,7 +105,12 @@ package screens
 					flag = false;
 					removeChild(currentLevel);
 					removeChild(player);
-					initState();
+					
+					levelsCompleted = levelsCompleted + 1;
+					trace(levelsCompleted + " levels compeleted!");
+					Leaderboards.submitScore(Leaderboards.BOARD_01, levelsCompleted);
+					Achievements.checkForAchievements(levelsCompleted);
+					initState(levelQueue.getNextLevel(player));
 				}
 			}
 			
