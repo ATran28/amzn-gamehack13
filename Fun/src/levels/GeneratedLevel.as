@@ -20,7 +20,7 @@ package levels
 		{
 			super();
 			
-			
+			_notableTiles = new Vector.<StaticGameObject>();
 			
 			parser = new AsciiLevelParser();
 			var success:Boolean = parser.parse(ascii);
@@ -53,6 +53,8 @@ package levels
 				addChild(tile);	
 			}
 			
+			_levelStatus["tilesToFind"] = notableTiles.length;
+			
 			//Handle Elevator
 			_exitElevator = parser.elevator;
 			
@@ -66,8 +68,11 @@ package levels
 		}
 		
 		override public function isFinished():Boolean {
-			_exitElevator.animate();
-			return true;
+			if ( levelStatus["tilesToFind"] == 0 ) {
+				exitElevator.animate();
+				return true;
+			}
+			return false;
 		}
 		
 		
