@@ -22,6 +22,7 @@ package levels
 		
 		public function Level1()
 		{
+			super();
 			var viewport:Rectangle = Fun.viewport;
 			var miny:int = viewport.height - 113;
 			var minx:int = viewport.width;

@@ -36,7 +36,7 @@ package screens
 		}
 		
 		private function initGame(event:Event):void {
-			initState(new Level1());
+			initState(new TestLevel());
 		}
 		
 		private function initState(level:Level):void {
