@@ -13,9 +13,9 @@ package util
 
 		public static function getRandomBackgroundSound():String
 		{
-			var number:Number = Math.ceil(Math.random() * 3);
+			var number:Number = Math.ceil(Math.random() * 2);
 		
-			return "eric_skiff_" + number;
+			return "erik_skiff_" + number;
 		}
 	}
 }

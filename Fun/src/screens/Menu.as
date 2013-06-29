@@ -28,6 +28,10 @@ package screens
         public static const OWEN:String = "startOwen";
         public static const PATR:String = "startPatr";
         public static const RUOR:String = "startRuor";
+        public static const ToggleMusic:String = "ToggleMusic";
+		
+		public var musicOn:Image;
+		public var musicOff:Image;
         
         public function Menu()
         {
@@ -104,12 +108,22 @@ package screens
 //			jamesButton.addEventListener(Event.TRIGGERED, onJamesButtonTriggered);
 //			addChild(jamesButton);  
 
-			var owenButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "Owen");
-			owenButton.fontSize = 24;
-			owenButton.x = int((Fun.STAGE_WIDTH - owenButton.width) / 3);
-			owenButton.y = Fun.STAGE_HEIGHT * 0.55;
-			owenButton.addEventListener(Event.TRIGGERED, onOwenButtonTriggered);
-			addChild(owenButton);  
+			var musicButton:Button = new Button(ROOT.assets.getTexture("orange-button"), "Music");
+			musicButton.fontSize = 24;
+			musicButton.x = int((Fun.STAGE_WIDTH - musicButton.width) / 3);
+			musicButton.y = Fun.STAGE_HEIGHT * 0.55;
+			musicButton.addEventListener(Event.TRIGGERED, onMusicButtonTriggered);
+			addChild(musicButton);  
+
+			musicOn = new Image(ROOT.assets.getTexture("turn_on"));
+			musicOn.x = 300;
+			musicOn.y = 900; 
+
+			
+			musicOff = new Image(ROOT.assets.getTexture("turn_off"));
+			musicOff.x = 300;
+			musicOff.y = 900;
+			addChild(musicOff);
 
         }
         
@@ -135,6 +149,19 @@ package screens
         {
 			// The last parameter is just a name 
             dispatchEventWith(OWEN, true, "fun");
+        }
+
+        private function onMusicButtonTriggered():void
+        {
+			if (ROOT.music) {
+				ROOT.music=false;
+				removeChild(musicOn);
+				addChild(musicOff);
+			} else {
+				ROOT.music=true;
+				removeChild(musicOff);
+				addChild(musicOn);
+			}
         }
 
         private function onRuoranButtonTriggered():void

@@ -25,8 +25,8 @@ package screens
 		
 		// manual load particle
 		public static var fire:ParticleDesignerPS;
-
 		
+		public static var music:Boolean = false;
 		
 		[Embed(source="/resources/fire.pex", mimeType="application/octet-stream")]
 		private static const FireConfig:Class;

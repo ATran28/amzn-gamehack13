@@ -1,15 +1,25 @@
 package levels
 {
 	import flash.geom.Point;
+	import flash.media.Sound;
 	import flash.utils.getTimer;
 	
 	import game.AnimatedGameObject;
 	import game.StaticGameObject;
 	
+	import screens.ROOT;
+	
+	import starling.display.Button;
+	import starling.display.Image;
 	import starling.display.Sprite;
+	import starling.events.Event;
+	
+	import util.Util;
 
 	public class Level extends Sprite
 	{
+		public static const GAME_OVER:String = "gameOver";
+
 		protected var _tiles:Vector.<StaticGameObject>;
 		protected var _exitElevator:AnimatedGameObject;
 		protected var _startingPosition:Point;
@@ -20,11 +30,48 @@ package levels
 		public function get startPosition():Point { return _startingPosition; }
 		public function get score():int { return _score; }
 		
+		// background music 
+		public var music:Sound;
+		
 		public function Level()
 		{
 			_startTime = getTimer();
 			_score = 0;
+
+			
+//			var musicOn:Image = new Image(ROOT.assets.getTexture("turn_on"));
+//			musicOn.x = 300;
+//			musicOn.y = 0; 
+//			
+//			var musicOff:Image = new Image(ROOT.assets.getTexture("turn_off"));
+//			musicOff.x = 300;
+//			musicOff.y = 0;
+
+			trace("music: " + ROOT.music);
+			if (ROOT.music) {
+				music = ROOT.assets.getSound(Util.getRandomBackgroundSound());
+				if (music != null) {
+					music.play();
+//					addChild(musicOff);
+				}
+			} else {
+//				addChild(musicOff);
+			}
+
+			
+			var backButton:Button = new Button(ROOT.assets.getTexture("menu-button"), "Back");
+			backButton.fontSize = 24;
+			backButton.x = 400;
+			backButton.y = 60; 
+			backButton.addEventListener(Event.TRIGGERED, backToMenu);
+			addChild(backButton);  
 		}
+		
+		// back button to menu handler
+		public function backToMenu():void {
+			dispatchEventWith(GAME_OVER, true, 100);
+		}
+
 		
 		public function run():void {
 			
