@@ -1,5 +1,6 @@
 package misc
 {
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	
@@ -76,6 +77,13 @@ package misc
 				result.setActiveMovie("open");
 			}
 			
+			return result;
+		}
+		
+		public static function makePoint(x:int, y:int):Point {
+			var result:Point = new Point();
+			result.x = x*32;
+			result.y = (viewport.height - vertOffset) - ((y+1) * 32);
 			return result;
 		}
 	}
