@@ -16,7 +16,9 @@ package game
 		// inherit mclip
 		private static var life:int;
 		private static var velocity:Vector3D;
-		
+		private const gravity:Number = 9.8;
+		private var _caffeineLevel:Number = 0.0;
+		private var _caffeineDecay:Number = -0.01;
 		public function Player()
 		{
 			super();
@@ -33,7 +35,7 @@ package game
 		// Set only one as active
 		private function initPlayerMovies():void {
 			// Add movie	
-			var atlas:TextureAtlas = ROOT.assets.getTextureAtlas("intern");
+			var atlas:TextureAtlas = ROOT.atlas;
 			var kickLeftMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_"), 10);
 			
 			// TODO unify scale
@@ -45,9 +47,9 @@ package game
 			
 			// Add another movie
 			var kickRightMovie:MovieClip = new MovieClip(atlas.getTextures("kick_left_"), 10);
-			kickLeftMovie.scaleX = -0.5;
-			kickLeftMovie.scaleY = -0.5;
-			kickLeftMovie.loop = true;
+			kickRightMovie.scaleX = -0.5;
+			kickRightMovie.scaleY = 0.5;
+			kickRightMovie.loop = true;
 			
 			this.addMovie("kick_right", kickRightMovie);
 			
@@ -63,7 +65,6 @@ package game
 			this.setActiveMovie("standing");	
 		}
 		
-		private var gravity:Number = 9.8;
 		public function updateVelocity(newVelocity:Vector3D):void{
 			velocity = newVelocity;
 		}
@@ -78,7 +79,6 @@ package game
 			var playerPosition:Point = new Point(x, y);
 			
 			var v:Vector3D = new Vector3D(velocity.x, velocity.y);
-			trace("velocity: " + velocity);
 			var speed:Number = velocity.length/10;
 			v.normalize();
 			v.scaleBy(speed);
@@ -87,8 +87,26 @@ package game
 			x = playerPosition.x;
 			y = playerPosition.y;
 			
-			
-			//			detectCollsions(intern1);
+			caffeineLevel = Math.max(0.0, caffeineLevel + caffeineDecay);
+		
+			trace("caffeineLevel: " + caffeineLevel);
 		}
+			//			detectCollsions(intern1);
+		public function kickLeft():void {
+			this.setActiveMovie("kick_left");
+		}
+
+		public function kickRight():void {
+			this.setActiveMovie("kick_right");
+		}
+
+		public function stand():void {
+			this.setActiveMovie("standing");
+		}
+		
+		public function set caffeineLevel(value:Number):void { _caffeineLevel = value; }
+		public function get caffeineLevel():Number { return _caffeineLevel; }
+		public function set caffeineDecay(value:Number):void { _caffeineDecay = value; }
+		public function get caffeineDecay():Number { return _caffeineDecay; }
 	}
 }

@@ -25,6 +25,8 @@ package game
 			if (activeMovie != null) {
 				// remove the old active from juggler
 				Starling.juggler.remove(activeMovie);
+				// and also from stage
+				removeChild(activeMovie);
 			}
 			if (!movieMap.hasOwnProperty(name)) {
 				trace("no such movie: " + name);	
@@ -32,8 +34,10 @@ package game
 			// set the handle
 			activeMovie = movieMap[name]; 
 			// move to center for sphere collision detection
-			activeMovie.x = this.width / 2;
-			activeMovie.x = this.width / 2;
+//			activeMovie.x = - activeMovie.width / 2;
+//			activeMovie.x = - activeMovie.width / 2;
+//			activeMovie.pivotX = activeMovie.width / 2;
+//			activeMovie.pivotY = activeMovie.height / 2;
 			// add to juggler
 			Starling.juggler.add(activeMovie);
 			// start 

@@ -36,7 +36,7 @@ package screens
 		}
 		
 		private var stretchedGround:Image;
-		private var ground:Vector.<Image> = new Vector.<Image>(); 
+		private var ground:Vector.<StaticGameObject> = new Vector.<StaticGameObject>(); 
 		private function initGame(event:Event):void {
 			var viewport:Rectangle = Fun.viewport;
 			var texture:Texture = ROOT.assets.getTexture("menubg");
@@ -58,15 +58,13 @@ package screens
 			addChild(stretchedGround);
 			stretchedGround.name = "stretchedGround";
 			
-			var groundImg:StaticGameObject;
+			var groundTile:StaticGameObject;
 			for(var w:Number = 0; w < viewport.width; w += tex.width){
-				groundImg = new StaticGameObject();
-				groundImg.name = "ground" + w;
-				groundImg.addImage(groundImg.name, new Image(tex));
-				groundImg.x = w;
-				groundImg.y = 800;
-				addChild(groundImg);
-				ground.push(groundImg);
+				groundTile = StaticGameObject.makeTile(w, 800, new Image(tex));
+				groundTile.name = "ground" + w;
+				
+				addChild(groundTile);
+				ground.push(groundTile);
 			}
 			
 			player = new Player();
@@ -76,6 +74,7 @@ package screens
 			player.x = 0;
 			player.y = 50;
 			player.name = "intern1";
+			player.caffeineLevel = 50;
 			addChild(player);	
 			
 			addChild(ROOT.fire);
@@ -201,19 +200,29 @@ package screens
 				player.y = 0;
 			}
 			
-			for each(var block:Image in ground){
+			for each(var block:StaticGameObject in ground){
 				if(CollisionDetection.detectCollisionRect(player, block)){
 					trace("Ground collision");
 					hasCollided = true;
 					player.updateVelocity(new Vector3D(player.getVelocity().x, 0));
 					response(player, block);
+					
+					
+					player.y = block.y - player.height;
 					return true;
 				}	
 			}
 			return false;
 		}
-		private function response(player:DisplayObject, obj:DisplayObject):void{
-			player.y = obj.y - player.height;
+		private function response(player:Player, obj:StaticGameObject):void{
+			
+			var v:Vector3D = player.getVelocity();
+			v.x *= obj.friction;
+			v.y = -player.caffeineLevel;
+			
+			player.updateVelocity(v);
+			
+			
 		}
 	}
 }
