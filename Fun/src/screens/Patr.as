@@ -48,12 +48,11 @@ package screens
 		}
 		
 		private function initGame(event:Event):void {
-			
+			player = new Player();
 			initState(levelQueue.getNextLevel(player));
 		}
 		
-		private function initState(level:Level):void {
-			player = new Player();
+		private function initState(level:Level):void {	
 			currentLevel = level;
 			addChild(currentLevel);
 			
@@ -68,6 +67,7 @@ package screens
 			addChild(player);
 			touchEnabled = true;
 			touchDown = false;
+			dangerFlag = false;
 		}
 		private var frameCount:int;
 		private var elevatorTouched:Boolean = false;
@@ -88,6 +88,9 @@ package screens
 			frameCount++;
 			if (frameCount % 60 == 0) {
 				if (currentLevel.hasTimedOut() && !elevatorTouched) {
+					removeChild(currentLevel);
+					removeChild(player);
+					player = new Player();
 					initState(levelQueue.renewCurrentLevel(player));
 				}
 				frameCount = 0;
@@ -111,6 +114,7 @@ package screens
 					trace(levelsCompleted + " levels compeleted!");
 					Leaderboards.submitScore(Leaderboards.BOARD_01, levelsCompleted);
 					Achievements.checkForAchievements(levelsCompleted);
+					player = new Player();
 					initState(levelQueue.getNextLevel(player));
 				}
 			}
@@ -119,10 +123,13 @@ package screens
 				player.updatePosition();
 			} else {
 				player.setPivot();
-				player.rotation += deg2rad(3);
-				totalDegreesRotated += 3;
+				player.rotation += deg2rad(9);
+				totalDegreesRotated += 9;
 				if(totalDegreesRotated > 540){
-						
+					removeChild(currentLevel);
+					removeChild(player);
+					player = new Player();
+					initState(levelQueue.renewCurrentLevel(player));
 				}
 			}
 			
