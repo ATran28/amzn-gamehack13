@@ -91,6 +91,7 @@ package screens
 		private static const bounceFactor:Number = 0.1;
 		private function detectCollsions2(player:Player):Boolean {
 
+			//Check collisions with viewport 
 			var viewport:Rectangle = Fun.viewport;
 			if(player.x > viewport.width - player.width){
 				player.x = viewport.width - player.width;
@@ -110,20 +111,11 @@ package screens
 				player.updateVelocity(new Vector3D(player.getVelocity().x, -player.getVelocity().y * bounceFactor));
 			}
 			
+			//Check tile collisions
 			for each(var block:StaticGameObject in level1.tiles){
 				if(CollisionDetection.detectCollisionRect(player, block) && block.blocking){
-					trace("Ground collision");
-					player.updateVelocity(new Vector3D(player.getVelocity().x, 0));
+					trace("Ground collision");	
 					response(player, block);
-					
-					
-					player.y = block.y - player.height - player.caffeineLevel;
-					
-					if(touchDown){
-						player.crouch();
-					} else {
-						player.stand();	
-					}
 					
 					return true;
 				}	
@@ -132,13 +124,23 @@ package screens
 		}
 		private function response(player:Player, obj:StaticGameObject):void{
 			
-			var v:Vector3D = player.getVelocity();
-			v.x *= obj.friction;
-			v.y = -player.caffeineLevel;
-			
-			player.updateVelocity(v);
-			
-			
+			if(player.y < obj.y){
+				player.updateVelocity(new Vector3D(player.getVelocity().x, 0));
+				
+				var v:Vector3D = player.getVelocity();
+				v.x *= obj.friction;
+				v.y = -player.caffeineLevel;
+				
+				player.updateVelocity(v);
+				
+				player.y = obj.y - player.height - player.caffeineLevel;
+				
+				if(touchDown){
+					player.crouch();
+				} else {
+					player.stand();	
+				}
+			}
 		}
 	}
 }
