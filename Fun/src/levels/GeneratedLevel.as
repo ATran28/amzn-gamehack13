@@ -44,7 +44,7 @@ package levels
 			_startingPosition = parser.playerPoint;
 			
 			// Set background
-			var texture:Texture = ROOT.assets.getTexture("bg1");
+			var texture:Texture = ROOT.assets.getTexture(parser.background);
 			var background:Image = new Image( texture );
 			background.x = viewport.x;
 			background.y = viewport.y;
