@@ -62,7 +62,13 @@ package levels
 						statics.push(obj);
 					} else if(c == "B"){
 						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "metal2");
-						statics.push(obj);		
+						statics.push(obj);
+					} else if(c == "L"){
+						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "lava");
+						statics.push(obj);
+					} else if(c == "W"){
+						obj = DisplayHelper.makeStaticBlock(actualX, actualY, "water");
+						statics.push(obj);
 					} else if(c == "E"){
 						if(firstE){
 							firstE = false;

@@ -73,7 +73,7 @@ package screens
 			}
 			
 			// Check for 'notable' tiles
-			for each (var tile:StaticGameObject in currentLevel.notableTiles) {
+			for each(var tile:StaticGameObject in currentLevel.notableTiles) {
 				if (CollisionDetection.detectCollisionRect(player, tile)) {
 					if (tile.removable) {
 						 tile.visible = false;
@@ -84,7 +84,6 @@ package screens
 			
 			if (currentLevel.isFinished() && CollisionDetection.detectCollisionRect(player, currentLevel.exitElevator) 
 					&& flag == false) {
-				trace("%%%%%%%%%%%%%%%%%%%%%%%");
 				player.x = currentLevel.exitElevator.x + currentLevel.exitElevator.width/4;
 				player.y = currentLevel.exitElevator.y + (currentLevel.exitElevator.height - player.height);
 				player.updateVelocity(new Vector3D());
@@ -196,7 +195,7 @@ package screens
 				
 				var v:Vector3D = player.getVelocity();
 				v.x *= obj.friction;
-				
+			
 				player.updateVelocity(v);
 				
 				player.y = obj.y - player.height - player.caffeineLevel;
