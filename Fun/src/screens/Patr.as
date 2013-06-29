@@ -53,13 +53,14 @@ package screens
 			stretchedGround.y = 400;
 			stretchedGround.width = viewport.width;
 			addChild(stretchedGround);
-			
+			stretchedGround.name = "stretchedGround";
 			
 			var groundImg:Image;
 			for(var w:Number = 0; w < viewport.width; w += tex.width){
 				groundImg = new Image(tex);
 				groundImg.x = w;
 				groundImg.y = 800;
+				groundImg.name = "ground" + w;
 				addChild(groundImg);
 				ground.push(groundImg);
 			}
@@ -121,29 +122,36 @@ package screens
 			
 			// Move intern 1 along vector from intern to touch event
 			var localPos:Point = touchPosition;//event.getTouch(this).getLocation(this);
-			trace("Touched object at position: " + localPos);
+			//trace("Touched object at position: " + localPos);
 			
 			var intern1:DisplayObject = this.getChildByName("intern1");
 			var internPos:Point = new Point(intern1.x, intern1.y);
-			trace("Initial Intern Position: " + internPos);
+			//trace("Initial Intern Position: " + internPos);
 			
 			var v:Vector3D = new Vector3D(localPos.x - internPos.x, localPos.y - internPos.y);
 			v.normalize();
 			v.scaleBy(speed);
-			trace("Vector: " + v.x + ", " + v.y);
-			trace("New Point: " + new Point(v.x, v.y));
+			//trace("Vector: " + v.x + ", " + v.y);
+			//trace("New Point: " + new Point(v.x, v.y));
 			internPos = internPos.add(new Point(v.x, v.y));
-			trace("InternPos: " + internPos);
+			//trace("InternPos: " + internPos);
 			intern1.x = internPos.x;
 			intern1.y = internPos.y;
 			
-			//detectCollsions(intern1);
+			detectCollsions(intern1);
+			
 		}
 		
 		private function detectCollsions(player:DisplayObject):Boolean {
-			if(CollisionDetection.detectCollisionSphere(player, stretchedGround)){
-				trace("Ground collision");
+			if(CollisionDetection.detectCollisionRect(player, stretchedGround)){
+				trace("Stretched collision");
 				return true;
+			}
+			for each(var block:Image in ground){
+				if(CollisionDetection.detectCollision(player, block)){
+					trace("Ground collision");
+					return true;
+				}	
 			}
 			return false;
 		}
