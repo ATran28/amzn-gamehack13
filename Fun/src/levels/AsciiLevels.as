@@ -42,6 +42,47 @@ package levels
 			"X                         X" +
 			"X                         X" +                        
 			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		
+		public static const EMPTY_TEMPLATE_TO_COPY:String = 
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXX" + 
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +
+			"X                         X" +                        
+			"XXXXXXXXXXXXXXXXXXXXXXXXXXX";
 	}
 	
 }
